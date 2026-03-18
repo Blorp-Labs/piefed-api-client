@@ -32,9 +32,14 @@
     "orval": "^7.3.0",
     "typescript": "^5.7.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Blorp-Labs/piefed-api-client.git"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "pnpm": {
     "onlyBuiltDependencies": [
