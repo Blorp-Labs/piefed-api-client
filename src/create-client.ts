@@ -30,6 +30,11 @@ type ApiFunctions = {
   [K in keyof typeof allFns as (typeof allFns)[K] extends AsyncFn ? K : never]: (typeof allFns)[K];
 };
 
+interface CreateClientOptions {
+  /** Default headers merged into every request (e.g. Authorization). */
+  headers?: Record<string, string>;
+}
+
 /**
  * Create a client bound to a specific PieFed instance.
  *
@@ -37,31 +42,44 @@ type ApiFunctions = {
  * const client = createClient('https://piefed.social');
  * const site = await client.getApiAlphaSite();
  *
+ * // With auth:
+ * const client = createClient('https://piefed.social', {
+ *   headers: { Authorization: 'Bearer <token>' },
+ * });
+ *
  * // Two instances at the same time:
  * const a = createClient('https://instance-a.com');
  * const b = createClient('https://instance-b.com');
  */
-export function createClient(baseUrl: string): ApiFunctions {
+export function createClient(baseUrl: string, options: CreateClientOptions = {}): ApiFunctions {
   const boundFns = {} as Record<string, AsyncFn>;
 
   for (const [key, fn] of Object.entries(allFns)) {
     if (typeof fn !== 'function') continue;
 
     boundFns[key] = (...args: unknown[]) => {
-      // options is always the last argument; inject baseUrl into it
+      // options is always the last argument; inject baseUrl and default headers into it
       const last = args[args.length - 1];
+      const extra: RequestInit & { baseUrl: string } = {
+        baseUrl,
+        ...(options.headers ? { headers: options.headers } : {}),
+      };
       if (last !== null && typeof last === 'object' && !Array.isArray(last)) {
-        args[args.length - 1] = { ...last as object, baseUrl };
+        const lastObj = last as RequestInit & { baseUrl?: string };
+        args[args.length - 1] = {
+          ...extra,
+          ...lastObj,
+          // per-call headers win, but default headers fill in any gaps
+          headers: { ...options.headers, ...(lastObj.headers as Record<string, string> | undefined) },
+        };
       } else if (last === undefined || args.length === 0) {
-        // either no args or options was explicitly undefined
         if (args.length > 0) {
-          args[args.length - 1] = { baseUrl };
+          args[args.length - 1] = extra;
         } else {
-          args.push({ baseUrl });
+          args.push(extra);
         }
       } else {
-        // last arg is a non-options value (e.g. a body object) — append options
-        args.push({ baseUrl });
+        args.push(extra);
       }
       return (fn as AsyncFn)(...args);
     };
