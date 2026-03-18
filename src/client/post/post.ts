@@ -6,7 +6,6 @@
  */
 import type {
   CreatePostRequest,
-  DefaultError,
   DeletePostRequest,
   EditPostRequest,
   FeaturePostRequest,
@@ -34,8 +33,7 @@ import type {
   ReportPostRequest,
   SavePostRequest,
   SubscribePostRequest,
-  SuccessResponse,
-  UnprocessableEntityResponse
+  SuccessResponse
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -43,30 +41,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary List posts.
  */
-export type getApiAlphaPostListResponse200 = {
-  data: ListPostsResponse
-  status: 200
-}
-
-export type getApiAlphaPostListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostListResponseSuccess = (getApiAlphaPostListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostListResponseError = (getApiAlphaPostListResponse400 | getApiAlphaPostListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostListResponse = (getApiAlphaPostListResponseSuccess | getApiAlphaPostListResponseError)
-
 export const getGetApiAlphaPostListUrl = (params?: GetApiAlphaPostListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -82,9 +56,9 @@ export const getGetApiAlphaPostListUrl = (params?: GetApiAlphaPostListParams,) =
   return stringifiedParams.length > 0 ? `/api/alpha/post/list?${stringifiedParams}` : `/api/alpha/post/list`
 }
 
-export const getApiAlphaPostList = async (params?: GetApiAlphaPostListParams, options?: RequestInit): Promise<getApiAlphaPostListResponse> => {
+export const getApiAlphaPostList = async (params?: GetApiAlphaPostListParams, options?: RequestInit): Promise<ListPostsResponse> => {
   
-  return customFetch<getApiAlphaPostListResponse>(getGetApiAlphaPostListUrl(params),
+  return customFetch<ListPostsResponse>(getGetApiAlphaPostListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -97,30 +71,6 @@ export const getApiAlphaPostList = async (params?: GetApiAlphaPostListParams, op
 /**
  * @summary List posts. For testing only, do not use.
  */
-export type getApiAlphaPostList2Response200 = {
-  data: ListPostsResponse
-  status: 200
-}
-
-export type getApiAlphaPostList2Response400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostList2Response422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostList2ResponseSuccess = (getApiAlphaPostList2Response200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostList2ResponseError = (getApiAlphaPostList2Response400 | getApiAlphaPostList2Response422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostList2Response = (getApiAlphaPostList2ResponseSuccess | getApiAlphaPostList2ResponseError)
-
 export const getGetApiAlphaPostList2Url = (params?: GetApiAlphaPostList2Params,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -136,9 +86,9 @@ export const getGetApiAlphaPostList2Url = (params?: GetApiAlphaPostList2Params,)
   return stringifiedParams.length > 0 ? `/api/alpha/post/list2?${stringifiedParams}` : `/api/alpha/post/list2`
 }
 
-export const getApiAlphaPostList2 = async (params?: GetApiAlphaPostList2Params, options?: RequestInit): Promise<getApiAlphaPostList2Response> => {
+export const getApiAlphaPostList2 = async (params?: GetApiAlphaPostList2Params, options?: RequestInit): Promise<ListPostsResponse> => {
   
-  return customFetch<getApiAlphaPostList2Response>(getGetApiAlphaPostList2Url(params),
+  return customFetch<ListPostsResponse>(getGetApiAlphaPostList2Url(params),
   {      
     ...options,
     method: 'GET'
@@ -151,30 +101,6 @@ export const getApiAlphaPostList2 = async (params?: GetApiAlphaPostList2Params, 
 /**
  * @summary Get/fetch a post
  */
-export type getApiAlphaPostResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type getApiAlphaPostResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostResponseSuccess = (getApiAlphaPostResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostResponseError = (getApiAlphaPostResponse400 | getApiAlphaPostResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostResponse = (getApiAlphaPostResponseSuccess | getApiAlphaPostResponseError)
-
 export const getGetApiAlphaPostUrl = (params: GetApiAlphaPostParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -190,9 +116,9 @@ export const getGetApiAlphaPostUrl = (params: GetApiAlphaPostParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/post?${stringifiedParams}` : `/api/alpha/post`
 }
 
-export const getApiAlphaPost = async (params: GetApiAlphaPostParams, options?: RequestInit): Promise<getApiAlphaPostResponse> => {
+export const getApiAlphaPost = async (params: GetApiAlphaPostParams, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<getApiAlphaPostResponse>(getGetApiAlphaPostUrl(params),
+  return customFetch<GetPostResponse>(getGetApiAlphaPostUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -205,35 +131,6 @@ export const getApiAlphaPost = async (params: GetApiAlphaPostParams, options?: R
 /**
  * @summary Create a new post.
  */
-export type postApiAlphaPostResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaPostResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaPostResponseSuccess = (postApiAlphaPostResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostResponseError = (postApiAlphaPostResponse400 | postApiAlphaPostResponse422 | postApiAlphaPostResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostResponse = (postApiAlphaPostResponseSuccess | postApiAlphaPostResponseError)
-
 export const getPostApiAlphaPostUrl = () => {
 
 
@@ -242,9 +139,9 @@ export const getPostApiAlphaPostUrl = () => {
   return `/api/alpha/post`
 }
 
-export const postApiAlphaPost = async (createPostRequest: CreatePostRequest, options?: RequestInit): Promise<postApiAlphaPostResponse> => {
+export const postApiAlphaPost = async (createPostRequest: CreatePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostResponse>(getPostApiAlphaPostUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostUrl(),
   {      
     ...options,
     method: 'POST',
@@ -258,30 +155,6 @@ export const postApiAlphaPost = async (createPostRequest: CreatePostRequest, opt
 /**
  * @summary Edit a post.
  */
-export type putApiAlphaPostResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type putApiAlphaPostResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaPostResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaPostResponseSuccess = (putApiAlphaPostResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaPostResponseError = (putApiAlphaPostResponse400 | putApiAlphaPostResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaPostResponse = (putApiAlphaPostResponseSuccess | putApiAlphaPostResponseError)
-
 export const getPutApiAlphaPostUrl = () => {
 
 
@@ -290,9 +163,9 @@ export const getPutApiAlphaPostUrl = () => {
   return `/api/alpha/post`
 }
 
-export const putApiAlphaPost = async (editPostRequest: EditPostRequest, options?: RequestInit): Promise<putApiAlphaPostResponse> => {
+export const putApiAlphaPost = async (editPostRequest: EditPostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<putApiAlphaPostResponse>(getPutApiAlphaPostUrl(),
+  return customFetch<GetPostResponse>(getPutApiAlphaPostUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -306,30 +179,6 @@ export const putApiAlphaPost = async (editPostRequest: EditPostRequest, options?
 /**
  * @summary Get replies/comments for a post with nested structure.
  */
-export type getApiAlphaPostRepliesResponse200 = {
-  data: GetPostRepliesResponse
-  status: 200
-}
-
-export type getApiAlphaPostRepliesResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostRepliesResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostRepliesResponseSuccess = (getApiAlphaPostRepliesResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostRepliesResponseError = (getApiAlphaPostRepliesResponse400 | getApiAlphaPostRepliesResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostRepliesResponse = (getApiAlphaPostRepliesResponseSuccess | getApiAlphaPostRepliesResponseError)
-
 export const getGetApiAlphaPostRepliesUrl = (params?: GetApiAlphaPostRepliesParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -345,9 +194,9 @@ export const getGetApiAlphaPostRepliesUrl = (params?: GetApiAlphaPostRepliesPara
   return stringifiedParams.length > 0 ? `/api/alpha/post/replies?${stringifiedParams}` : `/api/alpha/post/replies`
 }
 
-export const getApiAlphaPostReplies = async (params?: GetApiAlphaPostRepliesParams, options?: RequestInit): Promise<getApiAlphaPostRepliesResponse> => {
+export const getApiAlphaPostReplies = async (params?: GetApiAlphaPostRepliesParams, options?: RequestInit): Promise<GetPostRepliesResponse> => {
   
-  return customFetch<getApiAlphaPostRepliesResponse>(getGetApiAlphaPostRepliesUrl(params),
+  return customFetch<GetPostRepliesResponse>(getGetApiAlphaPostRepliesUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -360,30 +209,6 @@ export const getApiAlphaPostReplies = async (params?: GetApiAlphaPostRepliesPara
 /**
  * @summary Get metadata about a url.
  */
-export type getApiAlphaPostSiteMetadataResponse200 = {
-  data: GetSiteMetadataResponse
-  status: 200
-}
-
-export type getApiAlphaPostSiteMetadataResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostSiteMetadataResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostSiteMetadataResponseSuccess = (getApiAlphaPostSiteMetadataResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostSiteMetadataResponseError = (getApiAlphaPostSiteMetadataResponse400 | getApiAlphaPostSiteMetadataResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostSiteMetadataResponse = (getApiAlphaPostSiteMetadataResponseSuccess | getApiAlphaPostSiteMetadataResponseError)
-
 export const getGetApiAlphaPostSiteMetadataUrl = (params?: GetApiAlphaPostSiteMetadataParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -399,9 +224,9 @@ export const getGetApiAlphaPostSiteMetadataUrl = (params?: GetApiAlphaPostSiteMe
   return stringifiedParams.length > 0 ? `/api/alpha/post/site_metadata?${stringifiedParams}` : `/api/alpha/post/site_metadata`
 }
 
-export const getApiAlphaPostSiteMetadata = async (params?: GetApiAlphaPostSiteMetadataParams, options?: RequestInit): Promise<getApiAlphaPostSiteMetadataResponse> => {
+export const getApiAlphaPostSiteMetadata = async (params?: GetApiAlphaPostSiteMetadataParams, options?: RequestInit): Promise<GetSiteMetadataResponse> => {
   
-  return customFetch<getApiAlphaPostSiteMetadataResponse>(getGetApiAlphaPostSiteMetadataUrl(params),
+  return customFetch<GetSiteMetadataResponse>(getGetApiAlphaPostSiteMetadataUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -414,30 +239,6 @@ export const getApiAlphaPostSiteMetadata = async (params?: GetApiAlphaPostSiteMe
 /**
  * @summary Like or unlike a post.
  */
-export type postApiAlphaPostLikeResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostLikeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostLikeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostLikeResponseSuccess = (postApiAlphaPostLikeResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostLikeResponseError = (postApiAlphaPostLikeResponse400 | postApiAlphaPostLikeResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostLikeResponse = (postApiAlphaPostLikeResponseSuccess | postApiAlphaPostLikeResponseError)
-
 export const getPostApiAlphaPostLikeUrl = () => {
 
 
@@ -446,9 +247,9 @@ export const getPostApiAlphaPostLikeUrl = () => {
   return `/api/alpha/post/like`
 }
 
-export const postApiAlphaPostLike = async (likePostRequest: LikePostRequest, options?: RequestInit): Promise<postApiAlphaPostLikeResponse> => {
+export const postApiAlphaPostLike = async (likePostRequest: LikePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostLikeResponse>(getPostApiAlphaPostLikeUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostLikeUrl(),
   {      
     ...options,
     method: 'POST',
@@ -462,30 +263,6 @@ export const postApiAlphaPostLike = async (likePostRequest: LikePostRequest, opt
 /**
  * @summary Save or unsave a post.
  */
-export type putApiAlphaPostSaveResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type putApiAlphaPostSaveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaPostSaveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaPostSaveResponseSuccess = (putApiAlphaPostSaveResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaPostSaveResponseError = (putApiAlphaPostSaveResponse400 | putApiAlphaPostSaveResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaPostSaveResponse = (putApiAlphaPostSaveResponseSuccess | putApiAlphaPostSaveResponseError)
-
 export const getPutApiAlphaPostSaveUrl = () => {
 
 
@@ -494,9 +271,9 @@ export const getPutApiAlphaPostSaveUrl = () => {
   return `/api/alpha/post/save`
 }
 
-export const putApiAlphaPostSave = async (savePostRequest: SavePostRequest, options?: RequestInit): Promise<putApiAlphaPostSaveResponse> => {
+export const putApiAlphaPostSave = async (savePostRequest: SavePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<putApiAlphaPostSaveResponse>(getPutApiAlphaPostSaveUrl(),
+  return customFetch<GetPostResponse>(getPutApiAlphaPostSaveUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -510,30 +287,6 @@ export const putApiAlphaPostSave = async (savePostRequest: SavePostRequest, opti
 /**
  * @summary Subscribe or unsubscribe to a post.
  */
-export type putApiAlphaPostSubscribeResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type putApiAlphaPostSubscribeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaPostSubscribeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaPostSubscribeResponseSuccess = (putApiAlphaPostSubscribeResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaPostSubscribeResponseError = (putApiAlphaPostSubscribeResponse400 | putApiAlphaPostSubscribeResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaPostSubscribeResponse = (putApiAlphaPostSubscribeResponseSuccess | putApiAlphaPostSubscribeResponseError)
-
 export const getPutApiAlphaPostSubscribeUrl = () => {
 
 
@@ -542,9 +295,9 @@ export const getPutApiAlphaPostSubscribeUrl = () => {
   return `/api/alpha/post/subscribe`
 }
 
-export const putApiAlphaPostSubscribe = async (subscribePostRequest: SubscribePostRequest, options?: RequestInit): Promise<putApiAlphaPostSubscribeResponse> => {
+export const putApiAlphaPostSubscribe = async (subscribePostRequest: SubscribePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<putApiAlphaPostSubscribeResponse>(getPutApiAlphaPostSubscribeUrl(),
+  return customFetch<GetPostResponse>(getPutApiAlphaPostSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -558,30 +311,6 @@ export const putApiAlphaPostSubscribe = async (subscribePostRequest: SubscribePo
 /**
  * @summary Delete or restore a post.
  */
-export type postApiAlphaPostDeleteResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostDeleteResponseSuccess = (postApiAlphaPostDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostDeleteResponseError = (postApiAlphaPostDeleteResponse400 | postApiAlphaPostDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostDeleteResponse = (postApiAlphaPostDeleteResponseSuccess | postApiAlphaPostDeleteResponseError)
-
 export const getPostApiAlphaPostDeleteUrl = () => {
 
 
@@ -590,9 +319,9 @@ export const getPostApiAlphaPostDeleteUrl = () => {
   return `/api/alpha/post/delete`
 }
 
-export const postApiAlphaPostDelete = async (deletePostRequest: DeletePostRequest, options?: RequestInit): Promise<postApiAlphaPostDeleteResponse> => {
+export const postApiAlphaPostDelete = async (deletePostRequest: DeletePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostDeleteResponse>(getPostApiAlphaPostDeleteUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -606,30 +335,6 @@ export const postApiAlphaPostDelete = async (deletePostRequest: DeletePostReques
 /**
  * @summary Report a post.
  */
-export type postApiAlphaPostReportResponse200 = {
-  data: PostReportResponse
-  status: 200
-}
-
-export type postApiAlphaPostReportResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostReportResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostReportResponseSuccess = (postApiAlphaPostReportResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostReportResponseError = (postApiAlphaPostReportResponse400 | postApiAlphaPostReportResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostReportResponse = (postApiAlphaPostReportResponseSuccess | postApiAlphaPostReportResponseError)
-
 export const getPostApiAlphaPostReportUrl = () => {
 
 
@@ -638,9 +343,9 @@ export const getPostApiAlphaPostReportUrl = () => {
   return `/api/alpha/post/report`
 }
 
-export const postApiAlphaPostReport = async (reportPostRequest: ReportPostRequest, options?: RequestInit): Promise<postApiAlphaPostReportResponse> => {
+export const postApiAlphaPostReport = async (reportPostRequest: ReportPostRequest, options?: RequestInit): Promise<PostReportResponse> => {
   
-  return customFetch<postApiAlphaPostReportResponse>(getPostApiAlphaPostReportUrl(),
+  return customFetch<PostReportResponse>(getPostApiAlphaPostReportUrl(),
   {      
     ...options,
     method: 'POST',
@@ -654,30 +359,6 @@ export const postApiAlphaPostReport = async (reportPostRequest: ReportPostReques
 /**
  * @summary Lock or unlock a post.
  */
-export type postApiAlphaPostLockResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostLockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostLockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostLockResponseSuccess = (postApiAlphaPostLockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostLockResponseError = (postApiAlphaPostLockResponse400 | postApiAlphaPostLockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostLockResponse = (postApiAlphaPostLockResponseSuccess | postApiAlphaPostLockResponseError)
-
 export const getPostApiAlphaPostLockUrl = () => {
 
 
@@ -686,9 +367,9 @@ export const getPostApiAlphaPostLockUrl = () => {
   return `/api/alpha/post/lock`
 }
 
-export const postApiAlphaPostLock = async (lockPostRequest: LockPostRequest, options?: RequestInit): Promise<postApiAlphaPostLockResponse> => {
+export const postApiAlphaPostLock = async (lockPostRequest: LockPostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostLockResponse>(getPostApiAlphaPostLockUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostLockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -702,30 +383,6 @@ export const postApiAlphaPostLock = async (lockPostRequest: LockPostRequest, opt
 /**
  * @summary Hide or unhide a post.
  */
-export type postApiAlphaPostHideResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostHideResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostHideResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostHideResponseSuccess = (postApiAlphaPostHideResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostHideResponseError = (postApiAlphaPostHideResponse400 | postApiAlphaPostHideResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostHideResponse = (postApiAlphaPostHideResponseSuccess | postApiAlphaPostHideResponseError)
-
 export const getPostApiAlphaPostHideUrl = () => {
 
 
@@ -734,9 +391,9 @@ export const getPostApiAlphaPostHideUrl = () => {
   return `/api/alpha/post/hide`
 }
 
-export const postApiAlphaPostHide = async (hidePostRequest: HidePostRequest, options?: RequestInit): Promise<postApiAlphaPostHideResponse> => {
+export const postApiAlphaPostHide = async (hidePostRequest: HidePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostHideResponse>(getPostApiAlphaPostHideUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostHideUrl(),
   {      
     ...options,
     method: 'POST',
@@ -750,30 +407,6 @@ export const postApiAlphaPostHide = async (hidePostRequest: HidePostRequest, opt
 /**
  * @summary Feature or unfeature a post.
  */
-export type postApiAlphaPostFeatureResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostFeatureResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostFeatureResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostFeatureResponseSuccess = (postApiAlphaPostFeatureResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostFeatureResponseError = (postApiAlphaPostFeatureResponse400 | postApiAlphaPostFeatureResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostFeatureResponse = (postApiAlphaPostFeatureResponseSuccess | postApiAlphaPostFeatureResponseError)
-
 export const getPostApiAlphaPostFeatureUrl = () => {
 
 
@@ -782,9 +415,9 @@ export const getPostApiAlphaPostFeatureUrl = () => {
   return `/api/alpha/post/feature`
 }
 
-export const postApiAlphaPostFeature = async (featurePostRequest: FeaturePostRequest, options?: RequestInit): Promise<postApiAlphaPostFeatureResponse> => {
+export const postApiAlphaPostFeature = async (featurePostRequest: FeaturePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostFeatureResponse>(getPostApiAlphaPostFeatureUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostFeatureUrl(),
   {      
     ...options,
     method: 'POST',
@@ -798,30 +431,6 @@ export const postApiAlphaPostFeature = async (featurePostRequest: FeaturePostReq
 /**
  * @summary Remove or restore a post as a moderator.
  */
-export type postApiAlphaPostRemoveResponse200 = {
-  data: GetPostResponse
-  status: 200
-}
-
-export type postApiAlphaPostRemoveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostRemoveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostRemoveResponseSuccess = (postApiAlphaPostRemoveResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostRemoveResponseError = (postApiAlphaPostRemoveResponse400 | postApiAlphaPostRemoveResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostRemoveResponse = (postApiAlphaPostRemoveResponseSuccess | postApiAlphaPostRemoveResponseError)
-
 export const getPostApiAlphaPostRemoveUrl = () => {
 
 
@@ -830,9 +439,9 @@ export const getPostApiAlphaPostRemoveUrl = () => {
   return `/api/alpha/post/remove`
 }
 
-export const postApiAlphaPostRemove = async (removePostRequest: RemovePostRequest, options?: RequestInit): Promise<postApiAlphaPostRemoveResponse> => {
+export const postApiAlphaPostRemove = async (removePostRequest: RemovePostRequest, options?: RequestInit): Promise<GetPostResponse> => {
   
-  return customFetch<postApiAlphaPostRemoveResponse>(getPostApiAlphaPostRemoveUrl(),
+  return customFetch<GetPostResponse>(getPostApiAlphaPostRemoveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -846,30 +455,6 @@ export const postApiAlphaPostRemove = async (removePostRequest: RemovePostReques
 /**
  * @summary Mark one or more posts as read or unread.
  */
-export type postApiAlphaPostMarkAsReadResponse200 = {
-  data: SuccessResponse
-  status: 200
-}
-
-export type postApiAlphaPostMarkAsReadResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostMarkAsReadResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostMarkAsReadResponseSuccess = (postApiAlphaPostMarkAsReadResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostMarkAsReadResponseError = (postApiAlphaPostMarkAsReadResponse400 | postApiAlphaPostMarkAsReadResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostMarkAsReadResponse = (postApiAlphaPostMarkAsReadResponseSuccess | postApiAlphaPostMarkAsReadResponseError)
-
 export const getPostApiAlphaPostMarkAsReadUrl = () => {
 
 
@@ -878,9 +463,9 @@ export const getPostApiAlphaPostMarkAsReadUrl = () => {
   return `/api/alpha/post/mark_as_read`
 }
 
-export const postApiAlphaPostMarkAsRead = async (markPostAsReadRequest: MarkPostAsReadRequest, options?: RequestInit): Promise<postApiAlphaPostMarkAsReadResponse> => {
+export const postApiAlphaPostMarkAsRead = async (markPostAsReadRequest: MarkPostAsReadRequest, options?: RequestInit): Promise<SuccessResponse> => {
   
-  return customFetch<postApiAlphaPostMarkAsReadResponse>(getPostApiAlphaPostMarkAsReadUrl(),
+  return customFetch<SuccessResponse>(getPostApiAlphaPostMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -894,30 +479,6 @@ export const postApiAlphaPostMarkAsRead = async (markPostAsReadRequest: MarkPost
 /**
  * @summary View post votes as a moderator.
  */
-export type getApiAlphaPostLikeListResponse200 = {
-  data: ListPostLikesResponse
-  status: 200
-}
-
-export type getApiAlphaPostLikeListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPostLikeListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPostLikeListResponseSuccess = (getApiAlphaPostLikeListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPostLikeListResponseError = (getApiAlphaPostLikeListResponse400 | getApiAlphaPostLikeListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPostLikeListResponse = (getApiAlphaPostLikeListResponseSuccess | getApiAlphaPostLikeListResponseError)
-
 export const getGetApiAlphaPostLikeListUrl = (params: GetApiAlphaPostLikeListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -933,9 +494,9 @@ export const getGetApiAlphaPostLikeListUrl = (params: GetApiAlphaPostLikeListPar
   return stringifiedParams.length > 0 ? `/api/alpha/post/like/list?${stringifiedParams}` : `/api/alpha/post/like/list`
 }
 
-export const getApiAlphaPostLikeList = async (params: GetApiAlphaPostLikeListParams, options?: RequestInit): Promise<getApiAlphaPostLikeListResponse> => {
+export const getApiAlphaPostLikeList = async (params: GetApiAlphaPostLikeListParams, options?: RequestInit): Promise<ListPostLikesResponse> => {
   
-  return customFetch<getApiAlphaPostLikeListResponse>(getGetApiAlphaPostLikeListUrl(params),
+  return customFetch<ListPostLikesResponse>(getGetApiAlphaPostLikeListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -948,30 +509,6 @@ export const getApiAlphaPostLikeList = async (params: GetApiAlphaPostLikeListPar
 /**
  * @summary Add/remove flair from a post
  */
-export type postApiAlphaPostAssignFlairResponse200 = {
-  data: PostSetFlairResponse
-  status: 200
-}
-
-export type postApiAlphaPostAssignFlairResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostAssignFlairResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostAssignFlairResponseSuccess = (postApiAlphaPostAssignFlairResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostAssignFlairResponseError = (postApiAlphaPostAssignFlairResponse400 | postApiAlphaPostAssignFlairResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostAssignFlairResponse = (postApiAlphaPostAssignFlairResponseSuccess | postApiAlphaPostAssignFlairResponseError)
-
 export const getPostApiAlphaPostAssignFlairUrl = () => {
 
 
@@ -980,9 +517,9 @@ export const getPostApiAlphaPostAssignFlairUrl = () => {
   return `/api/alpha/post/assign_flair`
 }
 
-export const postApiAlphaPostAssignFlair = async (postSetFlairRequest: PostSetFlairRequest, options?: RequestInit): Promise<postApiAlphaPostAssignFlairResponse> => {
+export const postApiAlphaPostAssignFlair = async (postSetFlairRequest: PostSetFlairRequest, options?: RequestInit): Promise<PostSetFlairResponse> => {
   
-  return customFetch<postApiAlphaPostAssignFlairResponse>(getPostApiAlphaPostAssignFlairUrl(),
+  return customFetch<PostSetFlairResponse>(getPostApiAlphaPostAssignFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -996,30 +533,6 @@ export const postApiAlphaPostAssignFlair = async (postSetFlairRequest: PostSetFl
 /**
  * @summary Vote in a poll
  */
-export type postApiAlphaPostPollVoteResponse200 = {
-  data: PollVoteResponse
-  status: 200
-}
-
-export type postApiAlphaPostPollVoteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPostPollVoteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPostPollVoteResponseSuccess = (postApiAlphaPostPollVoteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPostPollVoteResponseError = (postApiAlphaPostPollVoteResponse400 | postApiAlphaPostPollVoteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPostPollVoteResponse = (postApiAlphaPostPollVoteResponseSuccess | postApiAlphaPostPollVoteResponseError)
-
 export const getPostApiAlphaPostPollVoteUrl = () => {
 
 
@@ -1028,9 +541,9 @@ export const getPostApiAlphaPostPollVoteUrl = () => {
   return `/api/alpha/post/poll_vote`
 }
 
-export const postApiAlphaPostPollVote = async (pollVoteRequest: PollVoteRequest, options?: RequestInit): Promise<postApiAlphaPostPollVoteResponse> => {
+export const postApiAlphaPostPollVote = async (pollVoteRequest: PollVoteRequest, options?: RequestInit): Promise<PollVoteResponse> => {
   
-  return customFetch<postApiAlphaPostPollVoteResponse>(getPostApiAlphaPostPollVoteUrl(),
+  return customFetch<PollVoteResponse>(getPostApiAlphaPostPollVoteUrl(),
   {      
     ...options,
     method: 'POST',

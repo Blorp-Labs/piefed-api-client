@@ -5,7 +5,6 @@
  * OpenAPI spec version: alpha 1.6
  */
 import type {
-  DefaultError,
   GetApiAlphaModlogParams,
   GetApiAlphaResolveObjectParams,
   GetApiAlphaSearchParams,
@@ -14,8 +13,7 @@ import type {
   GetModLogResponse,
   GetSuggestCompletionResponse,
   ResolveObjectResponse,
-  SearchResponse,
-  UnprocessableEntityResponse
+  SearchResponse
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -23,30 +21,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Search PieFed.
  */
-export type getApiAlphaSearchResponse200 = {
-  data: SearchResponse
-  status: 200
-}
-
-export type getApiAlphaSearchResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaSearchResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaSearchResponseSuccess = (getApiAlphaSearchResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSearchResponseError = (getApiAlphaSearchResponse400 | getApiAlphaSearchResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSearchResponse = (getApiAlphaSearchResponseSuccess | getApiAlphaSearchResponseError)
-
 export const getGetApiAlphaSearchUrl = (params: GetApiAlphaSearchParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -62,9 +36,9 @@ export const getGetApiAlphaSearchUrl = (params: GetApiAlphaSearchParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/search?${stringifiedParams}` : `/api/alpha/search`
 }
 
-export const getApiAlphaSearch = async (params: GetApiAlphaSearchParams, options?: RequestInit): Promise<getApiAlphaSearchResponse> => {
+export const getApiAlphaSearch = async (params: GetApiAlphaSearchParams, options?: RequestInit): Promise<SearchResponse> => {
   
-  return customFetch<getApiAlphaSearchResponse>(getGetApiAlphaSearchUrl(params),
+  return customFetch<SearchResponse>(getGetApiAlphaSearchUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -77,30 +51,6 @@ export const getApiAlphaSearch = async (params: GetApiAlphaSearchParams, options
 /**
  * @summary Fetch a non-local / federated object.
  */
-export type getApiAlphaResolveObjectResponse200 = {
-  data: ResolveObjectResponse
-  status: 200
-}
-
-export type getApiAlphaResolveObjectResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaResolveObjectResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaResolveObjectResponseSuccess = (getApiAlphaResolveObjectResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaResolveObjectResponseError = (getApiAlphaResolveObjectResponse400 | getApiAlphaResolveObjectResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaResolveObjectResponse = (getApiAlphaResolveObjectResponseSuccess | getApiAlphaResolveObjectResponseError)
-
 export const getGetApiAlphaResolveObjectUrl = (params: GetApiAlphaResolveObjectParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -116,9 +66,9 @@ export const getGetApiAlphaResolveObjectUrl = (params: GetApiAlphaResolveObjectP
   return stringifiedParams.length > 0 ? `/api/alpha/resolve_object?${stringifiedParams}` : `/api/alpha/resolve_object`
 }
 
-export const getApiAlphaResolveObject = async (params: GetApiAlphaResolveObjectParams, options?: RequestInit): Promise<getApiAlphaResolveObjectResponse> => {
+export const getApiAlphaResolveObject = async (params: GetApiAlphaResolveObjectParams, options?: RequestInit): Promise<ResolveObjectResponse> => {
   
-  return customFetch<getApiAlphaResolveObjectResponse>(getGetApiAlphaResolveObjectUrl(params),
+  return customFetch<ResolveObjectResponse>(getGetApiAlphaResolveObjectUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -131,25 +81,6 @@ export const getApiAlphaResolveObject = async (params: GetApiAlphaResolveObjectP
 /**
  * @summary Fetch federated instances.
  */
-export type getApiAlphaFederatedInstancesResponse200 = {
-  data: GetFederatedInstancesResponse
-  status: 200
-}
-
-export type getApiAlphaFederatedInstancesResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaFederatedInstancesResponseSuccess = (getApiAlphaFederatedInstancesResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaFederatedInstancesResponseError = (getApiAlphaFederatedInstancesResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaFederatedInstancesResponse = (getApiAlphaFederatedInstancesResponseSuccess | getApiAlphaFederatedInstancesResponseError)
-
 export const getGetApiAlphaFederatedInstancesUrl = () => {
 
 
@@ -158,9 +89,9 @@ export const getGetApiAlphaFederatedInstancesUrl = () => {
   return `/api/alpha/federated_instances`
 }
 
-export const getApiAlphaFederatedInstances = async ( options?: RequestInit): Promise<getApiAlphaFederatedInstancesResponse> => {
+export const getApiAlphaFederatedInstances = async ( options?: RequestInit): Promise<GetFederatedInstancesResponse> => {
   
-  return customFetch<getApiAlphaFederatedInstancesResponse>(getGetApiAlphaFederatedInstancesUrl(),
+  return customFetch<GetFederatedInstancesResponse>(getGetApiAlphaFederatedInstancesUrl(),
   {      
     ...options,
     method: 'GET'
@@ -173,30 +104,6 @@ export const getApiAlphaFederatedInstances = async ( options?: RequestInit): Pro
 /**
  * @summary Suggest people and communities while users type.
  */
-export type getApiAlphaSuggestCompletionResponse200 = {
-  data: GetSuggestCompletionResponse
-  status: 200
-}
-
-export type getApiAlphaSuggestCompletionResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaSuggestCompletionResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaSuggestCompletionResponseSuccess = (getApiAlphaSuggestCompletionResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSuggestCompletionResponseError = (getApiAlphaSuggestCompletionResponse400 | getApiAlphaSuggestCompletionResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSuggestCompletionResponse = (getApiAlphaSuggestCompletionResponseSuccess | getApiAlphaSuggestCompletionResponseError)
-
 export const getGetApiAlphaSuggestCompletionUrl = (params?: GetApiAlphaSuggestCompletionParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -212,9 +119,9 @@ export const getGetApiAlphaSuggestCompletionUrl = (params?: GetApiAlphaSuggestCo
   return stringifiedParams.length > 0 ? `/api/alpha/suggest_completion?${stringifiedParams}` : `/api/alpha/suggest_completion`
 }
 
-export const getApiAlphaSuggestCompletion = async (params?: GetApiAlphaSuggestCompletionParams, options?: RequestInit): Promise<getApiAlphaSuggestCompletionResponse> => {
+export const getApiAlphaSuggestCompletion = async (params?: GetApiAlphaSuggestCompletionParams, options?: RequestInit): Promise<GetSuggestCompletionResponse> => {
   
-  return customFetch<getApiAlphaSuggestCompletionResponse>(getGetApiAlphaSuggestCompletionUrl(params),
+  return customFetch<GetSuggestCompletionResponse>(getGetApiAlphaSuggestCompletionUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -227,35 +134,6 @@ export const getApiAlphaSuggestCompletion = async (params?: GetApiAlphaSuggestCo
 /**
  * @summary Get modlog.
  */
-export type getApiAlphaModlogResponse200 = {
-  data: GetModLogResponse
-  status: 200
-}
-
-export type getApiAlphaModlogResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaModlogResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type getApiAlphaModlogResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type getApiAlphaModlogResponseSuccess = (getApiAlphaModlogResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaModlogResponseError = (getApiAlphaModlogResponse400 | getApiAlphaModlogResponse422 | getApiAlphaModlogResponse429) & {
-  headers: Headers;
-};
-
-export type getApiAlphaModlogResponse = (getApiAlphaModlogResponseSuccess | getApiAlphaModlogResponseError)
-
 export const getGetApiAlphaModlogUrl = (params?: GetApiAlphaModlogParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -271,9 +149,9 @@ export const getGetApiAlphaModlogUrl = (params?: GetApiAlphaModlogParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/modlog?${stringifiedParams}` : `/api/alpha/modlog`
 }
 
-export const getApiAlphaModlog = async (params?: GetApiAlphaModlogParams, options?: RequestInit): Promise<getApiAlphaModlogResponse> => {
+export const getApiAlphaModlog = async (params?: GetApiAlphaModlogParams, options?: RequestInit): Promise<GetModLogResponse> => {
   
-  return customFetch<getApiAlphaModlogResponse>(getGetApiAlphaModlogUrl(params),
+  return customFetch<GetModLogResponse>(getGetApiAlphaModlogUrl(params),
   {      
     ...options,
     method: 'GET'

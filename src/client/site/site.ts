@@ -7,13 +7,11 @@
 import type {
   BlockInstanceRequest,
   BlockInstanceResponse,
-  DefaultError,
   GetApiAlphaSiteInstanceChooserSearchParams,
   GetSiteInstanceChooserResponse,
   GetSiteInstanceChooserSearchResponse,
   GetSiteResponse,
-  GetSiteVersionResponse,
-  UnprocessableEntityResponse
+  GetSiteVersionResponse
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -21,25 +19,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Gets the site, and your user data.
  */
-export type getApiAlphaSiteResponse200 = {
-  data: GetSiteResponse
-  status: 200
-}
-
-export type getApiAlphaSiteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaSiteResponseSuccess = (getApiAlphaSiteResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSiteResponseError = (getApiAlphaSiteResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSiteResponse = (getApiAlphaSiteResponseSuccess | getApiAlphaSiteResponseError)
-
 export const getGetApiAlphaSiteUrl = () => {
 
 
@@ -48,9 +27,9 @@ export const getGetApiAlphaSiteUrl = () => {
   return `/api/alpha/site`
 }
 
-export const getApiAlphaSite = async ( options?: RequestInit): Promise<getApiAlphaSiteResponse> => {
+export const getApiAlphaSite = async ( options?: RequestInit): Promise<GetSiteResponse> => {
   
-  return customFetch<getApiAlphaSiteResponse>(getGetApiAlphaSiteUrl(),
+  return customFetch<GetSiteResponse>(getGetApiAlphaSiteUrl(),
   {      
     ...options,
     method: 'GET'
@@ -63,25 +42,6 @@ export const getApiAlphaSite = async ( options?: RequestInit): Promise<getApiAlp
 /**
  * @summary Gets version of PieFed.
  */
-export type getApiAlphaSiteVersionResponse200 = {
-  data: GetSiteVersionResponse
-  status: 200
-}
-
-export type getApiAlphaSiteVersionResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaSiteVersionResponseSuccess = (getApiAlphaSiteVersionResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSiteVersionResponseError = (getApiAlphaSiteVersionResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSiteVersionResponse = (getApiAlphaSiteVersionResponseSuccess | getApiAlphaSiteVersionResponseError)
-
 export const getGetApiAlphaSiteVersionUrl = () => {
 
 
@@ -90,9 +50,9 @@ export const getGetApiAlphaSiteVersionUrl = () => {
   return `/api/alpha/site/version`
 }
 
-export const getApiAlphaSiteVersion = async ( options?: RequestInit): Promise<getApiAlphaSiteVersionResponse> => {
+export const getApiAlphaSiteVersion = async ( options?: RequestInit): Promise<GetSiteVersionResponse> => {
   
-  return customFetch<getApiAlphaSiteVersionResponse>(getGetApiAlphaSiteVersionUrl(),
+  return customFetch<GetSiteVersionResponse>(getGetApiAlphaSiteVersionUrl(),
   {      
     ...options,
     method: 'GET'
@@ -105,30 +65,6 @@ export const getApiAlphaSiteVersion = async ( options?: RequestInit): Promise<ge
 /**
  * @summary Block an instance.
  */
-export type postApiAlphaSiteBlockResponse200 = {
-  data: BlockInstanceResponse
-  status: 200
-}
-
-export type postApiAlphaSiteBlockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaSiteBlockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaSiteBlockResponseSuccess = (postApiAlphaSiteBlockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaSiteBlockResponseError = (postApiAlphaSiteBlockResponse400 | postApiAlphaSiteBlockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaSiteBlockResponse = (postApiAlphaSiteBlockResponseSuccess | postApiAlphaSiteBlockResponseError)
-
 export const getPostApiAlphaSiteBlockUrl = () => {
 
 
@@ -137,9 +73,9 @@ export const getPostApiAlphaSiteBlockUrl = () => {
   return `/api/alpha/site/block`
 }
 
-export const postApiAlphaSiteBlock = async (blockInstanceRequest: BlockInstanceRequest, options?: RequestInit): Promise<postApiAlphaSiteBlockResponse> => {
+export const postApiAlphaSiteBlock = async (blockInstanceRequest: BlockInstanceRequest, options?: RequestInit): Promise<BlockInstanceResponse> => {
   
-  return customFetch<postApiAlphaSiteBlockResponse>(getPostApiAlphaSiteBlockUrl(),
+  return customFetch<BlockInstanceResponse>(getPostApiAlphaSiteBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -153,25 +89,6 @@ export const postApiAlphaSiteBlock = async (blockInstanceRequest: BlockInstanceR
 /**
  * @summary Gets the site info for use by other instances in the Instance Chooser functionality.
  */
-export type getApiAlphaSiteInstanceChooserResponse200 = {
-  data: GetSiteInstanceChooserResponse
-  status: 200
-}
-
-export type getApiAlphaSiteInstanceChooserResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaSiteInstanceChooserResponseSuccess = (getApiAlphaSiteInstanceChooserResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSiteInstanceChooserResponseError = (getApiAlphaSiteInstanceChooserResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSiteInstanceChooserResponse = (getApiAlphaSiteInstanceChooserResponseSuccess | getApiAlphaSiteInstanceChooserResponseError)
-
 export const getGetApiAlphaSiteInstanceChooserUrl = () => {
 
 
@@ -180,9 +97,9 @@ export const getGetApiAlphaSiteInstanceChooserUrl = () => {
   return `/api/alpha/site/instance_chooser`
 }
 
-export const getApiAlphaSiteInstanceChooser = async ( options?: RequestInit): Promise<getApiAlphaSiteInstanceChooserResponse> => {
+export const getApiAlphaSiteInstanceChooser = async ( options?: RequestInit): Promise<GetSiteInstanceChooserResponse> => {
   
-  return customFetch<getApiAlphaSiteInstanceChooserResponse>(getGetApiAlphaSiteInstanceChooserUrl(),
+  return customFetch<GetSiteInstanceChooserResponse>(getGetApiAlphaSiteInstanceChooserUrl(),
   {      
     ...options,
     method: 'GET'
@@ -195,30 +112,6 @@ export const getApiAlphaSiteInstanceChooser = async ( options?: RequestInit): Pr
 /**
  * @summary Search for other instances.
  */
-export type getApiAlphaSiteInstanceChooserSearchResponse200 = {
-  data: GetSiteInstanceChooserSearchResponse
-  status: 200
-}
-
-export type getApiAlphaSiteInstanceChooserSearchResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaSiteInstanceChooserSearchResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaSiteInstanceChooserSearchResponseSuccess = (getApiAlphaSiteInstanceChooserSearchResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaSiteInstanceChooserSearchResponseError = (getApiAlphaSiteInstanceChooserSearchResponse400 | getApiAlphaSiteInstanceChooserSearchResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaSiteInstanceChooserSearchResponse = (getApiAlphaSiteInstanceChooserSearchResponseSuccess | getApiAlphaSiteInstanceChooserSearchResponseError)
-
 export const getGetApiAlphaSiteInstanceChooserSearchUrl = (params?: GetApiAlphaSiteInstanceChooserSearchParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -234,9 +127,9 @@ export const getGetApiAlphaSiteInstanceChooserSearchUrl = (params?: GetApiAlphaS
   return stringifiedParams.length > 0 ? `/api/alpha/site/instance_chooser_search?${stringifiedParams}` : `/api/alpha/site/instance_chooser_search`
 }
 
-export const getApiAlphaSiteInstanceChooserSearch = async (params?: GetApiAlphaSiteInstanceChooserSearchParams, options?: RequestInit): Promise<getApiAlphaSiteInstanceChooserSearchResponse> => {
+export const getApiAlphaSiteInstanceChooserSearch = async (params?: GetApiAlphaSiteInstanceChooserSearchParams, options?: RequestInit): Promise<GetSiteInstanceChooserSearchResponse> => {
   
-  return customFetch<getApiAlphaSiteInstanceChooserSearchResponse>(getGetApiAlphaSiteInstanceChooserSearchUrl(params),
+  return customFetch<GetSiteInstanceChooserSearchResponse>(getGetApiAlphaSiteInstanceChooserSearchUrl(params),
   {      
     ...options,
     method: 'GET'

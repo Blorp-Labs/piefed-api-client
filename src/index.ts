@@ -1,5 +1,5 @@
 // Configuration and client factory
-export { configure } from './mutator/custom-fetch';
+export { configure, ApiError } from './mutator/custom-fetch';
 export { createClient } from './create-client';
 
 // Re-export generated TypeScript types/schemas

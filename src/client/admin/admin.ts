@@ -5,11 +5,9 @@
  * OpenAPI spec version: alpha 1.6
  */
 import type {
-  DefaultError,
   GetApiAlphaAdminRegistrationApplicationListParams,
   GetRegistrationListResponse,
-  RegistrationApproveRequest,
-  UnprocessableEntityResponse
+  RegistrationApproveRequest
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -17,30 +15,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Get the list of applications ready for admin review
  */
-export type getApiAlphaAdminRegistrationApplicationListResponse200 = {
-  data: GetRegistrationListResponse
-  status: 200
-}
-
-export type getApiAlphaAdminRegistrationApplicationListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaAdminRegistrationApplicationListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaAdminRegistrationApplicationListResponseSuccess = (getApiAlphaAdminRegistrationApplicationListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaAdminRegistrationApplicationListResponseError = (getApiAlphaAdminRegistrationApplicationListResponse400 | getApiAlphaAdminRegistrationApplicationListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaAdminRegistrationApplicationListResponse = (getApiAlphaAdminRegistrationApplicationListResponseSuccess | getApiAlphaAdminRegistrationApplicationListResponseError)
-
 export const getGetApiAlphaAdminRegistrationApplicationListUrl = (params?: GetApiAlphaAdminRegistrationApplicationListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -56,9 +30,9 @@ export const getGetApiAlphaAdminRegistrationApplicationListUrl = (params?: GetAp
   return stringifiedParams.length > 0 ? `/api/alpha/admin/registration_application/list?${stringifiedParams}` : `/api/alpha/admin/registration_application/list`
 }
 
-export const getApiAlphaAdminRegistrationApplicationList = async (params?: GetApiAlphaAdminRegistrationApplicationListParams, options?: RequestInit): Promise<getApiAlphaAdminRegistrationApplicationListResponse> => {
+export const getApiAlphaAdminRegistrationApplicationList = async (params?: GetApiAlphaAdminRegistrationApplicationListParams, options?: RequestInit): Promise<GetRegistrationListResponse> => {
   
-  return customFetch<getApiAlphaAdminRegistrationApplicationListResponse>(getGetApiAlphaAdminRegistrationApplicationListUrl(params),
+  return customFetch<GetRegistrationListResponse>(getGetApiAlphaAdminRegistrationApplicationListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -71,30 +45,6 @@ export const getApiAlphaAdminRegistrationApplicationList = async (params?: GetAp
 /**
  * @summary Approve or deny a registration
  */
-export type putApiAlphaAdminRegistrationApplicationApproveResponse200 = {
-  data: void
-  status: 200
-}
-
-export type putApiAlphaAdminRegistrationApplicationApproveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaAdminRegistrationApplicationApproveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaAdminRegistrationApplicationApproveResponseSuccess = (putApiAlphaAdminRegistrationApplicationApproveResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaAdminRegistrationApplicationApproveResponseError = (putApiAlphaAdminRegistrationApplicationApproveResponse400 | putApiAlphaAdminRegistrationApplicationApproveResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaAdminRegistrationApplicationApproveResponse = (putApiAlphaAdminRegistrationApplicationApproveResponseSuccess | putApiAlphaAdminRegistrationApplicationApproveResponseError)
-
 export const getPutApiAlphaAdminRegistrationApplicationApproveUrl = () => {
 
 
@@ -103,9 +53,9 @@ export const getPutApiAlphaAdminRegistrationApplicationApproveUrl = () => {
   return `/api/alpha/admin/registration_application/approve`
 }
 
-export const putApiAlphaAdminRegistrationApplicationApprove = async (registrationApproveRequest: RegistrationApproveRequest, options?: RequestInit): Promise<putApiAlphaAdminRegistrationApplicationApproveResponse> => {
+export const putApiAlphaAdminRegistrationApplicationApprove = async (registrationApproveRequest: RegistrationApproveRequest, options?: RequestInit): Promise<void> => {
   
-  return customFetch<putApiAlphaAdminRegistrationApplicationApproveResponse>(getPutApiAlphaAdminRegistrationApplicationApproveUrl(),
+  return customFetch<void>(getPutApiAlphaAdminRegistrationApplicationApproveUrl(),
   {      
     ...options,
     method: 'PUT',

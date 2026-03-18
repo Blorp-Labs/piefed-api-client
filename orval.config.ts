@@ -16,6 +16,9 @@ export default defineConfig({
           path: './src/mutator/custom-fetch.ts',
           name: 'customFetch',
         },
+        fetch: {
+          includeHttpResponseReturnType: false,
+        },
       },
     },
   },

@@ -20,7 +20,6 @@ import type {
   CommunityModerationUnbanRequest,
   CommunityResponse,
   CreateCommunityRequest,
-  DefaultError,
   DeleteCommunityRequest,
   EditCommunityRequest,
   FollowCommunityRequest,
@@ -33,7 +32,6 @@ import type {
   ModCommunityResponse,
   PostView,
   SubscribeCommunityRequest,
-  UnprocessableEntityResponse,
   UserMeResponse
 } from '../../schemas';
 
@@ -42,30 +40,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Get / fetch a community.
  */
-export type getApiAlphaCommunityResponse200 = {
-  data: GetCommunityResponse
-  status: 200
-}
-
-export type getApiAlphaCommunityResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommunityResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommunityResponseSuccess = (getApiAlphaCommunityResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommunityResponseError = (getApiAlphaCommunityResponse400 | getApiAlphaCommunityResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommunityResponse = (getApiAlphaCommunityResponseSuccess | getApiAlphaCommunityResponseError)
-
 export const getGetApiAlphaCommunityUrl = (params?: GetApiAlphaCommunityParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -81,9 +55,9 @@ export const getGetApiAlphaCommunityUrl = (params?: GetApiAlphaCommunityParams,)
   return stringifiedParams.length > 0 ? `/api/alpha/community?${stringifiedParams}` : `/api/alpha/community`
 }
 
-export const getApiAlphaCommunity = async (params?: GetApiAlphaCommunityParams, options?: RequestInit): Promise<getApiAlphaCommunityResponse> => {
+export const getApiAlphaCommunity = async (params?: GetApiAlphaCommunityParams, options?: RequestInit): Promise<GetCommunityResponse> => {
   
-  return customFetch<getApiAlphaCommunityResponse>(getGetApiAlphaCommunityUrl(params),
+  return customFetch<GetCommunityResponse>(getGetApiAlphaCommunityUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -96,35 +70,6 @@ export const getApiAlphaCommunity = async (params?: GetApiAlphaCommunityParams, 
 /**
  * @summary Create a new community.
  */
-export type postApiAlphaCommunityResponse200 = {
-  data: CommunityResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaCommunityResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaCommunityResponseSuccess = (postApiAlphaCommunityResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityResponseError = (postApiAlphaCommunityResponse400 | postApiAlphaCommunityResponse422 | postApiAlphaCommunityResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityResponse = (postApiAlphaCommunityResponseSuccess | postApiAlphaCommunityResponseError)
-
 export const getPostApiAlphaCommunityUrl = () => {
 
 
@@ -133,9 +78,9 @@ export const getPostApiAlphaCommunityUrl = () => {
   return `/api/alpha/community`
 }
 
-export const postApiAlphaCommunity = async (createCommunityRequest: CreateCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityResponse> => {
+export const postApiAlphaCommunity = async (createCommunityRequest: CreateCommunityRequest, options?: RequestInit): Promise<CommunityResponse> => {
   
-  return customFetch<postApiAlphaCommunityResponse>(getPostApiAlphaCommunityUrl(),
+  return customFetch<CommunityResponse>(getPostApiAlphaCommunityUrl(),
   {      
     ...options,
     method: 'POST',
@@ -149,30 +94,6 @@ export const postApiAlphaCommunity = async (createCommunityRequest: CreateCommun
 /**
  * @summary Edit community.
  */
-export type putApiAlphaCommunityResponse200 = {
-  data: CommunityResponse
-  status: 200
-}
-
-export type putApiAlphaCommunityResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommunityResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommunityResponseSuccess = (putApiAlphaCommunityResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommunityResponseError = (putApiAlphaCommunityResponse400 | putApiAlphaCommunityResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommunityResponse = (putApiAlphaCommunityResponseSuccess | putApiAlphaCommunityResponseError)
-
 export const getPutApiAlphaCommunityUrl = () => {
 
 
@@ -181,9 +102,9 @@ export const getPutApiAlphaCommunityUrl = () => {
   return `/api/alpha/community`
 }
 
-export const putApiAlphaCommunity = async (editCommunityRequest: EditCommunityRequest, options?: RequestInit): Promise<putApiAlphaCommunityResponse> => {
+export const putApiAlphaCommunity = async (editCommunityRequest: EditCommunityRequest, options?: RequestInit): Promise<CommunityResponse> => {
   
-  return customFetch<putApiAlphaCommunityResponse>(getPutApiAlphaCommunityUrl(),
+  return customFetch<CommunityResponse>(getPutApiAlphaCommunityUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -197,30 +118,6 @@ export const putApiAlphaCommunity = async (editCommunityRequest: EditCommunityRe
 /**
  * @summary List communities, with various filters.
  */
-export type getApiAlphaCommunityListResponse200 = {
-  data: ListCommunitiesResponse
-  status: 200
-}
-
-export type getApiAlphaCommunityListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommunityListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommunityListResponseSuccess = (getApiAlphaCommunityListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommunityListResponseError = (getApiAlphaCommunityListResponse400 | getApiAlphaCommunityListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommunityListResponse = (getApiAlphaCommunityListResponseSuccess | getApiAlphaCommunityListResponseError)
-
 export const getGetApiAlphaCommunityListUrl = (params?: GetApiAlphaCommunityListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -236,9 +133,9 @@ export const getGetApiAlphaCommunityListUrl = (params?: GetApiAlphaCommunityList
   return stringifiedParams.length > 0 ? `/api/alpha/community/list?${stringifiedParams}` : `/api/alpha/community/list`
 }
 
-export const getApiAlphaCommunityList = async (params?: GetApiAlphaCommunityListParams, options?: RequestInit): Promise<getApiAlphaCommunityListResponse> => {
+export const getApiAlphaCommunityList = async (params?: GetApiAlphaCommunityListParams, options?: RequestInit): Promise<ListCommunitiesResponse> => {
   
-  return customFetch<getApiAlphaCommunityListResponse>(getGetApiAlphaCommunityListUrl(params),
+  return customFetch<ListCommunitiesResponse>(getGetApiAlphaCommunityListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -251,30 +148,6 @@ export const getApiAlphaCommunityList = async (params?: GetApiAlphaCommunityList
 /**
  * @summary Follow / subscribe to a community.
  */
-export type postApiAlphaCommunityFollowResponse200 = {
-  data: CommunityResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityFollowResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityFollowResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityFollowResponseSuccess = (postApiAlphaCommunityFollowResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityFollowResponseError = (postApiAlphaCommunityFollowResponse400 | postApiAlphaCommunityFollowResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityFollowResponse = (postApiAlphaCommunityFollowResponseSuccess | postApiAlphaCommunityFollowResponseError)
-
 export const getPostApiAlphaCommunityFollowUrl = () => {
 
 
@@ -283,9 +156,9 @@ export const getPostApiAlphaCommunityFollowUrl = () => {
   return `/api/alpha/community/follow`
 }
 
-export const postApiAlphaCommunityFollow = async (followCommunityRequest: FollowCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityFollowResponse> => {
+export const postApiAlphaCommunityFollow = async (followCommunityRequest: FollowCommunityRequest, options?: RequestInit): Promise<CommunityResponse> => {
   
-  return customFetch<postApiAlphaCommunityFollowResponse>(getPostApiAlphaCommunityFollowUrl(),
+  return customFetch<CommunityResponse>(getPostApiAlphaCommunityFollowUrl(),
   {      
     ...options,
     method: 'POST',
@@ -299,25 +172,6 @@ export const postApiAlphaCommunityFollow = async (followCommunityRequest: Follow
 /**
  * @summary Leave all communities and feeds for which the user is not a moderator or owner.
  */
-export type postApiAlphaCommunityLeaveAllResponse200 = {
-  data: UserMeResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityLeaveAllResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type postApiAlphaCommunityLeaveAllResponseSuccess = (postApiAlphaCommunityLeaveAllResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityLeaveAllResponseError = (postApiAlphaCommunityLeaveAllResponse400) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityLeaveAllResponse = (postApiAlphaCommunityLeaveAllResponseSuccess | postApiAlphaCommunityLeaveAllResponseError)
-
 export const getPostApiAlphaCommunityLeaveAllUrl = () => {
 
 
@@ -326,9 +180,9 @@ export const getPostApiAlphaCommunityLeaveAllUrl = () => {
   return `/api/alpha/community/leave_all`
 }
 
-export const postApiAlphaCommunityLeaveAll = async ( options?: RequestInit): Promise<postApiAlphaCommunityLeaveAllResponse> => {
+export const postApiAlphaCommunityLeaveAll = async ( options?: RequestInit): Promise<UserMeResponse> => {
   
-  return customFetch<postApiAlphaCommunityLeaveAllResponse>(getPostApiAlphaCommunityLeaveAllUrl(),
+  return customFetch<UserMeResponse>(getPostApiAlphaCommunityLeaveAllUrl(),
   {      
     ...options,
     method: 'POST'
@@ -341,30 +195,6 @@ export const postApiAlphaCommunityLeaveAll = async ( options?: RequestInit): Pro
 /**
  * @summary Block a community.
  */
-export type postApiAlphaCommunityBlockResponse200 = {
-  data: BlockCommunityResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityBlockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityBlockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityBlockResponseSuccess = (postApiAlphaCommunityBlockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityBlockResponseError = (postApiAlphaCommunityBlockResponse400 | postApiAlphaCommunityBlockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityBlockResponse = (postApiAlphaCommunityBlockResponseSuccess | postApiAlphaCommunityBlockResponseError)
-
 export const getPostApiAlphaCommunityBlockUrl = () => {
 
 
@@ -373,9 +203,9 @@ export const getPostApiAlphaCommunityBlockUrl = () => {
   return `/api/alpha/community/block`
 }
 
-export const postApiAlphaCommunityBlock = async (blockCommunityRequest: BlockCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityBlockResponse> => {
+export const postApiAlphaCommunityBlock = async (blockCommunityRequest: BlockCommunityRequest, options?: RequestInit): Promise<BlockCommunityResponse> => {
   
-  return customFetch<postApiAlphaCommunityBlockResponse>(getPostApiAlphaCommunityBlockUrl(),
+  return customFetch<BlockCommunityResponse>(getPostApiAlphaCommunityBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -389,30 +219,6 @@ export const postApiAlphaCommunityBlock = async (blockCommunityRequest: BlockCom
 /**
  * @summary Subscribe to activities in a community.
  */
-export type putApiAlphaCommunitySubscribeResponse200 = {
-  data: CommunityResponse
-  status: 200
-}
-
-export type putApiAlphaCommunitySubscribeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommunitySubscribeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommunitySubscribeResponseSuccess = (putApiAlphaCommunitySubscribeResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommunitySubscribeResponseError = (putApiAlphaCommunitySubscribeResponse400 | putApiAlphaCommunitySubscribeResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommunitySubscribeResponse = (putApiAlphaCommunitySubscribeResponseSuccess | putApiAlphaCommunitySubscribeResponseError)
-
 export const getPutApiAlphaCommunitySubscribeUrl = () => {
 
 
@@ -421,9 +227,9 @@ export const getPutApiAlphaCommunitySubscribeUrl = () => {
   return `/api/alpha/community/subscribe`
 }
 
-export const putApiAlphaCommunitySubscribe = async (subscribeCommunityRequest: SubscribeCommunityRequest, options?: RequestInit): Promise<putApiAlphaCommunitySubscribeResponse> => {
+export const putApiAlphaCommunitySubscribe = async (subscribeCommunityRequest: SubscribeCommunityRequest, options?: RequestInit): Promise<CommunityResponse> => {
   
-  return customFetch<putApiAlphaCommunitySubscribeResponse>(getPutApiAlphaCommunitySubscribeUrl(),
+  return customFetch<CommunityResponse>(getPutApiAlphaCommunitySubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -437,30 +243,6 @@ export const putApiAlphaCommunitySubscribe = async (subscribeCommunityRequest: S
 /**
  * @summary Delete a community.
  */
-export type postApiAlphaCommunityDeleteResponse200 = {
-  data: CommunityResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityDeleteResponseSuccess = (postApiAlphaCommunityDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityDeleteResponseError = (postApiAlphaCommunityDeleteResponse400 | postApiAlphaCommunityDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityDeleteResponse = (postApiAlphaCommunityDeleteResponseSuccess | postApiAlphaCommunityDeleteResponseError)
-
 export const getPostApiAlphaCommunityDeleteUrl = () => {
 
 
@@ -469,9 +251,9 @@ export const getPostApiAlphaCommunityDeleteUrl = () => {
   return `/api/alpha/community/delete`
 }
 
-export const postApiAlphaCommunityDelete = async (deleteCommunityRequest: DeleteCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityDeleteResponse> => {
+export const postApiAlphaCommunityDelete = async (deleteCommunityRequest: DeleteCommunityRequest, options?: RequestInit): Promise<CommunityResponse> => {
   
-  return customFetch<postApiAlphaCommunityDeleteResponse>(getPostApiAlphaCommunityDeleteUrl(),
+  return customFetch<CommunityResponse>(getPostApiAlphaCommunityDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -485,30 +267,6 @@ export const postApiAlphaCommunityDelete = async (deleteCommunityRequest: Delete
 /**
  * @summary Add or remove a moderator for your community.
  */
-export type postApiAlphaCommunityModResponse200 = {
-  data: ModCommunityResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityModResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityModResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityModResponseSuccess = (postApiAlphaCommunityModResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityModResponseError = (postApiAlphaCommunityModResponse400 | postApiAlphaCommunityModResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityModResponse = (postApiAlphaCommunityModResponseSuccess | postApiAlphaCommunityModResponseError)
-
 export const getPostApiAlphaCommunityModUrl = () => {
 
 
@@ -517,9 +275,9 @@ export const getPostApiAlphaCommunityModUrl = () => {
   return `/api/alpha/community/mod`
 }
 
-export const postApiAlphaCommunityMod = async (modCommunityRequest: ModCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityModResponse> => {
+export const postApiAlphaCommunityMod = async (modCommunityRequest: ModCommunityRequest, options?: RequestInit): Promise<ModCommunityResponse> => {
   
-  return customFetch<postApiAlphaCommunityModResponse>(getPostApiAlphaCommunityModUrl(),
+  return customFetch<ModCommunityResponse>(getPostApiAlphaCommunityModUrl(),
   {      
     ...options,
     method: 'POST',
@@ -533,30 +291,6 @@ export const postApiAlphaCommunityMod = async (modCommunityRequest: ModCommunity
 /**
  * @summary Get the list of banned users for a community.
  */
-export type getApiAlphaCommunityModerateBansResponse200 = {
-  data: CommunityModerationBansListResponse
-  status: 200
-}
-
-export type getApiAlphaCommunityModerateBansResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommunityModerateBansResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommunityModerateBansResponseSuccess = (getApiAlphaCommunityModerateBansResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommunityModerateBansResponseError = (getApiAlphaCommunityModerateBansResponse400 | getApiAlphaCommunityModerateBansResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommunityModerateBansResponse = (getApiAlphaCommunityModerateBansResponseSuccess | getApiAlphaCommunityModerateBansResponseError)
-
 export const getGetApiAlphaCommunityModerateBansUrl = (params: GetApiAlphaCommunityModerateBansParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -572,9 +306,9 @@ export const getGetApiAlphaCommunityModerateBansUrl = (params: GetApiAlphaCommun
   return stringifiedParams.length > 0 ? `/api/alpha/community/moderate/bans?${stringifiedParams}` : `/api/alpha/community/moderate/bans`
 }
 
-export const getApiAlphaCommunityModerateBans = async (params: GetApiAlphaCommunityModerateBansParams, options?: RequestInit): Promise<getApiAlphaCommunityModerateBansResponse> => {
+export const getApiAlphaCommunityModerateBans = async (params: GetApiAlphaCommunityModerateBansParams, options?: RequestInit): Promise<CommunityModerationBansListResponse> => {
   
-  return customFetch<getApiAlphaCommunityModerateBansResponse>(getGetApiAlphaCommunityModerateBansUrl(params),
+  return customFetch<CommunityModerationBansListResponse>(getGetApiAlphaCommunityModerateBansUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -587,30 +321,6 @@ export const getApiAlphaCommunityModerateBans = async (params: GetApiAlphaCommun
 /**
  * @summary Unban a user from a community.
  */
-export type putApiAlphaCommunityModerateUnbanResponse200 = {
-  data: CommunityModerationBanItem
-  status: 200
-}
-
-export type putApiAlphaCommunityModerateUnbanResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommunityModerateUnbanResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommunityModerateUnbanResponseSuccess = (putApiAlphaCommunityModerateUnbanResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommunityModerateUnbanResponseError = (putApiAlphaCommunityModerateUnbanResponse400 | putApiAlphaCommunityModerateUnbanResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommunityModerateUnbanResponse = (putApiAlphaCommunityModerateUnbanResponseSuccess | putApiAlphaCommunityModerateUnbanResponseError)
-
 export const getPutApiAlphaCommunityModerateUnbanUrl = () => {
 
 
@@ -619,9 +329,9 @@ export const getPutApiAlphaCommunityModerateUnbanUrl = () => {
   return `/api/alpha/community/moderate/unban`
 }
 
-export const putApiAlphaCommunityModerateUnban = async (communityModerationUnbanRequest: CommunityModerationUnbanRequest, options?: RequestInit): Promise<putApiAlphaCommunityModerateUnbanResponse> => {
+export const putApiAlphaCommunityModerateUnban = async (communityModerationUnbanRequest: CommunityModerationUnbanRequest, options?: RequestInit): Promise<CommunityModerationBanItem> => {
   
-  return customFetch<putApiAlphaCommunityModerateUnbanResponse>(getPutApiAlphaCommunityModerateUnbanUrl(),
+  return customFetch<CommunityModerationBanItem>(getPutApiAlphaCommunityModerateUnbanUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -635,30 +345,6 @@ export const putApiAlphaCommunityModerateUnban = async (communityModerationUnban
 /**
  * @summary Ban a user from a community.
  */
-export type postApiAlphaCommunityModerateBanResponse200 = {
-  data: CommunityModerationBanItem
-  status: 200
-}
-
-export type postApiAlphaCommunityModerateBanResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityModerateBanResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityModerateBanResponseSuccess = (postApiAlphaCommunityModerateBanResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityModerateBanResponseError = (postApiAlphaCommunityModerateBanResponse400 | postApiAlphaCommunityModerateBanResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityModerateBanResponse = (postApiAlphaCommunityModerateBanResponseSuccess | postApiAlphaCommunityModerateBanResponseError)
-
 export const getPostApiAlphaCommunityModerateBanUrl = () => {
 
 
@@ -667,9 +353,9 @@ export const getPostApiAlphaCommunityModerateBanUrl = () => {
   return `/api/alpha/community/moderate/ban`
 }
 
-export const postApiAlphaCommunityModerateBan = async (communityModerationBanRequest: CommunityModerationBanRequest, options?: RequestInit): Promise<postApiAlphaCommunityModerateBanResponse> => {
+export const postApiAlphaCommunityModerateBan = async (communityModerationBanRequest: CommunityModerationBanRequest, options?: RequestInit): Promise<CommunityModerationBanItem> => {
   
-  return customFetch<postApiAlphaCommunityModerateBanResponse>(getPostApiAlphaCommunityModerateBanUrl(),
+  return customFetch<CommunityModerationBanItem>(getPostApiAlphaCommunityModerateBanUrl(),
   {      
     ...options,
     method: 'POST',
@@ -683,30 +369,6 @@ export const postApiAlphaCommunityModerateBan = async (communityModerationBanReq
 /**
  * @summary Mark or unmark a post as NSFW.
  */
-export type postApiAlphaCommunityModeratePostNsfwResponse200 = {
-  data: PostView
-  status: 200
-}
-
-export type postApiAlphaCommunityModeratePostNsfwResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityModeratePostNsfwResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityModeratePostNsfwResponseSuccess = (postApiAlphaCommunityModeratePostNsfwResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityModeratePostNsfwResponseError = (postApiAlphaCommunityModeratePostNsfwResponse400 | postApiAlphaCommunityModeratePostNsfwResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityModeratePostNsfwResponse = (postApiAlphaCommunityModeratePostNsfwResponseSuccess | postApiAlphaCommunityModeratePostNsfwResponseError)
-
 export const getPostApiAlphaCommunityModeratePostNsfwUrl = () => {
 
 
@@ -715,9 +377,9 @@ export const getPostApiAlphaCommunityModeratePostNsfwUrl = () => {
   return `/api/alpha/community/moderate/post/nsfw`
 }
 
-export const postApiAlphaCommunityModeratePostNsfw = async (communityModerationNsfwRequest: CommunityModerationNsfwRequest, options?: RequestInit): Promise<postApiAlphaCommunityModeratePostNsfwResponse> => {
+export const postApiAlphaCommunityModeratePostNsfw = async (communityModerationNsfwRequest: CommunityModerationNsfwRequest, options?: RequestInit): Promise<PostView> => {
   
-  return customFetch<postApiAlphaCommunityModeratePostNsfwResponse>(getPostApiAlphaCommunityModeratePostNsfwUrl(),
+  return customFetch<PostView>(getPostApiAlphaCommunityModeratePostNsfwUrl(),
   {      
     ...options,
     method: 'POST',
@@ -731,30 +393,6 @@ export const postApiAlphaCommunityModeratePostNsfw = async (communityModerationN
 /**
  * @summary Create a new post flair in the community
  */
-export type postApiAlphaCommunityFlairResponse200 = {
-  data: CommunityFlairCreateResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityFlairResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityFlairResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityFlairResponseSuccess = (postApiAlphaCommunityFlairResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityFlairResponseError = (postApiAlphaCommunityFlairResponse400 | postApiAlphaCommunityFlairResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityFlairResponse = (postApiAlphaCommunityFlairResponseSuccess | postApiAlphaCommunityFlairResponseError)
-
 export const getPostApiAlphaCommunityFlairUrl = () => {
 
 
@@ -763,9 +401,9 @@ export const getPostApiAlphaCommunityFlairUrl = () => {
   return `/api/alpha/community/flair`
 }
 
-export const postApiAlphaCommunityFlair = async (communityFlairCreateRequest: CommunityFlairCreateRequest, options?: RequestInit): Promise<postApiAlphaCommunityFlairResponse> => {
+export const postApiAlphaCommunityFlair = async (communityFlairCreateRequest: CommunityFlairCreateRequest, options?: RequestInit): Promise<CommunityFlairCreateResponse> => {
   
-  return customFetch<postApiAlphaCommunityFlairResponse>(getPostApiAlphaCommunityFlairUrl(),
+  return customFetch<CommunityFlairCreateResponse>(getPostApiAlphaCommunityFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -779,30 +417,6 @@ export const postApiAlphaCommunityFlair = async (communityFlairCreateRequest: Co
 /**
  * @summary Edit an existing post flair in the community
  */
-export type putApiAlphaCommunityFlairResponse200 = {
-  data: CommunityFlairEditResponse
-  status: 200
-}
-
-export type putApiAlphaCommunityFlairResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommunityFlairResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommunityFlairResponseSuccess = (putApiAlphaCommunityFlairResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommunityFlairResponseError = (putApiAlphaCommunityFlairResponse400 | putApiAlphaCommunityFlairResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommunityFlairResponse = (putApiAlphaCommunityFlairResponseSuccess | putApiAlphaCommunityFlairResponseError)
-
 export const getPutApiAlphaCommunityFlairUrl = () => {
 
 
@@ -811,9 +425,9 @@ export const getPutApiAlphaCommunityFlairUrl = () => {
   return `/api/alpha/community/flair`
 }
 
-export const putApiAlphaCommunityFlair = async (communityFlairEditRequest: CommunityFlairEditRequest, options?: RequestInit): Promise<putApiAlphaCommunityFlairResponse> => {
+export const putApiAlphaCommunityFlair = async (communityFlairEditRequest: CommunityFlairEditRequest, options?: RequestInit): Promise<CommunityFlairEditResponse> => {
   
-  return customFetch<putApiAlphaCommunityFlairResponse>(getPutApiAlphaCommunityFlairUrl(),
+  return customFetch<CommunityFlairEditResponse>(getPutApiAlphaCommunityFlairUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -827,30 +441,6 @@ export const putApiAlphaCommunityFlair = async (communityFlairEditRequest: Commu
 /**
  * @summary Delete a post flair in a community
  */
-export type postApiAlphaCommunityFlairDeleteResponse200 = {
-  data: CommunityFlairDeleteResponse
-  status: 200
-}
-
-export type postApiAlphaCommunityFlairDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommunityFlairDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommunityFlairDeleteResponseSuccess = (postApiAlphaCommunityFlairDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommunityFlairDeleteResponseError = (postApiAlphaCommunityFlairDeleteResponse400 | postApiAlphaCommunityFlairDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommunityFlairDeleteResponse = (postApiAlphaCommunityFlairDeleteResponseSuccess | postApiAlphaCommunityFlairDeleteResponseError)
-
 export const getPostApiAlphaCommunityFlairDeleteUrl = () => {
 
 
@@ -859,9 +449,9 @@ export const getPostApiAlphaCommunityFlairDeleteUrl = () => {
   return `/api/alpha/community/flair/delete`
 }
 
-export const postApiAlphaCommunityFlairDelete = async (communityFlairDeleteRequest: CommunityFlairDeleteRequest, options?: RequestInit): Promise<postApiAlphaCommunityFlairDeleteResponse> => {
+export const postApiAlphaCommunityFlairDelete = async (communityFlairDeleteRequest: CommunityFlairDeleteRequest, options?: RequestInit): Promise<CommunityFlairDeleteResponse> => {
   
-  return customFetch<postApiAlphaCommunityFlairDeleteResponse>(getPostApiAlphaCommunityFlairDeleteUrl(),
+  return customFetch<CommunityFlairDeleteResponse>(getPostApiAlphaCommunityFlairDeleteUrl(),
   {      
     ...options,
     method: 'POST',

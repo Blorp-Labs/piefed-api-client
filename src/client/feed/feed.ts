@@ -6,15 +6,13 @@
  */
 import type {
   CreateFeedRequest,
-  DefaultError,
   DeleteFeedRequest,
   EditFeedRequest,
   FeedListResponse,
   FeedView,
   FollowFeedRequest,
   GetApiAlphaFeedListParams,
-  GetApiAlphaFeedParams,
-  UnprocessableEntityResponse
+  GetApiAlphaFeedParams
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -22,30 +20,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Get a feed
  */
-export type getApiAlphaFeedResponse200 = {
-  data: FeedView
-  status: 200
-}
-
-export type getApiAlphaFeedResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaFeedResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaFeedResponseSuccess = (getApiAlphaFeedResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaFeedResponseError = (getApiAlphaFeedResponse400 | getApiAlphaFeedResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaFeedResponse = (getApiAlphaFeedResponseSuccess | getApiAlphaFeedResponseError)
-
 export const getGetApiAlphaFeedUrl = (params?: GetApiAlphaFeedParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -61,9 +35,9 @@ export const getGetApiAlphaFeedUrl = (params?: GetApiAlphaFeedParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/feed?${stringifiedParams}` : `/api/alpha/feed`
 }
 
-export const getApiAlphaFeed = async (params?: GetApiAlphaFeedParams, options?: RequestInit): Promise<getApiAlphaFeedResponse> => {
+export const getApiAlphaFeed = async (params?: GetApiAlphaFeedParams, options?: RequestInit): Promise<FeedView> => {
   
-  return customFetch<getApiAlphaFeedResponse>(getGetApiAlphaFeedUrl(params),
+  return customFetch<FeedView>(getGetApiAlphaFeedUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -76,35 +50,6 @@ export const getApiAlphaFeed = async (params?: GetApiAlphaFeedParams, options?: 
 /**
  * @summary Create a new feed.
  */
-export type postApiAlphaFeedResponse200 = {
-  data: FeedView
-  status: 200
-}
-
-export type postApiAlphaFeedResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaFeedResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaFeedResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaFeedResponseSuccess = (postApiAlphaFeedResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaFeedResponseError = (postApiAlphaFeedResponse400 | postApiAlphaFeedResponse422 | postApiAlphaFeedResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaFeedResponse = (postApiAlphaFeedResponseSuccess | postApiAlphaFeedResponseError)
-
 export const getPostApiAlphaFeedUrl = () => {
 
 
@@ -113,9 +58,9 @@ export const getPostApiAlphaFeedUrl = () => {
   return `/api/alpha/feed`
 }
 
-export const postApiAlphaFeed = async (createFeedRequest: CreateFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedResponse> => {
+export const postApiAlphaFeed = async (createFeedRequest: CreateFeedRequest, options?: RequestInit): Promise<FeedView> => {
   
-  return customFetch<postApiAlphaFeedResponse>(getPostApiAlphaFeedUrl(),
+  return customFetch<FeedView>(getPostApiAlphaFeedUrl(),
   {      
     ...options,
     method: 'POST',
@@ -129,30 +74,6 @@ export const postApiAlphaFeed = async (createFeedRequest: CreateFeedRequest, opt
 /**
  * @summary Edit feed.
  */
-export type putApiAlphaFeedResponse200 = {
-  data: FeedView
-  status: 200
-}
-
-export type putApiAlphaFeedResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaFeedResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaFeedResponseSuccess = (putApiAlphaFeedResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaFeedResponseError = (putApiAlphaFeedResponse400 | putApiAlphaFeedResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaFeedResponse = (putApiAlphaFeedResponseSuccess | putApiAlphaFeedResponseError)
-
 export const getPutApiAlphaFeedUrl = () => {
 
 
@@ -161,9 +82,9 @@ export const getPutApiAlphaFeedUrl = () => {
   return `/api/alpha/feed`
 }
 
-export const putApiAlphaFeed = async (editFeedRequest: EditFeedRequest, options?: RequestInit): Promise<putApiAlphaFeedResponse> => {
+export const putApiAlphaFeed = async (editFeedRequest: EditFeedRequest, options?: RequestInit): Promise<FeedView> => {
   
-  return customFetch<putApiAlphaFeedResponse>(getPutApiAlphaFeedUrl(),
+  return customFetch<FeedView>(getPutApiAlphaFeedUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -177,30 +98,6 @@ export const putApiAlphaFeed = async (editFeedRequest: EditFeedRequest, options?
 /**
  * @summary Get list of feeds
  */
-export type getApiAlphaFeedListResponse200 = {
-  data: FeedListResponse
-  status: 200
-}
-
-export type getApiAlphaFeedListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaFeedListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaFeedListResponseSuccess = (getApiAlphaFeedListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaFeedListResponseError = (getApiAlphaFeedListResponse400 | getApiAlphaFeedListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaFeedListResponse = (getApiAlphaFeedListResponseSuccess | getApiAlphaFeedListResponseError)
-
 export const getGetApiAlphaFeedListUrl = (params?: GetApiAlphaFeedListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -216,9 +113,9 @@ export const getGetApiAlphaFeedListUrl = (params?: GetApiAlphaFeedListParams,) =
   return stringifiedParams.length > 0 ? `/api/alpha/feed/list?${stringifiedParams}` : `/api/alpha/feed/list`
 }
 
-export const getApiAlphaFeedList = async (params?: GetApiAlphaFeedListParams, options?: RequestInit): Promise<getApiAlphaFeedListResponse> => {
+export const getApiAlphaFeedList = async (params?: GetApiAlphaFeedListParams, options?: RequestInit): Promise<FeedListResponse> => {
   
-  return customFetch<getApiAlphaFeedListResponse>(getGetApiAlphaFeedListUrl(params),
+  return customFetch<FeedListResponse>(getGetApiAlphaFeedListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -231,30 +128,6 @@ export const getApiAlphaFeedList = async (params?: GetApiAlphaFeedListParams, op
 /**
  * @summary Follow / subscribe / leave / unsubscribe to a feed.
  */
-export type postApiAlphaFeedFollowResponse200 = {
-  data: FeedView
-  status: 200
-}
-
-export type postApiAlphaFeedFollowResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaFeedFollowResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaFeedFollowResponseSuccess = (postApiAlphaFeedFollowResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaFeedFollowResponseError = (postApiAlphaFeedFollowResponse400 | postApiAlphaFeedFollowResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaFeedFollowResponse = (postApiAlphaFeedFollowResponseSuccess | postApiAlphaFeedFollowResponseError)
-
 export const getPostApiAlphaFeedFollowUrl = () => {
 
 
@@ -263,9 +136,9 @@ export const getPostApiAlphaFeedFollowUrl = () => {
   return `/api/alpha/feed/follow`
 }
 
-export const postApiAlphaFeedFollow = async (followFeedRequest: FollowFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedFollowResponse> => {
+export const postApiAlphaFeedFollow = async (followFeedRequest: FollowFeedRequest, options?: RequestInit): Promise<FeedView> => {
   
-  return customFetch<postApiAlphaFeedFollowResponse>(getPostApiAlphaFeedFollowUrl(),
+  return customFetch<FeedView>(getPostApiAlphaFeedFollowUrl(),
   {      
     ...options,
     method: 'POST',
@@ -279,30 +152,6 @@ export const postApiAlphaFeedFollow = async (followFeedRequest: FollowFeedReques
 /**
  * @summary Delete a feed.
  */
-export type postApiAlphaFeedDeleteResponse200 = {
-  data: FeedView
-  status: 200
-}
-
-export type postApiAlphaFeedDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaFeedDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaFeedDeleteResponseSuccess = (postApiAlphaFeedDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaFeedDeleteResponseError = (postApiAlphaFeedDeleteResponse400 | postApiAlphaFeedDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaFeedDeleteResponse = (postApiAlphaFeedDeleteResponseSuccess | postApiAlphaFeedDeleteResponseError)
-
 export const getPostApiAlphaFeedDeleteUrl = () => {
 
 
@@ -311,9 +160,9 @@ export const getPostApiAlphaFeedDeleteUrl = () => {
   return `/api/alpha/feed/delete`
 }
 
-export const postApiAlphaFeedDelete = async (deleteFeedRequest: DeleteFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedDeleteResponse> => {
+export const postApiAlphaFeedDelete = async (deleteFeedRequest: DeleteFeedRequest, options?: RequestInit): Promise<FeedView> => {
   
-  return customFetch<postApiAlphaFeedDeleteResponse>(getPostApiAlphaFeedDeleteUrl(),
+  return customFetch<FeedView>(getPostApiAlphaFeedDeleteUrl(),
   {      
     ...options,
     method: 'POST',

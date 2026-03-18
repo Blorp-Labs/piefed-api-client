@@ -13,6 +13,16 @@ export function configure(options: { baseUrl: string }) {
   _defaultBaseUrl = options.baseUrl.replace(/\/$/, '');
 }
 
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly data: unknown,
+  ) {
+    super(`API error ${status}`);
+    this.name = 'ApiError';
+  }
+}
+
 export const customFetch = async <T>(
   url: string,
   options?: RequestInit,
@@ -23,5 +33,10 @@ export const customFetch = async <T>(
   const res = await fetch(`${base}${url}`, fetchOptions);
   const body = [204, 205, 304].includes(res.status) ? null : await res.text();
   const data = body ? JSON.parse(body) : {};
-  return { data, status: res.status, headers: res.headers } as T;
+
+  if (!res.ok) {
+    throw new ApiError(res.status, data);
+  }
+
+  return data as T;
 };

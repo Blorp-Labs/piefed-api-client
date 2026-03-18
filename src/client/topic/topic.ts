@@ -5,10 +5,8 @@
  * OpenAPI spec version: alpha 1.6
  */
 import type {
-  DefaultError,
   GetApiAlphaTopicListParams,
-  TopicListResponse,
-  UnprocessableEntityResponse
+  TopicListResponse
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -16,30 +14,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Get list of topics
  */
-export type getApiAlphaTopicListResponse200 = {
-  data: TopicListResponse
-  status: 200
-}
-
-export type getApiAlphaTopicListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaTopicListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaTopicListResponseSuccess = (getApiAlphaTopicListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaTopicListResponseError = (getApiAlphaTopicListResponse400 | getApiAlphaTopicListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaTopicListResponse = (getApiAlphaTopicListResponseSuccess | getApiAlphaTopicListResponseError)
-
 export const getGetApiAlphaTopicListUrl = (params?: GetApiAlphaTopicListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -55,9 +29,9 @@ export const getGetApiAlphaTopicListUrl = (params?: GetApiAlphaTopicListParams,)
   return stringifiedParams.length > 0 ? `/api/alpha/topic/list?${stringifiedParams}` : `/api/alpha/topic/list`
 }
 
-export const getApiAlphaTopicList = async (params?: GetApiAlphaTopicListParams, options?: RequestInit): Promise<getApiAlphaTopicListResponse> => {
+export const getApiAlphaTopicList = async (params?: GetApiAlphaTopicListParams, options?: RequestInit): Promise<TopicListResponse> => {
   
-  return customFetch<getApiAlphaTopicListResponse>(getGetApiAlphaTopicListUrl(params),
+  return customFetch<TopicListResponse>(getGetApiAlphaTopicListUrl(params),
   {      
     ...options,
     method: 'GET'

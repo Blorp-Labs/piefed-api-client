@@ -5,7 +5,6 @@
  * OpenAPI spec version: alpha 1.6
  */
 import type {
-  DefaultError,
   DomainBlockRequest,
   DomainBlockResponse,
   GetApiAlphaUserMediaParams,
@@ -14,7 +13,6 @@ import type {
   GetApiAlphaUserParams,
   GetApiAlphaUserRepliesParams,
   GetUserResponse,
-  UnprocessableEntityResponse,
   UserBanRequest,
   UserBanResponse,
   UserBlockRequest,
@@ -48,30 +46,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Block or unblock a domain
  */
-export type postApiAlphaDomainBlockResponse200 = {
-  data: DomainBlockResponse
-  status: 200
-}
-
-export type postApiAlphaDomainBlockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaDomainBlockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaDomainBlockResponseSuccess = (postApiAlphaDomainBlockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaDomainBlockResponseError = (postApiAlphaDomainBlockResponse400 | postApiAlphaDomainBlockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaDomainBlockResponse = (postApiAlphaDomainBlockResponseSuccess | postApiAlphaDomainBlockResponseError)
-
 export const getPostApiAlphaDomainBlockUrl = () => {
 
 
@@ -80,9 +54,9 @@ export const getPostApiAlphaDomainBlockUrl = () => {
   return `/api/alpha/domain/block`
 }
 
-export const postApiAlphaDomainBlock = async (domainBlockRequest: DomainBlockRequest, options?: RequestInit): Promise<postApiAlphaDomainBlockResponse> => {
+export const postApiAlphaDomainBlock = async (domainBlockRequest: DomainBlockRequest, options?: RequestInit): Promise<DomainBlockResponse> => {
   
-  return customFetch<postApiAlphaDomainBlockResponse>(getPostApiAlphaDomainBlockUrl(),
+  return customFetch<DomainBlockResponse>(getPostApiAlphaDomainBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -96,30 +70,6 @@ export const postApiAlphaDomainBlock = async (domainBlockRequest: DomainBlockReq
 /**
  * @summary Get the details for a person
  */
-export type getApiAlphaUserResponse200 = {
-  data: GetUserResponse
-  status: 200
-}
-
-export type getApiAlphaUserResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaUserResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaUserResponseSuccess = (getApiAlphaUserResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserResponseError = (getApiAlphaUserResponse400 | getApiAlphaUserResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserResponse = (getApiAlphaUserResponseSuccess | getApiAlphaUserResponseError)
-
 export const getGetApiAlphaUserUrl = (params?: GetApiAlphaUserParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -135,9 +85,9 @@ export const getGetApiAlphaUserUrl = (params?: GetApiAlphaUserParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/user?${stringifiedParams}` : `/api/alpha/user`
 }
 
-export const getApiAlphaUser = async (params?: GetApiAlphaUserParams, options?: RequestInit): Promise<getApiAlphaUserResponse> => {
+export const getApiAlphaUser = async (params?: GetApiAlphaUserParams, options?: RequestInit): Promise<GetUserResponse> => {
   
-  return customFetch<getApiAlphaUserResponse>(getGetApiAlphaUserUrl(params),
+  return customFetch<GetUserResponse>(getGetApiAlphaUserUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -150,25 +100,6 @@ export const getApiAlphaUser = async (params?: GetApiAlphaUserParams, options?: 
 /**
  * @summary Get the details for the current user
  */
-export type getApiAlphaUserMeResponse200 = {
-  data: UserMeResponse
-  status: 200
-}
-
-export type getApiAlphaUserMeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaUserMeResponseSuccess = (getApiAlphaUserMeResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserMeResponseError = (getApiAlphaUserMeResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserMeResponse = (getApiAlphaUserMeResponseSuccess | getApiAlphaUserMeResponseError)
-
 export const getGetApiAlphaUserMeUrl = () => {
 
 
@@ -177,9 +108,9 @@ export const getGetApiAlphaUserMeUrl = () => {
   return `/api/alpha/user/me`
 }
 
-export const getApiAlphaUserMe = async ( options?: RequestInit): Promise<getApiAlphaUserMeResponse> => {
+export const getApiAlphaUserMe = async ( options?: RequestInit): Promise<UserMeResponse> => {
   
-  return customFetch<getApiAlphaUserMeResponse>(getGetApiAlphaUserMeUrl(),
+  return customFetch<UserMeResponse>(getGetApiAlphaUserMeUrl(),
   {      
     ...options,
     method: 'GET'
@@ -192,35 +123,6 @@ export const getApiAlphaUserMe = async ( options?: RequestInit): Promise<getApiA
 /**
  * @summary Log into PieFed
  */
-export type postApiAlphaUserLoginResponse200 = {
-  data: UserLoginResponse
-  status: 200
-}
-
-export type postApiAlphaUserLoginResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserLoginResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaUserLoginResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaUserLoginResponseSuccess = (postApiAlphaUserLoginResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserLoginResponseError = (postApiAlphaUserLoginResponse400 | postApiAlphaUserLoginResponse422 | postApiAlphaUserLoginResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserLoginResponse = (postApiAlphaUserLoginResponseSuccess | postApiAlphaUserLoginResponseError)
-
 export const getPostApiAlphaUserLoginUrl = () => {
 
 
@@ -229,9 +131,9 @@ export const getPostApiAlphaUserLoginUrl = () => {
   return `/api/alpha/user/login`
 }
 
-export const postApiAlphaUserLogin = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<postApiAlphaUserLoginResponse> => {
+export const postApiAlphaUserLogin = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<UserLoginResponse> => {
   
-  return customFetch<postApiAlphaUserLoginResponse>(getPostApiAlphaUserLoginUrl(),
+  return customFetch<UserLoginResponse>(getPostApiAlphaUserLoginUrl(),
   {      
     ...options,
     method: 'POST',
@@ -245,25 +147,6 @@ export const postApiAlphaUserLogin = async (userLoginRequest: UserLoginRequest, 
 /**
  * @summary Get your unread counts
  */
-export type getApiAlphaUserUnreadCountResponse200 = {
-  data: UserUnreadCountsResponse
-  status: 200
-}
-
-export type getApiAlphaUserUnreadCountResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaUserUnreadCountResponseSuccess = (getApiAlphaUserUnreadCountResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserUnreadCountResponseError = (getApiAlphaUserUnreadCountResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserUnreadCountResponse = (getApiAlphaUserUnreadCountResponseSuccess | getApiAlphaUserUnreadCountResponseError)
-
 export const getGetApiAlphaUserUnreadCountUrl = () => {
 
 
@@ -272,9 +155,9 @@ export const getGetApiAlphaUserUnreadCountUrl = () => {
   return `/api/alpha/user/unread_count`
 }
 
-export const getApiAlphaUserUnreadCount = async ( options?: RequestInit): Promise<getApiAlphaUserUnreadCountResponse> => {
+export const getApiAlphaUserUnreadCount = async ( options?: RequestInit): Promise<UserUnreadCountsResponse> => {
   
-  return customFetch<getApiAlphaUserUnreadCountResponse>(getGetApiAlphaUserUnreadCountUrl(),
+  return customFetch<UserUnreadCountsResponse>(getGetApiAlphaUserUnreadCountUrl(),
   {      
     ...options,
     method: 'GET'
@@ -287,30 +170,6 @@ export const getApiAlphaUserUnreadCount = async ( options?: RequestInit): Promis
 /**
  * @summary Get comment replies
  */
-export type getApiAlphaUserRepliesResponse200 = {
-  data: UserRepliesResponse
-  status: 200
-}
-
-export type getApiAlphaUserRepliesResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaUserRepliesResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaUserRepliesResponseSuccess = (getApiAlphaUserRepliesResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserRepliesResponseError = (getApiAlphaUserRepliesResponse400 | getApiAlphaUserRepliesResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserRepliesResponse = (getApiAlphaUserRepliesResponseSuccess | getApiAlphaUserRepliesResponseError)
-
 export const getGetApiAlphaUserRepliesUrl = (params?: GetApiAlphaUserRepliesParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -326,9 +185,9 @@ export const getGetApiAlphaUserRepliesUrl = (params?: GetApiAlphaUserRepliesPara
   return stringifiedParams.length > 0 ? `/api/alpha/user/replies?${stringifiedParams}` : `/api/alpha/user/replies`
 }
 
-export const getApiAlphaUserReplies = async (params?: GetApiAlphaUserRepliesParams, options?: RequestInit): Promise<getApiAlphaUserRepliesResponse> => {
+export const getApiAlphaUserReplies = async (params?: GetApiAlphaUserRepliesParams, options?: RequestInit): Promise<UserRepliesResponse> => {
   
-  return customFetch<getApiAlphaUserRepliesResponse>(getGetApiAlphaUserRepliesUrl(params),
+  return customFetch<UserRepliesResponse>(getGetApiAlphaUserRepliesUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -341,30 +200,6 @@ export const getApiAlphaUserReplies = async (params?: GetApiAlphaUserRepliesPara
 /**
  * @summary Get mentions of your account made in comments
  */
-export type getApiAlphaUserMentionsResponse200 = {
-  data: UserMentionsResponse
-  status: 200
-}
-
-export type getApiAlphaUserMentionsResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaUserMentionsResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaUserMentionsResponseSuccess = (getApiAlphaUserMentionsResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserMentionsResponseError = (getApiAlphaUserMentionsResponse400 | getApiAlphaUserMentionsResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserMentionsResponse = (getApiAlphaUserMentionsResponseSuccess | getApiAlphaUserMentionsResponseError)
-
 export const getGetApiAlphaUserMentionsUrl = (params?: GetApiAlphaUserMentionsParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -380,9 +215,9 @@ export const getGetApiAlphaUserMentionsUrl = (params?: GetApiAlphaUserMentionsPa
   return stringifiedParams.length > 0 ? `/api/alpha/user/mentions?${stringifiedParams}` : `/api/alpha/user/mentions`
 }
 
-export const getApiAlphaUserMentions = async (params?: GetApiAlphaUserMentionsParams, options?: RequestInit): Promise<getApiAlphaUserMentionsResponse> => {
+export const getApiAlphaUserMentions = async (params?: GetApiAlphaUserMentionsParams, options?: RequestInit): Promise<UserMentionsResponse> => {
   
-  return customFetch<getApiAlphaUserMentionsResponse>(getGetApiAlphaUserMentionsUrl(params),
+  return customFetch<UserMentionsResponse>(getGetApiAlphaUserMentionsUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -395,30 +230,6 @@ export const getApiAlphaUserMentions = async (params?: GetApiAlphaUserMentionsPa
 /**
  * @summary Get media the current user has uploaded
  */
-export type getApiAlphaUserMediaResponse200 = {
-  data: UserMediaResponse
-  status: 200
-}
-
-export type getApiAlphaUserMediaResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaUserMediaResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaUserMediaResponseSuccess = (getApiAlphaUserMediaResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserMediaResponseError = (getApiAlphaUserMediaResponse400 | getApiAlphaUserMediaResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserMediaResponse = (getApiAlphaUserMediaResponseSuccess | getApiAlphaUserMediaResponseError)
-
 export const getGetApiAlphaUserMediaUrl = (params?: GetApiAlphaUserMediaParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -434,9 +245,9 @@ export const getGetApiAlphaUserMediaUrl = (params?: GetApiAlphaUserMediaParams,)
   return stringifiedParams.length > 0 ? `/api/alpha/user/media?${stringifiedParams}` : `/api/alpha/user/media`
 }
 
-export const getApiAlphaUserMedia = async (params?: GetApiAlphaUserMediaParams, options?: RequestInit): Promise<getApiAlphaUserMediaResponse> => {
+export const getApiAlphaUserMedia = async (params?: GetApiAlphaUserMediaParams, options?: RequestInit): Promise<UserMediaResponse> => {
   
-  return customFetch<getApiAlphaUserMediaResponse>(getGetApiAlphaUserMediaUrl(params),
+  return customFetch<UserMediaResponse>(getGetApiAlphaUserMediaUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -449,30 +260,6 @@ export const getApiAlphaUserMedia = async (params?: GetApiAlphaUserMediaParams, 
 /**
  * @summary Block or unblock a person
  */
-export type postApiAlphaUserBlockResponse200 = {
-  data: UserBlockResponse
-  status: 200
-}
-
-export type postApiAlphaUserBlockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserBlockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserBlockResponseSuccess = (postApiAlphaUserBlockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserBlockResponseError = (postApiAlphaUserBlockResponse400 | postApiAlphaUserBlockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserBlockResponse = (postApiAlphaUserBlockResponseSuccess | postApiAlphaUserBlockResponseError)
-
 export const getPostApiAlphaUserBlockUrl = () => {
 
 
@@ -481,9 +268,9 @@ export const getPostApiAlphaUserBlockUrl = () => {
   return `/api/alpha/user/block`
 }
 
-export const postApiAlphaUserBlock = async (userBlockRequest: UserBlockRequest, options?: RequestInit): Promise<postApiAlphaUserBlockResponse> => {
+export const postApiAlphaUserBlock = async (userBlockRequest: UserBlockRequest, options?: RequestInit): Promise<UserBlockResponse> => {
   
-  return customFetch<postApiAlphaUserBlockResponse>(getPostApiAlphaUserBlockUrl(),
+  return customFetch<UserBlockResponse>(getPostApiAlphaUserBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -497,25 +284,6 @@ export const postApiAlphaUserBlock = async (userBlockRequest: UserBlockRequest, 
 /**
  * @summary Mark all notifications and messages as read
  */
-export type postApiAlphaUserMarkAllAsReadResponse200 = {
-  data: UserMarkAllReadResponse
-  status: 200
-}
-
-export type postApiAlphaUserMarkAllAsReadResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type postApiAlphaUserMarkAllAsReadResponseSuccess = (postApiAlphaUserMarkAllAsReadResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserMarkAllAsReadResponseError = (postApiAlphaUserMarkAllAsReadResponse400) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserMarkAllAsReadResponse = (postApiAlphaUserMarkAllAsReadResponseSuccess | postApiAlphaUserMarkAllAsReadResponseError)
-
 export const getPostApiAlphaUserMarkAllAsReadUrl = () => {
 
 
@@ -524,9 +292,9 @@ export const getPostApiAlphaUserMarkAllAsReadUrl = () => {
   return `/api/alpha/user/mark_all_as_read`
 }
 
-export const postApiAlphaUserMarkAllAsRead = async ( options?: RequestInit): Promise<postApiAlphaUserMarkAllAsReadResponse> => {
+export const postApiAlphaUserMarkAllAsRead = async ( options?: RequestInit): Promise<UserMarkAllReadResponse> => {
   
-  return customFetch<postApiAlphaUserMarkAllAsReadResponse>(getPostApiAlphaUserMarkAllAsReadUrl(),
+  return customFetch<UserMarkAllReadResponse>(getPostApiAlphaUserMarkAllAsReadUrl(),
   {      
     ...options,
     method: 'POST'
@@ -539,30 +307,6 @@ export const postApiAlphaUserMarkAllAsRead = async ( options?: RequestInit): Pro
 /**
  * @summary Subscribe or unsubscribe to activites of another user
  */
-export type putApiAlphaUserSubscribeResponse200 = {
-  data: UserSubscribeResponse
-  status: 200
-}
-
-export type putApiAlphaUserSubscribeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaUserSubscribeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaUserSubscribeResponseSuccess = (putApiAlphaUserSubscribeResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaUserSubscribeResponseError = (putApiAlphaUserSubscribeResponse400 | putApiAlphaUserSubscribeResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaUserSubscribeResponse = (putApiAlphaUserSubscribeResponseSuccess | putApiAlphaUserSubscribeResponseError)
-
 export const getPutApiAlphaUserSubscribeUrl = () => {
 
 
@@ -571,9 +315,9 @@ export const getPutApiAlphaUserSubscribeUrl = () => {
   return `/api/alpha/user/subscribe`
 }
 
-export const putApiAlphaUserSubscribe = async (userSubscribeRequest: UserSubscribeRequest, options?: RequestInit): Promise<putApiAlphaUserSubscribeResponse> => {
+export const putApiAlphaUserSubscribe = async (userSubscribeRequest: UserSubscribeRequest, options?: RequestInit): Promise<UserSubscribeResponse> => {
   
-  return customFetch<putApiAlphaUserSubscribeResponse>(getPutApiAlphaUserSubscribeUrl(),
+  return customFetch<UserSubscribeResponse>(getPutApiAlphaUserSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -587,30 +331,6 @@ export const putApiAlphaUserSubscribe = async (userSubscribeRequest: UserSubscri
 /**
  * @summary Save your user settings
  */
-export type putApiAlphaUserSaveUserSettingsResponse200 = {
-  data: UserSaveSettingsResponse
-  status: 200
-}
-
-export type putApiAlphaUserSaveUserSettingsResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaUserSaveUserSettingsResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaUserSaveUserSettingsResponseSuccess = (putApiAlphaUserSaveUserSettingsResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaUserSaveUserSettingsResponseError = (putApiAlphaUserSaveUserSettingsResponse400 | putApiAlphaUserSaveUserSettingsResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaUserSaveUserSettingsResponse = (putApiAlphaUserSaveUserSettingsResponseSuccess | putApiAlphaUserSaveUserSettingsResponseError)
-
 export const getPutApiAlphaUserSaveUserSettingsUrl = () => {
 
 
@@ -619,9 +339,9 @@ export const getPutApiAlphaUserSaveUserSettingsUrl = () => {
   return `/api/alpha/user/save_user_settings`
 }
 
-export const putApiAlphaUserSaveUserSettings = async (userSaveSettingsRequest: UserSaveSettingsRequest, options?: RequestInit): Promise<putApiAlphaUserSaveUserSettingsResponse> => {
+export const putApiAlphaUserSaveUserSettings = async (userSaveSettingsRequest: UserSaveSettingsRequest, options?: RequestInit): Promise<UserSaveSettingsResponse> => {
   
-  return customFetch<putApiAlphaUserSaveUserSettingsResponse>(getPutApiAlphaUserSaveUserSettingsUrl(),
+  return customFetch<UserSaveSettingsResponse>(getPutApiAlphaUserSaveUserSettingsUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -635,30 +355,6 @@ export const putApiAlphaUserSaveUserSettings = async (userSaveSettingsRequest: U
 /**
  * @summary Get your user notifications (not all notification types supported yet)
  */
-export type getApiAlphaUserNotificationsResponse200 = {
-  data: UserNotificationsResponse
-  status: 200
-}
-
-export type getApiAlphaUserNotificationsResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaUserNotificationsResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaUserNotificationsResponseSuccess = (getApiAlphaUserNotificationsResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserNotificationsResponseError = (getApiAlphaUserNotificationsResponse400 | getApiAlphaUserNotificationsResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserNotificationsResponse = (getApiAlphaUserNotificationsResponseSuccess | getApiAlphaUserNotificationsResponseError)
-
 export const getGetApiAlphaUserNotificationsUrl = (params: GetApiAlphaUserNotificationsParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -674,9 +370,9 @@ export const getGetApiAlphaUserNotificationsUrl = (params: GetApiAlphaUserNotifi
   return stringifiedParams.length > 0 ? `/api/alpha/user/notifications?${stringifiedParams}` : `/api/alpha/user/notifications`
 }
 
-export const getApiAlphaUserNotifications = async (params: GetApiAlphaUserNotificationsParams, options?: RequestInit): Promise<getApiAlphaUserNotificationsResponse> => {
+export const getApiAlphaUserNotifications = async (params: GetApiAlphaUserNotificationsParams, options?: RequestInit): Promise<UserNotificationsResponse> => {
   
-  return customFetch<getApiAlphaUserNotificationsResponse>(getGetApiAlphaUserNotificationsUrl(params),
+  return customFetch<UserNotificationsResponse>(getGetApiAlphaUserNotificationsUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -689,30 +385,6 @@ export const getApiAlphaUserNotifications = async (params: GetApiAlphaUserNotifi
 /**
  * @summary Set the read status of a given notification (not all notification types supported yet)
  */
-export type putApiAlphaUserNotificationStateResponse200 = {
-  data: UserNotificationItemView
-  status: 200
-}
-
-export type putApiAlphaUserNotificationStateResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaUserNotificationStateResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaUserNotificationStateResponseSuccess = (putApiAlphaUserNotificationStateResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaUserNotificationStateResponseError = (putApiAlphaUserNotificationStateResponse400 | putApiAlphaUserNotificationStateResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaUserNotificationStateResponse = (putApiAlphaUserNotificationStateResponseSuccess | putApiAlphaUserNotificationStateResponseError)
-
 export const getPutApiAlphaUserNotificationStateUrl = () => {
 
 
@@ -721,9 +393,9 @@ export const getPutApiAlphaUserNotificationStateUrl = () => {
   return `/api/alpha/user/notification_state`
 }
 
-export const putApiAlphaUserNotificationState = async (userNotificationStateRequest: UserNotificationStateRequest, options?: RequestInit): Promise<putApiAlphaUserNotificationStateResponse> => {
+export const putApiAlphaUserNotificationState = async (userNotificationStateRequest: UserNotificationStateRequest, options?: RequestInit): Promise<UserNotificationItemView> => {
   
-  return customFetch<putApiAlphaUserNotificationStateResponse>(getPutApiAlphaUserNotificationStateUrl(),
+  return customFetch<UserNotificationItemView>(getPutApiAlphaUserNotificationStateUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -737,25 +409,6 @@ export const putApiAlphaUserNotificationState = async (userNotificationStateRequ
 /**
  * @summary Get user unread notifications count
  */
-export type getApiAlphaUserNotificationsCountResponse200 = {
-  data: UserNotificationsCountResponse
-  status: 200
-}
-
-export type getApiAlphaUserNotificationsCountResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type getApiAlphaUserNotificationsCountResponseSuccess = (getApiAlphaUserNotificationsCountResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaUserNotificationsCountResponseError = (getApiAlphaUserNotificationsCountResponse400) & {
-  headers: Headers;
-};
-
-export type getApiAlphaUserNotificationsCountResponse = (getApiAlphaUserNotificationsCountResponseSuccess | getApiAlphaUserNotificationsCountResponseError)
-
 export const getGetApiAlphaUserNotificationsCountUrl = () => {
 
 
@@ -764,9 +417,9 @@ export const getGetApiAlphaUserNotificationsCountUrl = () => {
   return `/api/alpha/user/notifications_count`
 }
 
-export const getApiAlphaUserNotificationsCount = async ( options?: RequestInit): Promise<getApiAlphaUserNotificationsCountResponse> => {
+export const getApiAlphaUserNotificationsCount = async ( options?: RequestInit): Promise<UserNotificationsCountResponse> => {
   
-  return customFetch<getApiAlphaUserNotificationsCountResponse>(getGetApiAlphaUserNotificationsCountUrl(),
+  return customFetch<UserNotificationsCountResponse>(getGetApiAlphaUserNotificationsCountUrl(),
   {      
     ...options,
     method: 'GET'
@@ -779,25 +432,6 @@ export const getApiAlphaUserNotificationsCount = async ( options?: RequestInit):
 /**
  * @summary Mark all notifications as read
  */
-export type putApiAlphaUserMarkAllNotificationsReadResponse200 = {
-  data: UserMarkAllNotifsReadResponse
-  status: 200
-}
-
-export type putApiAlphaUserMarkAllNotificationsReadResponse400 = {
-  data: DefaultError
-  status: 400
-}
-    
-export type putApiAlphaUserMarkAllNotificationsReadResponseSuccess = (putApiAlphaUserMarkAllNotificationsReadResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaUserMarkAllNotificationsReadResponseError = (putApiAlphaUserMarkAllNotificationsReadResponse400) & {
-  headers: Headers;
-};
-
-export type putApiAlphaUserMarkAllNotificationsReadResponse = (putApiAlphaUserMarkAllNotificationsReadResponseSuccess | putApiAlphaUserMarkAllNotificationsReadResponseError)
-
 export const getPutApiAlphaUserMarkAllNotificationsReadUrl = () => {
 
 
@@ -806,9 +440,9 @@ export const getPutApiAlphaUserMarkAllNotificationsReadUrl = () => {
   return `/api/alpha/user/mark_all_notifications_read`
 }
 
-export const putApiAlphaUserMarkAllNotificationsRead = async ( options?: RequestInit): Promise<putApiAlphaUserMarkAllNotificationsReadResponse> => {
+export const putApiAlphaUserMarkAllNotificationsRead = async ( options?: RequestInit): Promise<UserMarkAllNotifsReadResponse> => {
   
-  return customFetch<putApiAlphaUserMarkAllNotificationsReadResponse>(getPutApiAlphaUserMarkAllNotificationsReadUrl(),
+  return customFetch<UserMarkAllNotifsReadResponse>(getPutApiAlphaUserMarkAllNotificationsReadUrl(),
   {      
     ...options,
     method: 'PUT'
@@ -821,30 +455,6 @@ export const putApiAlphaUserMarkAllNotificationsRead = async ( options?: Request
 /**
  * @summary Verify username/password credentials
  */
-export type postApiAlphaUserVerifyCredentialsResponse200 = {
-  data: void
-  status: 200
-}
-
-export type postApiAlphaUserVerifyCredentialsResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserVerifyCredentialsResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserVerifyCredentialsResponseSuccess = (postApiAlphaUserVerifyCredentialsResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserVerifyCredentialsResponseError = (postApiAlphaUserVerifyCredentialsResponse400 | postApiAlphaUserVerifyCredentialsResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserVerifyCredentialsResponse = (postApiAlphaUserVerifyCredentialsResponseSuccess | postApiAlphaUserVerifyCredentialsResponseError)
-
 export const getPostApiAlphaUserVerifyCredentialsUrl = () => {
 
 
@@ -853,9 +463,9 @@ export const getPostApiAlphaUserVerifyCredentialsUrl = () => {
   return `/api/alpha/user/verify_credentials`
 }
 
-export const postApiAlphaUserVerifyCredentials = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<postApiAlphaUserVerifyCredentialsResponse> => {
+export const postApiAlphaUserVerifyCredentials = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<void> => {
   
-  return customFetch<postApiAlphaUserVerifyCredentialsResponse>(getPostApiAlphaUserVerifyCredentialsUrl(),
+  return customFetch<void>(getPostApiAlphaUserVerifyCredentialsUrl(),
   {      
     ...options,
     method: 'POST',
@@ -869,30 +479,6 @@ export const postApiAlphaUserVerifyCredentials = async (userLoginRequest: UserLo
 /**
  * @summary Set your flair for a community
  */
-export type postApiAlphaUserSetFlairResponse200 = {
-  data: UserSetFlairResponse
-  status: 200
-}
-
-export type postApiAlphaUserSetFlairResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserSetFlairResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserSetFlairResponseSuccess = (postApiAlphaUserSetFlairResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserSetFlairResponseError = (postApiAlphaUserSetFlairResponse400 | postApiAlphaUserSetFlairResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserSetFlairResponse = (postApiAlphaUserSetFlairResponseSuccess | postApiAlphaUserSetFlairResponseError)
-
 export const getPostApiAlphaUserSetFlairUrl = () => {
 
 
@@ -901,9 +487,9 @@ export const getPostApiAlphaUserSetFlairUrl = () => {
   return `/api/alpha/user/set_flair`
 }
 
-export const postApiAlphaUserSetFlair = async (userSetFlairRequest: UserSetFlairRequest, options?: RequestInit): Promise<postApiAlphaUserSetFlairResponse> => {
+export const postApiAlphaUserSetFlair = async (userSetFlairRequest: UserSetFlairRequest, options?: RequestInit): Promise<UserSetFlairResponse> => {
   
-  return customFetch<postApiAlphaUserSetFlairResponse>(getPostApiAlphaUserSetFlairUrl(),
+  return customFetch<UserSetFlairResponse>(getPostApiAlphaUserSetFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -917,30 +503,6 @@ export const postApiAlphaUserSetFlair = async (userSetFlairRequest: UserSetFlair
 /**
  * @summary Set a note for a user
  */
-export type postApiAlphaUserNoteResponse200 = {
-  data: UserSetNoteResponse
-  status: 200
-}
-
-export type postApiAlphaUserNoteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserNoteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserNoteResponseSuccess = (postApiAlphaUserNoteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserNoteResponseError = (postApiAlphaUserNoteResponse400 | postApiAlphaUserNoteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserNoteResponse = (postApiAlphaUserNoteResponseSuccess | postApiAlphaUserNoteResponseError)
-
 export const getPostApiAlphaUserNoteUrl = () => {
 
 
@@ -949,9 +511,9 @@ export const getPostApiAlphaUserNoteUrl = () => {
   return `/api/alpha/user/note`
 }
 
-export const postApiAlphaUserNote = async (userSetNoteRequest: UserSetNoteRequest, options?: RequestInit): Promise<postApiAlphaUserNoteResponse> => {
+export const postApiAlphaUserNote = async (userSetNoteRequest: UserSetNoteRequest, options?: RequestInit): Promise<UserSetNoteResponse> => {
   
-  return customFetch<postApiAlphaUserNoteResponse>(getPostApiAlphaUserNoteUrl(),
+  return customFetch<UserSetNoteResponse>(getPostApiAlphaUserNoteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -965,30 +527,6 @@ export const postApiAlphaUserNote = async (userSetNoteRequest: UserSetNoteReques
 /**
  * @summary Ban a user
  */
-export type postApiAlphaUserBanResponse200 = {
-  data: UserBanResponse
-  status: 200
-}
-
-export type postApiAlphaUserBanResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserBanResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserBanResponseSuccess = (postApiAlphaUserBanResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserBanResponseError = (postApiAlphaUserBanResponse400 | postApiAlphaUserBanResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserBanResponse = (postApiAlphaUserBanResponseSuccess | postApiAlphaUserBanResponseError)
-
 export const getPostApiAlphaUserBanUrl = () => {
 
 
@@ -997,9 +535,9 @@ export const getPostApiAlphaUserBanUrl = () => {
   return `/api/alpha/user/ban`
 }
 
-export const postApiAlphaUserBan = async (userBanRequest: UserBanRequest, options?: RequestInit): Promise<postApiAlphaUserBanResponse> => {
+export const postApiAlphaUserBan = async (userBanRequest: UserBanRequest, options?: RequestInit): Promise<UserBanResponse> => {
   
-  return customFetch<postApiAlphaUserBanResponse>(getPostApiAlphaUserBanUrl(),
+  return customFetch<UserBanResponse>(getPostApiAlphaUserBanUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1013,30 +551,6 @@ export const postApiAlphaUserBan = async (userBanRequest: UserBanRequest, option
 /**
  * @summary Unban a user
  */
-export type postApiAlphaUserUnbanResponse200 = {
-  data: UserBanResponse
-  status: 200
-}
-
-export type postApiAlphaUserUnbanResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUserUnbanResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaUserUnbanResponseSuccess = (postApiAlphaUserUnbanResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUserUnbanResponseError = (postApiAlphaUserUnbanResponse400 | postApiAlphaUserUnbanResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUserUnbanResponse = (postApiAlphaUserUnbanResponseSuccess | postApiAlphaUserUnbanResponseError)
-
 export const getPostApiAlphaUserUnbanUrl = () => {
 
 
@@ -1045,9 +559,9 @@ export const getPostApiAlphaUserUnbanUrl = () => {
   return `/api/alpha/user/unban`
 }
 
-export const postApiAlphaUserUnban = async (userUnbanRequest: UserUnbanRequest, options?: RequestInit): Promise<postApiAlphaUserUnbanResponse> => {
+export const postApiAlphaUserUnban = async (userUnbanRequest: UserUnbanRequest, options?: RequestInit): Promise<UserBanResponse> => {
   
-  return customFetch<postApiAlphaUserUnbanResponse>(getPostApiAlphaUserUnbanUrl(),
+  return customFetch<UserBanResponse>(getPostApiAlphaUserUnbanUrl(),
   {      
     ...options,
     method: 'POST',

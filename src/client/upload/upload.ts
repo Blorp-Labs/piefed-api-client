@@ -5,12 +5,10 @@
  * OpenAPI spec version: alpha 1.6
  */
 import type {
-  DefaultError,
   ImageDeleteRequest,
   ImageDeleteResponse,
   ImageUploadRequest,
-  ImageUploadResponse,
-  UnprocessableEntityResponse
+  ImageUploadResponse
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -18,35 +16,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary Upload a general image.
  */
-export type postApiAlphaUploadImageResponse200 = {
-  data: ImageUploadResponse
-  status: 200
-}
-
-export type postApiAlphaUploadImageResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUploadImageResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaUploadImageResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaUploadImageResponseSuccess = (postApiAlphaUploadImageResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUploadImageResponseError = (postApiAlphaUploadImageResponse400 | postApiAlphaUploadImageResponse422 | postApiAlphaUploadImageResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUploadImageResponse = (postApiAlphaUploadImageResponseSuccess | postApiAlphaUploadImageResponseError)
-
 export const getPostApiAlphaUploadImageUrl = () => {
 
 
@@ -55,11 +24,11 @@ export const getPostApiAlphaUploadImageUrl = () => {
   return `/api/alpha/upload/image`
 }
 
-export const postApiAlphaUploadImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<postApiAlphaUploadImageResponse> => {
+export const postApiAlphaUploadImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<ImageUploadResponse> => {
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  return customFetch<postApiAlphaUploadImageResponse>(getPostApiAlphaUploadImageUrl(),
+  return customFetch<ImageUploadResponse>(getPostApiAlphaUploadImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -73,35 +42,6 @@ formData.append(`file`, imageUploadRequest.file)
 /**
  * @summary Upload a community image.
  */
-export type postApiAlphaUploadCommunityImageResponse200 = {
-  data: ImageUploadResponse
-  status: 200
-}
-
-export type postApiAlphaUploadCommunityImageResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUploadCommunityImageResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaUploadCommunityImageResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaUploadCommunityImageResponseSuccess = (postApiAlphaUploadCommunityImageResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUploadCommunityImageResponseError = (postApiAlphaUploadCommunityImageResponse400 | postApiAlphaUploadCommunityImageResponse422 | postApiAlphaUploadCommunityImageResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUploadCommunityImageResponse = (postApiAlphaUploadCommunityImageResponseSuccess | postApiAlphaUploadCommunityImageResponseError)
-
 export const getPostApiAlphaUploadCommunityImageUrl = () => {
 
 
@@ -110,11 +50,11 @@ export const getPostApiAlphaUploadCommunityImageUrl = () => {
   return `/api/alpha/upload/community_image`
 }
 
-export const postApiAlphaUploadCommunityImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<postApiAlphaUploadCommunityImageResponse> => {
+export const postApiAlphaUploadCommunityImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<ImageUploadResponse> => {
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  return customFetch<postApiAlphaUploadCommunityImageResponse>(getPostApiAlphaUploadCommunityImageUrl(),
+  return customFetch<ImageUploadResponse>(getPostApiAlphaUploadCommunityImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -128,35 +68,6 @@ formData.append(`file`, imageUploadRequest.file)
 /**
  * @summary Upload a user image.
  */
-export type postApiAlphaUploadUserImageResponse200 = {
-  data: ImageUploadResponse
-  status: 200
-}
-
-export type postApiAlphaUploadUserImageResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaUploadUserImageResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaUploadUserImageResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaUploadUserImageResponseSuccess = (postApiAlphaUploadUserImageResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaUploadUserImageResponseError = (postApiAlphaUploadUserImageResponse400 | postApiAlphaUploadUserImageResponse422 | postApiAlphaUploadUserImageResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaUploadUserImageResponse = (postApiAlphaUploadUserImageResponseSuccess | postApiAlphaUploadUserImageResponseError)
-
 export const getPostApiAlphaUploadUserImageUrl = () => {
 
 
@@ -165,11 +76,11 @@ export const getPostApiAlphaUploadUserImageUrl = () => {
   return `/api/alpha/upload/user_image`
 }
 
-export const postApiAlphaUploadUserImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<postApiAlphaUploadUserImageResponse> => {
+export const postApiAlphaUploadUserImage = async (imageUploadRequest: ImageUploadRequest, options?: RequestInit): Promise<ImageUploadResponse> => {
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  return customFetch<postApiAlphaUploadUserImageResponse>(getPostApiAlphaUploadUserImageUrl(),
+  return customFetch<ImageUploadResponse>(getPostApiAlphaUploadUserImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -183,35 +94,6 @@ formData.append(`file`, imageUploadRequest.file)
 /**
  * @summary Delete a user image.
  */
-export type postApiAlphaImageDeleteResponse200 = {
-  data: ImageDeleteResponse
-  status: 200
-}
-
-export type postApiAlphaImageDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaImageDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaImageDeleteResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaImageDeleteResponseSuccess = (postApiAlphaImageDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaImageDeleteResponseError = (postApiAlphaImageDeleteResponse400 | postApiAlphaImageDeleteResponse422 | postApiAlphaImageDeleteResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaImageDeleteResponse = (postApiAlphaImageDeleteResponseSuccess | postApiAlphaImageDeleteResponseError)
-
 export const getPostApiAlphaImageDeleteUrl = () => {
 
 
@@ -220,9 +102,9 @@ export const getPostApiAlphaImageDeleteUrl = () => {
   return `/api/alpha/image/delete`
 }
 
-export const postApiAlphaImageDelete = async (imageDeleteRequest: ImageDeleteRequest, options?: RequestInit): Promise<postApiAlphaImageDeleteResponse> => {
+export const postApiAlphaImageDelete = async (imageDeleteRequest: ImageDeleteRequest, options?: RequestInit): Promise<ImageDeleteResponse> => {
   
-  return customFetch<postApiAlphaImageDeleteResponse>(getPostApiAlphaImageDeleteUrl(),
+  return customFetch<ImageDeleteResponse>(getPostApiAlphaImageDeleteUrl(),
   {      
     ...options,
     method: 'POST',

@@ -6,7 +6,6 @@
  */
 import type {
   CreatePrivateMessageRequest,
-  DefaultError,
   DeletePrivateMessageRequest,
   EditPrivateMessageRequest,
   GetApiAlphaPrivateMessageConversationParams,
@@ -16,8 +15,7 @@ import type {
   ListPrivateMessagesResponse,
   MarkPrivateMessageAsReadRequest,
   PrivateMessageResponse,
-  ReportPrivateMessageRequest,
-  UnprocessableEntityResponse
+  ReportPrivateMessageRequest
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -25,30 +23,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary List private messages.
  */
-export type getApiAlphaPrivateMessageListResponse200 = {
-  data: ListPrivateMessagesResponse
-  status: 200
-}
-
-export type getApiAlphaPrivateMessageListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPrivateMessageListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPrivateMessageListResponseSuccess = (getApiAlphaPrivateMessageListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPrivateMessageListResponseError = (getApiAlphaPrivateMessageListResponse400 | getApiAlphaPrivateMessageListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPrivateMessageListResponse = (getApiAlphaPrivateMessageListResponseSuccess | getApiAlphaPrivateMessageListResponseError)
-
 export const getGetApiAlphaPrivateMessageListUrl = (params?: GetApiAlphaPrivateMessageListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -64,9 +38,9 @@ export const getGetApiAlphaPrivateMessageListUrl = (params?: GetApiAlphaPrivateM
   return stringifiedParams.length > 0 ? `/api/alpha/private_message/list?${stringifiedParams}` : `/api/alpha/private_message/list`
 }
 
-export const getApiAlphaPrivateMessageList = async (params?: GetApiAlphaPrivateMessageListParams, options?: RequestInit): Promise<getApiAlphaPrivateMessageListResponse> => {
+export const getApiAlphaPrivateMessageList = async (params?: GetApiAlphaPrivateMessageListParams, options?: RequestInit): Promise<ListPrivateMessagesResponse> => {
   
-  return customFetch<getApiAlphaPrivateMessageListResponse>(getGetApiAlphaPrivateMessageListUrl(params),
+  return customFetch<ListPrivateMessagesResponse>(getGetApiAlphaPrivateMessageListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -79,30 +53,6 @@ export const getApiAlphaPrivateMessageList = async (params?: GetApiAlphaPrivateM
 /**
  * @summary Get conversation with a specific person.
  */
-export type getApiAlphaPrivateMessageConversationResponse200 = {
-  data: GetPrivateMessageConversationResponse
-  status: 200
-}
-
-export type getApiAlphaPrivateMessageConversationResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaPrivateMessageConversationResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaPrivateMessageConversationResponseSuccess = (getApiAlphaPrivateMessageConversationResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaPrivateMessageConversationResponseError = (getApiAlphaPrivateMessageConversationResponse400 | getApiAlphaPrivateMessageConversationResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaPrivateMessageConversationResponse = (getApiAlphaPrivateMessageConversationResponseSuccess | getApiAlphaPrivateMessageConversationResponseError)
-
 export const getGetApiAlphaPrivateMessageConversationUrl = (params?: GetApiAlphaPrivateMessageConversationParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -118,9 +68,9 @@ export const getGetApiAlphaPrivateMessageConversationUrl = (params?: GetApiAlpha
   return stringifiedParams.length > 0 ? `/api/alpha/private_message/conversation?${stringifiedParams}` : `/api/alpha/private_message/conversation`
 }
 
-export const getApiAlphaPrivateMessageConversation = async (params?: GetApiAlphaPrivateMessageConversationParams, options?: RequestInit): Promise<getApiAlphaPrivateMessageConversationResponse> => {
+export const getApiAlphaPrivateMessageConversation = async (params?: GetApiAlphaPrivateMessageConversationParams, options?: RequestInit): Promise<GetPrivateMessageConversationResponse> => {
   
-  return customFetch<getApiAlphaPrivateMessageConversationResponse>(getGetApiAlphaPrivateMessageConversationUrl(params),
+  return customFetch<GetPrivateMessageConversationResponse>(getGetApiAlphaPrivateMessageConversationUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -133,30 +83,6 @@ export const getApiAlphaPrivateMessageConversation = async (params?: GetApiAlpha
 /**
  * @summary Leave a conversation
  */
-export type postApiAlphaPrivateMessageConversationLeaveResponse200 = {
-  data: void
-  status: 200
-}
-
-export type postApiAlphaPrivateMessageConversationLeaveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPrivateMessageConversationLeaveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPrivateMessageConversationLeaveResponseSuccess = (postApiAlphaPrivateMessageConversationLeaveResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPrivateMessageConversationLeaveResponseError = (postApiAlphaPrivateMessageConversationLeaveResponse400 | postApiAlphaPrivateMessageConversationLeaveResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPrivateMessageConversationLeaveResponse = (postApiAlphaPrivateMessageConversationLeaveResponseSuccess | postApiAlphaPrivateMessageConversationLeaveResponseError)
-
 export const getPostApiAlphaPrivateMessageConversationLeaveUrl = () => {
 
 
@@ -165,9 +91,9 @@ export const getPostApiAlphaPrivateMessageConversationLeaveUrl = () => {
   return `/api/alpha/private_message/conversation/leave`
 }
 
-export const postApiAlphaPrivateMessageConversationLeave = async (leaveConversationRequest: LeaveConversationRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageConversationLeaveResponse> => {
+export const postApiAlphaPrivateMessageConversationLeave = async (leaveConversationRequest: LeaveConversationRequest, options?: RequestInit): Promise<void> => {
   
-  return customFetch<postApiAlphaPrivateMessageConversationLeaveResponse>(getPostApiAlphaPrivateMessageConversationLeaveUrl(),
+  return customFetch<void>(getPostApiAlphaPrivateMessageConversationLeaveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -181,35 +107,6 @@ export const postApiAlphaPrivateMessageConversationLeave = async (leaveConversat
 /**
  * @summary Create a new private message.
  */
-export type postApiAlphaPrivateMessageResponse200 = {
-  data: PrivateMessageResponse
-  status: 200
-}
-
-export type postApiAlphaPrivateMessageResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPrivateMessageResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaPrivateMessageResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaPrivateMessageResponseSuccess = (postApiAlphaPrivateMessageResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPrivateMessageResponseError = (postApiAlphaPrivateMessageResponse400 | postApiAlphaPrivateMessageResponse422 | postApiAlphaPrivateMessageResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPrivateMessageResponse = (postApiAlphaPrivateMessageResponseSuccess | postApiAlphaPrivateMessageResponseError)
-
 export const getPostApiAlphaPrivateMessageUrl = () => {
 
 
@@ -218,9 +115,9 @@ export const getPostApiAlphaPrivateMessageUrl = () => {
   return `/api/alpha/private_message`
 }
 
-export const postApiAlphaPrivateMessage = async (createPrivateMessageRequest: CreatePrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageResponse> => {
+export const postApiAlphaPrivateMessage = async (createPrivateMessageRequest: CreatePrivateMessageRequest, options?: RequestInit): Promise<PrivateMessageResponse> => {
   
-  return customFetch<postApiAlphaPrivateMessageResponse>(getPostApiAlphaPrivateMessageUrl(),
+  return customFetch<PrivateMessageResponse>(getPostApiAlphaPrivateMessageUrl(),
   {      
     ...options,
     method: 'POST',
@@ -234,30 +131,6 @@ export const postApiAlphaPrivateMessage = async (createPrivateMessageRequest: Cr
 /**
  * @summary Edit a private message.
  */
-export type putApiAlphaPrivateMessageResponse200 = {
-  data: PrivateMessageResponse
-  status: 200
-}
-
-export type putApiAlphaPrivateMessageResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaPrivateMessageResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaPrivateMessageResponseSuccess = (putApiAlphaPrivateMessageResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaPrivateMessageResponseError = (putApiAlphaPrivateMessageResponse400 | putApiAlphaPrivateMessageResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaPrivateMessageResponse = (putApiAlphaPrivateMessageResponseSuccess | putApiAlphaPrivateMessageResponseError)
-
 export const getPutApiAlphaPrivateMessageUrl = () => {
 
 
@@ -266,9 +139,9 @@ export const getPutApiAlphaPrivateMessageUrl = () => {
   return `/api/alpha/private_message`
 }
 
-export const putApiAlphaPrivateMessage = async (editPrivateMessageRequest: EditPrivateMessageRequest, options?: RequestInit): Promise<putApiAlphaPrivateMessageResponse> => {
+export const putApiAlphaPrivateMessage = async (editPrivateMessageRequest: EditPrivateMessageRequest, options?: RequestInit): Promise<PrivateMessageResponse> => {
   
-  return customFetch<putApiAlphaPrivateMessageResponse>(getPutApiAlphaPrivateMessageUrl(),
+  return customFetch<PrivateMessageResponse>(getPutApiAlphaPrivateMessageUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -282,30 +155,6 @@ export const putApiAlphaPrivateMessage = async (editPrivateMessageRequest: EditP
 /**
  * @summary Mark a private message as read or unread.
  */
-export type postApiAlphaPrivateMessageMarkAsReadResponse200 = {
-  data: PrivateMessageResponse
-  status: 200
-}
-
-export type postApiAlphaPrivateMessageMarkAsReadResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPrivateMessageMarkAsReadResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPrivateMessageMarkAsReadResponseSuccess = (postApiAlphaPrivateMessageMarkAsReadResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPrivateMessageMarkAsReadResponseError = (postApiAlphaPrivateMessageMarkAsReadResponse400 | postApiAlphaPrivateMessageMarkAsReadResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPrivateMessageMarkAsReadResponse = (postApiAlphaPrivateMessageMarkAsReadResponseSuccess | postApiAlphaPrivateMessageMarkAsReadResponseError)
-
 export const getPostApiAlphaPrivateMessageMarkAsReadUrl = () => {
 
 
@@ -314,9 +163,9 @@ export const getPostApiAlphaPrivateMessageMarkAsReadUrl = () => {
   return `/api/alpha/private_message/mark_as_read`
 }
 
-export const postApiAlphaPrivateMessageMarkAsRead = async (markPrivateMessageAsReadRequest: MarkPrivateMessageAsReadRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageMarkAsReadResponse> => {
+export const postApiAlphaPrivateMessageMarkAsRead = async (markPrivateMessageAsReadRequest: MarkPrivateMessageAsReadRequest, options?: RequestInit): Promise<PrivateMessageResponse> => {
   
-  return customFetch<postApiAlphaPrivateMessageMarkAsReadResponse>(getPostApiAlphaPrivateMessageMarkAsReadUrl(),
+  return customFetch<PrivateMessageResponse>(getPostApiAlphaPrivateMessageMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -330,30 +179,6 @@ export const postApiAlphaPrivateMessageMarkAsRead = async (markPrivateMessageAsR
 /**
  * @summary Delete or restore a private message.
  */
-export type postApiAlphaPrivateMessageDeleteResponse200 = {
-  data: PrivateMessageResponse
-  status: 200
-}
-
-export type postApiAlphaPrivateMessageDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPrivateMessageDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPrivateMessageDeleteResponseSuccess = (postApiAlphaPrivateMessageDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPrivateMessageDeleteResponseError = (postApiAlphaPrivateMessageDeleteResponse400 | postApiAlphaPrivateMessageDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPrivateMessageDeleteResponse = (postApiAlphaPrivateMessageDeleteResponseSuccess | postApiAlphaPrivateMessageDeleteResponseError)
-
 export const getPostApiAlphaPrivateMessageDeleteUrl = () => {
 
 
@@ -362,9 +187,9 @@ export const getPostApiAlphaPrivateMessageDeleteUrl = () => {
   return `/api/alpha/private_message/delete`
 }
 
-export const postApiAlphaPrivateMessageDelete = async (deletePrivateMessageRequest: DeletePrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageDeleteResponse> => {
+export const postApiAlphaPrivateMessageDelete = async (deletePrivateMessageRequest: DeletePrivateMessageRequest, options?: RequestInit): Promise<PrivateMessageResponse> => {
   
-  return customFetch<postApiAlphaPrivateMessageDeleteResponse>(getPostApiAlphaPrivateMessageDeleteUrl(),
+  return customFetch<PrivateMessageResponse>(getPostApiAlphaPrivateMessageDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -378,30 +203,6 @@ export const postApiAlphaPrivateMessageDelete = async (deletePrivateMessageReque
 /**
  * @summary Report a private message.
  */
-export type postApiAlphaPrivateMessageReportResponse200 = {
-  data: PrivateMessageResponse
-  status: 200
-}
-
-export type postApiAlphaPrivateMessageReportResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaPrivateMessageReportResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaPrivateMessageReportResponseSuccess = (postApiAlphaPrivateMessageReportResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaPrivateMessageReportResponseError = (postApiAlphaPrivateMessageReportResponse400 | postApiAlphaPrivateMessageReportResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaPrivateMessageReportResponse = (postApiAlphaPrivateMessageReportResponseSuccess | postApiAlphaPrivateMessageReportResponseError)
-
 export const getPostApiAlphaPrivateMessageReportUrl = () => {
 
 
@@ -410,9 +211,9 @@ export const getPostApiAlphaPrivateMessageReportUrl = () => {
   return `/api/alpha/private_message/report`
 }
 
-export const postApiAlphaPrivateMessageReport = async (reportPrivateMessageRequest: ReportPrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageReportResponse> => {
+export const postApiAlphaPrivateMessageReport = async (reportPrivateMessageRequest: ReportPrivateMessageRequest, options?: RequestInit): Promise<PrivateMessageResponse> => {
   
-  return customFetch<postApiAlphaPrivateMessageReportResponse>(getPostApiAlphaPrivateMessageReportUrl(),
+  return customFetch<PrivateMessageResponse>(getPostApiAlphaPrivateMessageReportUrl(),
   {      
     ...options,
     method: 'POST',

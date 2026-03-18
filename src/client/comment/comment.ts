@@ -6,7 +6,6 @@
  */
 import type {
   CreateCommentRequest,
-  DefaultError,
   DeleteCommentRequest,
   EditCommentRequest,
   GetApiAlphaCommentLikeListParams,
@@ -24,8 +23,7 @@ import type {
   RemoveCommentRequest,
   ReportCommentRequest,
   SaveCommentRequest,
-  SubscribeCommentRequest,
-  UnprocessableEntityResponse
+  SubscribeCommentRequest
 } from '../../schemas';
 
 import { customFetch } from '../../mutator/custom-fetch';
@@ -33,30 +31,6 @@ import { customFetch } from '../../mutator/custom-fetch';
 /**
  * @summary List comments, with various filters.
  */
-export type getApiAlphaCommentListResponse200 = {
-  data: ListCommentsResponse
-  status: 200
-}
-
-export type getApiAlphaCommentListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommentListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommentListResponseSuccess = (getApiAlphaCommentListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommentListResponseError = (getApiAlphaCommentListResponse400 | getApiAlphaCommentListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommentListResponse = (getApiAlphaCommentListResponseSuccess | getApiAlphaCommentListResponseError)
-
 export const getGetApiAlphaCommentListUrl = (params?: GetApiAlphaCommentListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -72,9 +46,9 @@ export const getGetApiAlphaCommentListUrl = (params?: GetApiAlphaCommentListPara
   return stringifiedParams.length > 0 ? `/api/alpha/comment/list?${stringifiedParams}` : `/api/alpha/comment/list`
 }
 
-export const getApiAlphaCommentList = async (params?: GetApiAlphaCommentListParams, options?: RequestInit): Promise<getApiAlphaCommentListResponse> => {
+export const getApiAlphaCommentList = async (params?: GetApiAlphaCommentListParams, options?: RequestInit): Promise<ListCommentsResponse> => {
   
-  return customFetch<getApiAlphaCommentListResponse>(getGetApiAlphaCommentListUrl(params),
+  return customFetch<ListCommentsResponse>(getGetApiAlphaCommentListUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -87,30 +61,6 @@ export const getApiAlphaCommentList = async (params?: GetApiAlphaCommentListPara
 /**
  * @summary Like / vote on a comment.
  */
-export type postApiAlphaCommentLikeResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type postApiAlphaCommentLikeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentLikeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentLikeResponseSuccess = (postApiAlphaCommentLikeResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentLikeResponseError = (postApiAlphaCommentLikeResponse400 | postApiAlphaCommentLikeResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentLikeResponse = (postApiAlphaCommentLikeResponseSuccess | postApiAlphaCommentLikeResponseError)
-
 export const getPostApiAlphaCommentLikeUrl = () => {
 
 
@@ -119,9 +69,9 @@ export const getPostApiAlphaCommentLikeUrl = () => {
   return `/api/alpha/comment/like`
 }
 
-export const postApiAlphaCommentLike = async (likeCommentRequest: LikeCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentLikeResponse> => {
+export const postApiAlphaCommentLike = async (likeCommentRequest: LikeCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<postApiAlphaCommentLikeResponse>(getPostApiAlphaCommentLikeUrl(),
+  return customFetch<GetCommentResponse>(getPostApiAlphaCommentLikeUrl(),
   {      
     ...options,
     method: 'POST',
@@ -135,30 +85,6 @@ export const postApiAlphaCommentLike = async (likeCommentRequest: LikeCommentReq
 /**
  * @summary Save a comment.
  */
-export type putApiAlphaCommentSaveResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type putApiAlphaCommentSaveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommentSaveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommentSaveResponseSuccess = (putApiAlphaCommentSaveResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommentSaveResponseError = (putApiAlphaCommentSaveResponse400 | putApiAlphaCommentSaveResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommentSaveResponse = (putApiAlphaCommentSaveResponseSuccess | putApiAlphaCommentSaveResponseError)
-
 export const getPutApiAlphaCommentSaveUrl = () => {
 
 
@@ -167,9 +93,9 @@ export const getPutApiAlphaCommentSaveUrl = () => {
   return `/api/alpha/comment/save`
 }
 
-export const putApiAlphaCommentSave = async (saveCommentRequest: SaveCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentSaveResponse> => {
+export const putApiAlphaCommentSave = async (saveCommentRequest: SaveCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<putApiAlphaCommentSaveResponse>(getPutApiAlphaCommentSaveUrl(),
+  return customFetch<GetCommentResponse>(getPutApiAlphaCommentSaveUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -183,30 +109,6 @@ export const putApiAlphaCommentSave = async (saveCommentRequest: SaveCommentRequ
 /**
  * @summary Subscribe to a comment.
  */
-export type putApiAlphaCommentSubscribeResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type putApiAlphaCommentSubscribeResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommentSubscribeResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommentSubscribeResponseSuccess = (putApiAlphaCommentSubscribeResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommentSubscribeResponseError = (putApiAlphaCommentSubscribeResponse400 | putApiAlphaCommentSubscribeResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommentSubscribeResponse = (putApiAlphaCommentSubscribeResponseSuccess | putApiAlphaCommentSubscribeResponseError)
-
 export const getPutApiAlphaCommentSubscribeUrl = () => {
 
 
@@ -215,9 +117,9 @@ export const getPutApiAlphaCommentSubscribeUrl = () => {
   return `/api/alpha/comment/subscribe`
 }
 
-export const putApiAlphaCommentSubscribe = async (subscribeCommentRequest: SubscribeCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentSubscribeResponse> => {
+export const putApiAlphaCommentSubscribe = async (subscribeCommentRequest: SubscribeCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<putApiAlphaCommentSubscribeResponse>(getPutApiAlphaCommentSubscribeUrl(),
+  return customFetch<GetCommentResponse>(getPutApiAlphaCommentSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -231,35 +133,6 @@ export const putApiAlphaCommentSubscribe = async (subscribeCommentRequest: Subsc
 /**
  * @summary Create a comment.
  */
-export type postApiAlphaCommentResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type postApiAlphaCommentResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-
-export type postApiAlphaCommentResponse429 = {
-  data: DefaultError
-  status: 429
-}
-    
-export type postApiAlphaCommentResponseSuccess = (postApiAlphaCommentResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentResponseError = (postApiAlphaCommentResponse400 | postApiAlphaCommentResponse422 | postApiAlphaCommentResponse429) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentResponse = (postApiAlphaCommentResponseSuccess | postApiAlphaCommentResponseError)
-
 export const getPostApiAlphaCommentUrl = () => {
 
 
@@ -268,9 +141,9 @@ export const getPostApiAlphaCommentUrl = () => {
   return `/api/alpha/comment`
 }
 
-export const postApiAlphaComment = async (createCommentRequest: CreateCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentResponse> => {
+export const postApiAlphaComment = async (createCommentRequest: CreateCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<postApiAlphaCommentResponse>(getPostApiAlphaCommentUrl(),
+  return customFetch<GetCommentResponse>(getPostApiAlphaCommentUrl(),
   {      
     ...options,
     method: 'POST',
@@ -284,30 +157,6 @@ export const postApiAlphaComment = async (createCommentRequest: CreateCommentReq
 /**
  * @summary Edit a comment.
  */
-export type putApiAlphaCommentResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type putApiAlphaCommentResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type putApiAlphaCommentResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type putApiAlphaCommentResponseSuccess = (putApiAlphaCommentResponse200) & {
-  headers: Headers;
-};
-export type putApiAlphaCommentResponseError = (putApiAlphaCommentResponse400 | putApiAlphaCommentResponse422) & {
-  headers: Headers;
-};
-
-export type putApiAlphaCommentResponse = (putApiAlphaCommentResponseSuccess | putApiAlphaCommentResponseError)
-
 export const getPutApiAlphaCommentUrl = () => {
 
 
@@ -316,9 +165,9 @@ export const getPutApiAlphaCommentUrl = () => {
   return `/api/alpha/comment`
 }
 
-export const putApiAlphaComment = async (editCommentRequest: EditCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentResponse> => {
+export const putApiAlphaComment = async (editCommentRequest: EditCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<putApiAlphaCommentResponse>(getPutApiAlphaCommentUrl(),
+  return customFetch<GetCommentResponse>(getPutApiAlphaCommentUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -332,30 +181,6 @@ export const putApiAlphaComment = async (editCommentRequest: EditCommentRequest,
 /**
  * @summary Get / fetch a comment.
  */
-export type getApiAlphaCommentResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type getApiAlphaCommentResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommentResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommentResponseSuccess = (getApiAlphaCommentResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommentResponseError = (getApiAlphaCommentResponse400 | getApiAlphaCommentResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommentResponse = (getApiAlphaCommentResponseSuccess | getApiAlphaCommentResponseError)
-
 export const getGetApiAlphaCommentUrl = (params: GetApiAlphaCommentParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -371,9 +196,9 @@ export const getGetApiAlphaCommentUrl = (params: GetApiAlphaCommentParams,) => {
   return stringifiedParams.length > 0 ? `/api/alpha/comment?${stringifiedParams}` : `/api/alpha/comment`
 }
 
-export const getApiAlphaComment = async (params: GetApiAlphaCommentParams, options?: RequestInit): Promise<getApiAlphaCommentResponse> => {
+export const getApiAlphaComment = async (params: GetApiAlphaCommentParams, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<getApiAlphaCommentResponse>(getGetApiAlphaCommentUrl(params),
+  return customFetch<GetCommentResponse>(getGetApiAlphaCommentUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -386,30 +211,6 @@ export const getApiAlphaComment = async (params: GetApiAlphaCommentParams, optio
 /**
  * @summary Delete a comment.
  */
-export type postApiAlphaCommentDeleteResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type postApiAlphaCommentDeleteResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentDeleteResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentDeleteResponseSuccess = (postApiAlphaCommentDeleteResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentDeleteResponseError = (postApiAlphaCommentDeleteResponse400 | postApiAlphaCommentDeleteResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentDeleteResponse = (postApiAlphaCommentDeleteResponseSuccess | postApiAlphaCommentDeleteResponseError)
-
 export const getPostApiAlphaCommentDeleteUrl = () => {
 
 
@@ -418,9 +219,9 @@ export const getPostApiAlphaCommentDeleteUrl = () => {
   return `/api/alpha/comment/delete`
 }
 
-export const postApiAlphaCommentDelete = async (deleteCommentRequest: DeleteCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentDeleteResponse> => {
+export const postApiAlphaCommentDelete = async (deleteCommentRequest: DeleteCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<postApiAlphaCommentDeleteResponse>(getPostApiAlphaCommentDeleteUrl(),
+  return customFetch<GetCommentResponse>(getPostApiAlphaCommentDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -434,30 +235,6 @@ export const postApiAlphaCommentDelete = async (deleteCommentRequest: DeleteComm
 /**
  * @summary Report a comment.
  */
-export type postApiAlphaCommentReportResponse200 = {
-  data: GetCommentReportResponse
-  status: 200
-}
-
-export type postApiAlphaCommentReportResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentReportResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentReportResponseSuccess = (postApiAlphaCommentReportResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentReportResponseError = (postApiAlphaCommentReportResponse400 | postApiAlphaCommentReportResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentReportResponse = (postApiAlphaCommentReportResponseSuccess | postApiAlphaCommentReportResponseError)
-
 export const getPostApiAlphaCommentReportUrl = () => {
 
 
@@ -466,9 +243,9 @@ export const getPostApiAlphaCommentReportUrl = () => {
   return `/api/alpha/comment/report`
 }
 
-export const postApiAlphaCommentReport = async (reportCommentRequest: ReportCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentReportResponse> => {
+export const postApiAlphaCommentReport = async (reportCommentRequest: ReportCommentRequest, options?: RequestInit): Promise<GetCommentReportResponse> => {
   
-  return customFetch<postApiAlphaCommentReportResponse>(getPostApiAlphaCommentReportUrl(),
+  return customFetch<GetCommentReportResponse>(getPostApiAlphaCommentReportUrl(),
   {      
     ...options,
     method: 'POST',
@@ -482,30 +259,6 @@ export const postApiAlphaCommentReport = async (reportCommentRequest: ReportComm
 /**
  * @summary Remove a comment as a moderator.
  */
-export type postApiAlphaCommentRemoveResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type postApiAlphaCommentRemoveResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentRemoveResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentRemoveResponseSuccess = (postApiAlphaCommentRemoveResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentRemoveResponseError = (postApiAlphaCommentRemoveResponse400 | postApiAlphaCommentRemoveResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentRemoveResponse = (postApiAlphaCommentRemoveResponseSuccess | postApiAlphaCommentRemoveResponseError)
-
 export const getPostApiAlphaCommentRemoveUrl = () => {
 
 
@@ -514,9 +267,9 @@ export const getPostApiAlphaCommentRemoveUrl = () => {
   return `/api/alpha/comment/remove`
 }
 
-export const postApiAlphaCommentRemove = async (removeCommentRequest: RemoveCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentRemoveResponse> => {
+export const postApiAlphaCommentRemove = async (removeCommentRequest: RemoveCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<postApiAlphaCommentRemoveResponse>(getPostApiAlphaCommentRemoveUrl(),
+  return customFetch<GetCommentResponse>(getPostApiAlphaCommentRemoveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -530,30 +283,6 @@ export const postApiAlphaCommentRemove = async (removeCommentRequest: RemoveComm
 /**
  * @summary Mark a comment reply as read.
  */
-export type postApiAlphaCommentMarkAsReadResponse200 = {
-  data: GetCommentReplyResponse
-  status: 200
-}
-
-export type postApiAlphaCommentMarkAsReadResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentMarkAsReadResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentMarkAsReadResponseSuccess = (postApiAlphaCommentMarkAsReadResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentMarkAsReadResponseError = (postApiAlphaCommentMarkAsReadResponse400 | postApiAlphaCommentMarkAsReadResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentMarkAsReadResponse = (postApiAlphaCommentMarkAsReadResponseSuccess | postApiAlphaCommentMarkAsReadResponseError)
-
 export const getPostApiAlphaCommentMarkAsReadUrl = () => {
 
 
@@ -562,9 +291,9 @@ export const getPostApiAlphaCommentMarkAsReadUrl = () => {
   return `/api/alpha/comment/mark_as_read`
 }
 
-export const postApiAlphaCommentMarkAsRead = async (markCommentAsReadRequest: MarkCommentAsReadRequest, options?: RequestInit): Promise<postApiAlphaCommentMarkAsReadResponse> => {
+export const postApiAlphaCommentMarkAsRead = async (markCommentAsReadRequest: MarkCommentAsReadRequest, options?: RequestInit): Promise<GetCommentReplyResponse> => {
   
-  return customFetch<postApiAlphaCommentMarkAsReadResponse>(getPostApiAlphaCommentMarkAsReadUrl(),
+  return customFetch<GetCommentReplyResponse>(getPostApiAlphaCommentMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -578,30 +307,6 @@ export const postApiAlphaCommentMarkAsRead = async (markCommentAsReadRequest: Ma
 /**
  * @summary Mark a comment as the preferred answer to a question.
  */
-export type postApiAlphaCommentMarkAsAnswerResponse200 = {
-  data: GetCommentReplyResponse
-  status: 200
-}
-
-export type postApiAlphaCommentMarkAsAnswerResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentMarkAsAnswerResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentMarkAsAnswerResponseSuccess = (postApiAlphaCommentMarkAsAnswerResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentMarkAsAnswerResponseError = (postApiAlphaCommentMarkAsAnswerResponse400 | postApiAlphaCommentMarkAsAnswerResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentMarkAsAnswerResponse = (postApiAlphaCommentMarkAsAnswerResponseSuccess | postApiAlphaCommentMarkAsAnswerResponseError)
-
 export const getPostApiAlphaCommentMarkAsAnswerUrl = () => {
 
 
@@ -610,9 +315,9 @@ export const getPostApiAlphaCommentMarkAsAnswerUrl = () => {
   return `/api/alpha/comment/mark_as_answer`
 }
 
-export const postApiAlphaCommentMarkAsAnswer = async (markCommentAsAnswerRequest: MarkCommentAsAnswerRequest, options?: RequestInit): Promise<postApiAlphaCommentMarkAsAnswerResponse> => {
+export const postApiAlphaCommentMarkAsAnswer = async (markCommentAsAnswerRequest: MarkCommentAsAnswerRequest, options?: RequestInit): Promise<GetCommentReplyResponse> => {
   
-  return customFetch<postApiAlphaCommentMarkAsAnswerResponse>(getPostApiAlphaCommentMarkAsAnswerUrl(),
+  return customFetch<GetCommentReplyResponse>(getPostApiAlphaCommentMarkAsAnswerUrl(),
   {      
     ...options,
     method: 'POST',
@@ -626,30 +331,6 @@ export const postApiAlphaCommentMarkAsAnswer = async (markCommentAsAnswerRequest
 /**
  * @summary Lock a comment chain as a moderator.
  */
-export type postApiAlphaCommentLockResponse200 = {
-  data: GetCommentResponse
-  status: 200
-}
-
-export type postApiAlphaCommentLockResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type postApiAlphaCommentLockResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type postApiAlphaCommentLockResponseSuccess = (postApiAlphaCommentLockResponse200) & {
-  headers: Headers;
-};
-export type postApiAlphaCommentLockResponseError = (postApiAlphaCommentLockResponse400 | postApiAlphaCommentLockResponse422) & {
-  headers: Headers;
-};
-
-export type postApiAlphaCommentLockResponse = (postApiAlphaCommentLockResponseSuccess | postApiAlphaCommentLockResponseError)
-
 export const getPostApiAlphaCommentLockUrl = () => {
 
 
@@ -658,9 +339,9 @@ export const getPostApiAlphaCommentLockUrl = () => {
   return `/api/alpha/comment/lock`
 }
 
-export const postApiAlphaCommentLock = async (lockCommentRequest: LockCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentLockResponse> => {
+export const postApiAlphaCommentLock = async (lockCommentRequest: LockCommentRequest, options?: RequestInit): Promise<GetCommentResponse> => {
   
-  return customFetch<postApiAlphaCommentLockResponse>(getPostApiAlphaCommentLockUrl(),
+  return customFetch<GetCommentResponse>(getPostApiAlphaCommentLockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -674,30 +355,6 @@ export const postApiAlphaCommentLock = async (lockCommentRequest: LockCommentReq
 /**
  * @summary View comment votes as a moderator.
  */
-export type getApiAlphaCommentLikeListResponse200 = {
-  data: ListCommentLikesResponse
-  status: 200
-}
-
-export type getApiAlphaCommentLikeListResponse400 = {
-  data: DefaultError
-  status: 400
-}
-
-export type getApiAlphaCommentLikeListResponse422 = {
-  data: UnprocessableEntityResponse
-  status: 422
-}
-    
-export type getApiAlphaCommentLikeListResponseSuccess = (getApiAlphaCommentLikeListResponse200) & {
-  headers: Headers;
-};
-export type getApiAlphaCommentLikeListResponseError = (getApiAlphaCommentLikeListResponse400 | getApiAlphaCommentLikeListResponse422) & {
-  headers: Headers;
-};
-
-export type getApiAlphaCommentLikeListResponse = (getApiAlphaCommentLikeListResponseSuccess | getApiAlphaCommentLikeListResponseError)
-
 export const getGetApiAlphaCommentLikeListUrl = (params: GetApiAlphaCommentLikeListParams,) => {
   const normalizedParams = new URLSearchParams();
 
@@ -713,9 +370,9 @@ export const getGetApiAlphaCommentLikeListUrl = (params: GetApiAlphaCommentLikeL
   return stringifiedParams.length > 0 ? `/api/alpha/comment/like/list?${stringifiedParams}` : `/api/alpha/comment/like/list`
 }
 
-export const getApiAlphaCommentLikeList = async (params: GetApiAlphaCommentLikeListParams, options?: RequestInit): Promise<getApiAlphaCommentLikeListResponse> => {
+export const getApiAlphaCommentLikeList = async (params: GetApiAlphaCommentLikeListParams, options?: RequestInit): Promise<ListCommentLikesResponse> => {
   
-  return customFetch<getApiAlphaCommentLikeListResponse>(getGetApiAlphaCommentLikeListUrl(params),
+  return customFetch<ListCommentLikesResponse>(getGetApiAlphaCommentLikeListUrl(params),
   {      
     ...options,
     method: 'GET'
