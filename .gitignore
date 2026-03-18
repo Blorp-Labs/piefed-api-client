@@ -1,0 +1,50 @@
+.turbo
+
+tmp
+dist
+node_modules
+
+*.tsbuildinfo
+*.tmp.js
+
+yarn-error.log
+tsconfig.tsbuildinfo
+.DS_Store
+
+.idea
+
+.env
+.env.*
+!.env.example
+
+.expo
+
+# Test artifacts
+/coverage/
+
+# Misc
+todo.md
+
+*storybook.log
+storybook-static/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Local Netlify folder
+.netlify
+
+# Fastlane
+fastlane/report.xml
+ios/build/
+
+# Tauri
+*.provisionprofile
+Entitlements.plist
+release/
+
+# Claude
+.claude/plans/

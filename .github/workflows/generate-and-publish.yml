@@ -1,0 +1,70 @@
+name: Generate and Publish
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@blorp-labs'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate client from OpenAPI spec
+        run: pnpm generate
+
+      - name: Check if spec changed
+        id: diff
+        run: |
+          git diff --quiet src || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Bump patch version
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm version patch --no-git-tag-version
+          echo "NEW_VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+
+      - name: Commit generated files
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src package.json
+          git commit -m "chore: regenerate API client v${{ env.NEW_VERSION }}"
+          git tag "v${{ env.NEW_VERSION }}"
+          git push origin main --follow-tags
+
+      - name: Build
+        if: steps.diff.outputs.changed == 'true'
+        run: pnpm build
+
+      - name: Publish to GitHub Packages
+        if: steps.diff.outputs.changed == 'true'
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
