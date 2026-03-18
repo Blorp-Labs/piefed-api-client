@@ -20,6 +20,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary List private messages.
@@ -65,20 +66,14 @@ export const getGetApiAlphaPrivateMessageListUrl = (params?: GetApiAlphaPrivateM
 
 export const getApiAlphaPrivateMessageList = async (params?: GetApiAlphaPrivateMessageListParams, options?: RequestInit): Promise<getApiAlphaPrivateMessageListResponse> => {
   
-  const res = await fetch(getGetApiAlphaPrivateMessageListUrl(params),
+  return customFetch<getApiAlphaPrivateMessageListResponse>(getGetApiAlphaPrivateMessageListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPrivateMessageListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPrivateMessageListResponse
-}
+);}
 
 
 /**
@@ -125,20 +120,14 @@ export const getGetApiAlphaPrivateMessageConversationUrl = (params?: GetApiAlpha
 
 export const getApiAlphaPrivateMessageConversation = async (params?: GetApiAlphaPrivateMessageConversationParams, options?: RequestInit): Promise<getApiAlphaPrivateMessageConversationResponse> => {
   
-  const res = await fetch(getGetApiAlphaPrivateMessageConversationUrl(params),
+  return customFetch<getApiAlphaPrivateMessageConversationResponse>(getGetApiAlphaPrivateMessageConversationUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPrivateMessageConversationResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPrivateMessageConversationResponse
-}
+);}
 
 
 /**
@@ -178,7 +167,7 @@ export const getPostApiAlphaPrivateMessageConversationLeaveUrl = () => {
 
 export const postApiAlphaPrivateMessageConversationLeave = async (leaveConversationRequest: LeaveConversationRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageConversationLeaveResponse> => {
   
-  const res = await fetch(getPostApiAlphaPrivateMessageConversationLeaveUrl(),
+  return customFetch<postApiAlphaPrivateMessageConversationLeaveResponse>(getPostApiAlphaPrivateMessageConversationLeaveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -186,13 +175,7 @@ export const postApiAlphaPrivateMessageConversationLeave = async (leaveConversat
     body: JSON.stringify(
       leaveConversationRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPrivateMessageConversationLeaveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPrivateMessageConversationLeaveResponse
-}
+);}
 
 
 /**
@@ -237,7 +220,7 @@ export const getPostApiAlphaPrivateMessageUrl = () => {
 
 export const postApiAlphaPrivateMessage = async (createPrivateMessageRequest: CreatePrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageResponse> => {
   
-  const res = await fetch(getPostApiAlphaPrivateMessageUrl(),
+  return customFetch<postApiAlphaPrivateMessageResponse>(getPostApiAlphaPrivateMessageUrl(),
   {      
     ...options,
     method: 'POST',
@@ -245,13 +228,7 @@ export const postApiAlphaPrivateMessage = async (createPrivateMessageRequest: Cr
     body: JSON.stringify(
       createPrivateMessageRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPrivateMessageResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPrivateMessageResponse
-}
+);}
 
 
 /**
@@ -291,7 +268,7 @@ export const getPutApiAlphaPrivateMessageUrl = () => {
 
 export const putApiAlphaPrivateMessage = async (editPrivateMessageRequest: EditPrivateMessageRequest, options?: RequestInit): Promise<putApiAlphaPrivateMessageResponse> => {
   
-  const res = await fetch(getPutApiAlphaPrivateMessageUrl(),
+  return customFetch<putApiAlphaPrivateMessageResponse>(getPutApiAlphaPrivateMessageUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -299,13 +276,7 @@ export const putApiAlphaPrivateMessage = async (editPrivateMessageRequest: EditP
     body: JSON.stringify(
       editPrivateMessageRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaPrivateMessageResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaPrivateMessageResponse
-}
+);}
 
 
 /**
@@ -345,7 +316,7 @@ export const getPostApiAlphaPrivateMessageMarkAsReadUrl = () => {
 
 export const postApiAlphaPrivateMessageMarkAsRead = async (markPrivateMessageAsReadRequest: MarkPrivateMessageAsReadRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageMarkAsReadResponse> => {
   
-  const res = await fetch(getPostApiAlphaPrivateMessageMarkAsReadUrl(),
+  return customFetch<postApiAlphaPrivateMessageMarkAsReadResponse>(getPostApiAlphaPrivateMessageMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -353,13 +324,7 @@ export const postApiAlphaPrivateMessageMarkAsRead = async (markPrivateMessageAsR
     body: JSON.stringify(
       markPrivateMessageAsReadRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPrivateMessageMarkAsReadResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPrivateMessageMarkAsReadResponse
-}
+);}
 
 
 /**
@@ -399,7 +364,7 @@ export const getPostApiAlphaPrivateMessageDeleteUrl = () => {
 
 export const postApiAlphaPrivateMessageDelete = async (deletePrivateMessageRequest: DeletePrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaPrivateMessageDeleteUrl(),
+  return customFetch<postApiAlphaPrivateMessageDeleteResponse>(getPostApiAlphaPrivateMessageDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -407,13 +372,7 @@ export const postApiAlphaPrivateMessageDelete = async (deletePrivateMessageReque
     body: JSON.stringify(
       deletePrivateMessageRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPrivateMessageDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPrivateMessageDeleteResponse
-}
+);}
 
 
 /**
@@ -453,7 +412,7 @@ export const getPostApiAlphaPrivateMessageReportUrl = () => {
 
 export const postApiAlphaPrivateMessageReport = async (reportPrivateMessageRequest: ReportPrivateMessageRequest, options?: RequestInit): Promise<postApiAlphaPrivateMessageReportResponse> => {
   
-  const res = await fetch(getPostApiAlphaPrivateMessageReportUrl(),
+  return customFetch<postApiAlphaPrivateMessageReportResponse>(getPostApiAlphaPrivateMessageReportUrl(),
   {      
     ...options,
     method: 'POST',
@@ -461,12 +420,6 @@ export const postApiAlphaPrivateMessageReport = async (reportPrivateMessageReque
     body: JSON.stringify(
       reportPrivateMessageRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPrivateMessageReportResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPrivateMessageReportResponse
-}
+);}
 
 

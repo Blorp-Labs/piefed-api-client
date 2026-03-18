@@ -28,6 +28,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary List comments, with various filters.
@@ -73,20 +74,14 @@ export const getGetApiAlphaCommentListUrl = (params?: GetApiAlphaCommentListPara
 
 export const getApiAlphaCommentList = async (params?: GetApiAlphaCommentListParams, options?: RequestInit): Promise<getApiAlphaCommentListResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommentListUrl(params),
+  return customFetch<getApiAlphaCommentListResponse>(getGetApiAlphaCommentListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommentListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommentListResponse
-}
+);}
 
 
 /**
@@ -126,7 +121,7 @@ export const getPostApiAlphaCommentLikeUrl = () => {
 
 export const postApiAlphaCommentLike = async (likeCommentRequest: LikeCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentLikeResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentLikeUrl(),
+  return customFetch<postApiAlphaCommentLikeResponse>(getPostApiAlphaCommentLikeUrl(),
   {      
     ...options,
     method: 'POST',
@@ -134,13 +129,7 @@ export const postApiAlphaCommentLike = async (likeCommentRequest: LikeCommentReq
     body: JSON.stringify(
       likeCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentLikeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentLikeResponse
-}
+);}
 
 
 /**
@@ -180,7 +169,7 @@ export const getPutApiAlphaCommentSaveUrl = () => {
 
 export const putApiAlphaCommentSave = async (saveCommentRequest: SaveCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentSaveResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommentSaveUrl(),
+  return customFetch<putApiAlphaCommentSaveResponse>(getPutApiAlphaCommentSaveUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -188,13 +177,7 @@ export const putApiAlphaCommentSave = async (saveCommentRequest: SaveCommentRequ
     body: JSON.stringify(
       saveCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommentSaveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommentSaveResponse
-}
+);}
 
 
 /**
@@ -234,7 +217,7 @@ export const getPutApiAlphaCommentSubscribeUrl = () => {
 
 export const putApiAlphaCommentSubscribe = async (subscribeCommentRequest: SubscribeCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentSubscribeResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommentSubscribeUrl(),
+  return customFetch<putApiAlphaCommentSubscribeResponse>(getPutApiAlphaCommentSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -242,13 +225,7 @@ export const putApiAlphaCommentSubscribe = async (subscribeCommentRequest: Subsc
     body: JSON.stringify(
       subscribeCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommentSubscribeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommentSubscribeResponse
-}
+);}
 
 
 /**
@@ -293,7 +270,7 @@ export const getPostApiAlphaCommentUrl = () => {
 
 export const postApiAlphaComment = async (createCommentRequest: CreateCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentUrl(),
+  return customFetch<postApiAlphaCommentResponse>(getPostApiAlphaCommentUrl(),
   {      
     ...options,
     method: 'POST',
@@ -301,13 +278,7 @@ export const postApiAlphaComment = async (createCommentRequest: CreateCommentReq
     body: JSON.stringify(
       createCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentResponse
-}
+);}
 
 
 /**
@@ -347,7 +318,7 @@ export const getPutApiAlphaCommentUrl = () => {
 
 export const putApiAlphaComment = async (editCommentRequest: EditCommentRequest, options?: RequestInit): Promise<putApiAlphaCommentResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommentUrl(),
+  return customFetch<putApiAlphaCommentResponse>(getPutApiAlphaCommentUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -355,13 +326,7 @@ export const putApiAlphaComment = async (editCommentRequest: EditCommentRequest,
     body: JSON.stringify(
       editCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommentResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommentResponse
-}
+);}
 
 
 /**
@@ -408,20 +373,14 @@ export const getGetApiAlphaCommentUrl = (params: GetApiAlphaCommentParams,) => {
 
 export const getApiAlphaComment = async (params: GetApiAlphaCommentParams, options?: RequestInit): Promise<getApiAlphaCommentResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommentUrl(params),
+  return customFetch<getApiAlphaCommentResponse>(getGetApiAlphaCommentUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommentResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommentResponse
-}
+);}
 
 
 /**
@@ -461,7 +420,7 @@ export const getPostApiAlphaCommentDeleteUrl = () => {
 
 export const postApiAlphaCommentDelete = async (deleteCommentRequest: DeleteCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentDeleteUrl(),
+  return customFetch<postApiAlphaCommentDeleteResponse>(getPostApiAlphaCommentDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -469,13 +428,7 @@ export const postApiAlphaCommentDelete = async (deleteCommentRequest: DeleteComm
     body: JSON.stringify(
       deleteCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentDeleteResponse
-}
+);}
 
 
 /**
@@ -515,7 +468,7 @@ export const getPostApiAlphaCommentReportUrl = () => {
 
 export const postApiAlphaCommentReport = async (reportCommentRequest: ReportCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentReportResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentReportUrl(),
+  return customFetch<postApiAlphaCommentReportResponse>(getPostApiAlphaCommentReportUrl(),
   {      
     ...options,
     method: 'POST',
@@ -523,13 +476,7 @@ export const postApiAlphaCommentReport = async (reportCommentRequest: ReportComm
     body: JSON.stringify(
       reportCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentReportResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentReportResponse
-}
+);}
 
 
 /**
@@ -569,7 +516,7 @@ export const getPostApiAlphaCommentRemoveUrl = () => {
 
 export const postApiAlphaCommentRemove = async (removeCommentRequest: RemoveCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentRemoveResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentRemoveUrl(),
+  return customFetch<postApiAlphaCommentRemoveResponse>(getPostApiAlphaCommentRemoveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -577,13 +524,7 @@ export const postApiAlphaCommentRemove = async (removeCommentRequest: RemoveComm
     body: JSON.stringify(
       removeCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentRemoveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentRemoveResponse
-}
+);}
 
 
 /**
@@ -623,7 +564,7 @@ export const getPostApiAlphaCommentMarkAsReadUrl = () => {
 
 export const postApiAlphaCommentMarkAsRead = async (markCommentAsReadRequest: MarkCommentAsReadRequest, options?: RequestInit): Promise<postApiAlphaCommentMarkAsReadResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentMarkAsReadUrl(),
+  return customFetch<postApiAlphaCommentMarkAsReadResponse>(getPostApiAlphaCommentMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -631,13 +572,7 @@ export const postApiAlphaCommentMarkAsRead = async (markCommentAsReadRequest: Ma
     body: JSON.stringify(
       markCommentAsReadRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentMarkAsReadResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentMarkAsReadResponse
-}
+);}
 
 
 /**
@@ -677,7 +612,7 @@ export const getPostApiAlphaCommentMarkAsAnswerUrl = () => {
 
 export const postApiAlphaCommentMarkAsAnswer = async (markCommentAsAnswerRequest: MarkCommentAsAnswerRequest, options?: RequestInit): Promise<postApiAlphaCommentMarkAsAnswerResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentMarkAsAnswerUrl(),
+  return customFetch<postApiAlphaCommentMarkAsAnswerResponse>(getPostApiAlphaCommentMarkAsAnswerUrl(),
   {      
     ...options,
     method: 'POST',
@@ -685,13 +620,7 @@ export const postApiAlphaCommentMarkAsAnswer = async (markCommentAsAnswerRequest
     body: JSON.stringify(
       markCommentAsAnswerRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentMarkAsAnswerResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentMarkAsAnswerResponse
-}
+);}
 
 
 /**
@@ -731,7 +660,7 @@ export const getPostApiAlphaCommentLockUrl = () => {
 
 export const postApiAlphaCommentLock = async (lockCommentRequest: LockCommentRequest, options?: RequestInit): Promise<postApiAlphaCommentLockResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommentLockUrl(),
+  return customFetch<postApiAlphaCommentLockResponse>(getPostApiAlphaCommentLockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -739,13 +668,7 @@ export const postApiAlphaCommentLock = async (lockCommentRequest: LockCommentReq
     body: JSON.stringify(
       lockCommentRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommentLockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommentLockResponse
-}
+);}
 
 
 /**
@@ -792,19 +715,13 @@ export const getGetApiAlphaCommentLikeListUrl = (params: GetApiAlphaCommentLikeL
 
 export const getApiAlphaCommentLikeList = async (params: GetApiAlphaCommentLikeListParams, options?: RequestInit): Promise<getApiAlphaCommentLikeListResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommentLikeListUrl(params),
+  return customFetch<getApiAlphaCommentLikeListResponse>(getGetApiAlphaCommentLikeListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommentLikeListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommentLikeListResponse
-}
+);}
 
 

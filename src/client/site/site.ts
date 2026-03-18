@@ -16,6 +16,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Gets the site, and your user data.
@@ -49,20 +50,14 @@ export const getGetApiAlphaSiteUrl = () => {
 
 export const getApiAlphaSite = async ( options?: RequestInit): Promise<getApiAlphaSiteResponse> => {
   
-  const res = await fetch(getGetApiAlphaSiteUrl(),
+  return customFetch<getApiAlphaSiteResponse>(getGetApiAlphaSiteUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSiteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSiteResponse
-}
+);}
 
 
 /**
@@ -97,20 +92,14 @@ export const getGetApiAlphaSiteVersionUrl = () => {
 
 export const getApiAlphaSiteVersion = async ( options?: RequestInit): Promise<getApiAlphaSiteVersionResponse> => {
   
-  const res = await fetch(getGetApiAlphaSiteVersionUrl(),
+  return customFetch<getApiAlphaSiteVersionResponse>(getGetApiAlphaSiteVersionUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSiteVersionResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSiteVersionResponse
-}
+);}
 
 
 /**
@@ -150,7 +139,7 @@ export const getPostApiAlphaSiteBlockUrl = () => {
 
 export const postApiAlphaSiteBlock = async (blockInstanceRequest: BlockInstanceRequest, options?: RequestInit): Promise<postApiAlphaSiteBlockResponse> => {
   
-  const res = await fetch(getPostApiAlphaSiteBlockUrl(),
+  return customFetch<postApiAlphaSiteBlockResponse>(getPostApiAlphaSiteBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -158,13 +147,7 @@ export const postApiAlphaSiteBlock = async (blockInstanceRequest: BlockInstanceR
     body: JSON.stringify(
       blockInstanceRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaSiteBlockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaSiteBlockResponse
-}
+);}
 
 
 /**
@@ -199,20 +182,14 @@ export const getGetApiAlphaSiteInstanceChooserUrl = () => {
 
 export const getApiAlphaSiteInstanceChooser = async ( options?: RequestInit): Promise<getApiAlphaSiteInstanceChooserResponse> => {
   
-  const res = await fetch(getGetApiAlphaSiteInstanceChooserUrl(),
+  return customFetch<getApiAlphaSiteInstanceChooserResponse>(getGetApiAlphaSiteInstanceChooserUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSiteInstanceChooserResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSiteInstanceChooserResponse
-}
+);}
 
 
 /**
@@ -259,19 +236,13 @@ export const getGetApiAlphaSiteInstanceChooserSearchUrl = (params?: GetApiAlphaS
 
 export const getApiAlphaSiteInstanceChooserSearch = async (params?: GetApiAlphaSiteInstanceChooserSearchParams, options?: RequestInit): Promise<getApiAlphaSiteInstanceChooserSearchResponse> => {
   
-  const res = await fetch(getGetApiAlphaSiteInstanceChooserSearchUrl(params),
+  return customFetch<getApiAlphaSiteInstanceChooserSearchResponse>(getGetApiAlphaSiteInstanceChooserSearchUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSiteInstanceChooserSearchResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSiteInstanceChooserSearchResponse
-}
+);}
 
 

@@ -1,3 +1,7 @@
+// Configuration and client factory
+export { configure } from './mutator/custom-fetch';
+export { createClient } from './create-client';
+
 // Re-export generated TypeScript types/schemas
 export * from './schemas/index';
 

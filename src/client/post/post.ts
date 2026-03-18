@@ -38,6 +38,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary List posts.
@@ -83,20 +84,14 @@ export const getGetApiAlphaPostListUrl = (params?: GetApiAlphaPostListParams,) =
 
 export const getApiAlphaPostList = async (params?: GetApiAlphaPostListParams, options?: RequestInit): Promise<getApiAlphaPostListResponse> => {
   
-  const res = await fetch(getGetApiAlphaPostListUrl(params),
+  return customFetch<getApiAlphaPostListResponse>(getGetApiAlphaPostListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostListResponse
-}
+);}
 
 
 /**
@@ -143,20 +138,14 @@ export const getGetApiAlphaPostList2Url = (params?: GetApiAlphaPostList2Params,)
 
 export const getApiAlphaPostList2 = async (params?: GetApiAlphaPostList2Params, options?: RequestInit): Promise<getApiAlphaPostList2Response> => {
   
-  const res = await fetch(getGetApiAlphaPostList2Url(params),
+  return customFetch<getApiAlphaPostList2Response>(getGetApiAlphaPostList2Url(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostList2Response['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostList2Response
-}
+);}
 
 
 /**
@@ -203,20 +192,14 @@ export const getGetApiAlphaPostUrl = (params: GetApiAlphaPostParams,) => {
 
 export const getApiAlphaPost = async (params: GetApiAlphaPostParams, options?: RequestInit): Promise<getApiAlphaPostResponse> => {
   
-  const res = await fetch(getGetApiAlphaPostUrl(params),
+  return customFetch<getApiAlphaPostResponse>(getGetApiAlphaPostUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostResponse
-}
+);}
 
 
 /**
@@ -261,7 +244,7 @@ export const getPostApiAlphaPostUrl = () => {
 
 export const postApiAlphaPost = async (createPostRequest: CreatePostRequest, options?: RequestInit): Promise<postApiAlphaPostResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostUrl(),
+  return customFetch<postApiAlphaPostResponse>(getPostApiAlphaPostUrl(),
   {      
     ...options,
     method: 'POST',
@@ -269,13 +252,7 @@ export const postApiAlphaPost = async (createPostRequest: CreatePostRequest, opt
     body: JSON.stringify(
       createPostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostResponse
-}
+);}
 
 
 /**
@@ -315,7 +292,7 @@ export const getPutApiAlphaPostUrl = () => {
 
 export const putApiAlphaPost = async (editPostRequest: EditPostRequest, options?: RequestInit): Promise<putApiAlphaPostResponse> => {
   
-  const res = await fetch(getPutApiAlphaPostUrl(),
+  return customFetch<putApiAlphaPostResponse>(getPutApiAlphaPostUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -323,13 +300,7 @@ export const putApiAlphaPost = async (editPostRequest: EditPostRequest, options?
     body: JSON.stringify(
       editPostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaPostResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaPostResponse
-}
+);}
 
 
 /**
@@ -376,20 +347,14 @@ export const getGetApiAlphaPostRepliesUrl = (params?: GetApiAlphaPostRepliesPara
 
 export const getApiAlphaPostReplies = async (params?: GetApiAlphaPostRepliesParams, options?: RequestInit): Promise<getApiAlphaPostRepliesResponse> => {
   
-  const res = await fetch(getGetApiAlphaPostRepliesUrl(params),
+  return customFetch<getApiAlphaPostRepliesResponse>(getGetApiAlphaPostRepliesUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostRepliesResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostRepliesResponse
-}
+);}
 
 
 /**
@@ -436,20 +401,14 @@ export const getGetApiAlphaPostSiteMetadataUrl = (params?: GetApiAlphaPostSiteMe
 
 export const getApiAlphaPostSiteMetadata = async (params?: GetApiAlphaPostSiteMetadataParams, options?: RequestInit): Promise<getApiAlphaPostSiteMetadataResponse> => {
   
-  const res = await fetch(getGetApiAlphaPostSiteMetadataUrl(params),
+  return customFetch<getApiAlphaPostSiteMetadataResponse>(getGetApiAlphaPostSiteMetadataUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostSiteMetadataResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostSiteMetadataResponse
-}
+);}
 
 
 /**
@@ -489,7 +448,7 @@ export const getPostApiAlphaPostLikeUrl = () => {
 
 export const postApiAlphaPostLike = async (likePostRequest: LikePostRequest, options?: RequestInit): Promise<postApiAlphaPostLikeResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostLikeUrl(),
+  return customFetch<postApiAlphaPostLikeResponse>(getPostApiAlphaPostLikeUrl(),
   {      
     ...options,
     method: 'POST',
@@ -497,13 +456,7 @@ export const postApiAlphaPostLike = async (likePostRequest: LikePostRequest, opt
     body: JSON.stringify(
       likePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostLikeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostLikeResponse
-}
+);}
 
 
 /**
@@ -543,7 +496,7 @@ export const getPutApiAlphaPostSaveUrl = () => {
 
 export const putApiAlphaPostSave = async (savePostRequest: SavePostRequest, options?: RequestInit): Promise<putApiAlphaPostSaveResponse> => {
   
-  const res = await fetch(getPutApiAlphaPostSaveUrl(),
+  return customFetch<putApiAlphaPostSaveResponse>(getPutApiAlphaPostSaveUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -551,13 +504,7 @@ export const putApiAlphaPostSave = async (savePostRequest: SavePostRequest, opti
     body: JSON.stringify(
       savePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaPostSaveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaPostSaveResponse
-}
+);}
 
 
 /**
@@ -597,7 +544,7 @@ export const getPutApiAlphaPostSubscribeUrl = () => {
 
 export const putApiAlphaPostSubscribe = async (subscribePostRequest: SubscribePostRequest, options?: RequestInit): Promise<putApiAlphaPostSubscribeResponse> => {
   
-  const res = await fetch(getPutApiAlphaPostSubscribeUrl(),
+  return customFetch<putApiAlphaPostSubscribeResponse>(getPutApiAlphaPostSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -605,13 +552,7 @@ export const putApiAlphaPostSubscribe = async (subscribePostRequest: SubscribePo
     body: JSON.stringify(
       subscribePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaPostSubscribeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaPostSubscribeResponse
-}
+);}
 
 
 /**
@@ -651,7 +592,7 @@ export const getPostApiAlphaPostDeleteUrl = () => {
 
 export const postApiAlphaPostDelete = async (deletePostRequest: DeletePostRequest, options?: RequestInit): Promise<postApiAlphaPostDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostDeleteUrl(),
+  return customFetch<postApiAlphaPostDeleteResponse>(getPostApiAlphaPostDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -659,13 +600,7 @@ export const postApiAlphaPostDelete = async (deletePostRequest: DeletePostReques
     body: JSON.stringify(
       deletePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostDeleteResponse
-}
+);}
 
 
 /**
@@ -705,7 +640,7 @@ export const getPostApiAlphaPostReportUrl = () => {
 
 export const postApiAlphaPostReport = async (reportPostRequest: ReportPostRequest, options?: RequestInit): Promise<postApiAlphaPostReportResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostReportUrl(),
+  return customFetch<postApiAlphaPostReportResponse>(getPostApiAlphaPostReportUrl(),
   {      
     ...options,
     method: 'POST',
@@ -713,13 +648,7 @@ export const postApiAlphaPostReport = async (reportPostRequest: ReportPostReques
     body: JSON.stringify(
       reportPostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostReportResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostReportResponse
-}
+);}
 
 
 /**
@@ -759,7 +688,7 @@ export const getPostApiAlphaPostLockUrl = () => {
 
 export const postApiAlphaPostLock = async (lockPostRequest: LockPostRequest, options?: RequestInit): Promise<postApiAlphaPostLockResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostLockUrl(),
+  return customFetch<postApiAlphaPostLockResponse>(getPostApiAlphaPostLockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -767,13 +696,7 @@ export const postApiAlphaPostLock = async (lockPostRequest: LockPostRequest, opt
     body: JSON.stringify(
       lockPostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostLockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostLockResponse
-}
+);}
 
 
 /**
@@ -813,7 +736,7 @@ export const getPostApiAlphaPostHideUrl = () => {
 
 export const postApiAlphaPostHide = async (hidePostRequest: HidePostRequest, options?: RequestInit): Promise<postApiAlphaPostHideResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostHideUrl(),
+  return customFetch<postApiAlphaPostHideResponse>(getPostApiAlphaPostHideUrl(),
   {      
     ...options,
     method: 'POST',
@@ -821,13 +744,7 @@ export const postApiAlphaPostHide = async (hidePostRequest: HidePostRequest, opt
     body: JSON.stringify(
       hidePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostHideResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostHideResponse
-}
+);}
 
 
 /**
@@ -867,7 +784,7 @@ export const getPostApiAlphaPostFeatureUrl = () => {
 
 export const postApiAlphaPostFeature = async (featurePostRequest: FeaturePostRequest, options?: RequestInit): Promise<postApiAlphaPostFeatureResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostFeatureUrl(),
+  return customFetch<postApiAlphaPostFeatureResponse>(getPostApiAlphaPostFeatureUrl(),
   {      
     ...options,
     method: 'POST',
@@ -875,13 +792,7 @@ export const postApiAlphaPostFeature = async (featurePostRequest: FeaturePostReq
     body: JSON.stringify(
       featurePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostFeatureResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostFeatureResponse
-}
+);}
 
 
 /**
@@ -921,7 +832,7 @@ export const getPostApiAlphaPostRemoveUrl = () => {
 
 export const postApiAlphaPostRemove = async (removePostRequest: RemovePostRequest, options?: RequestInit): Promise<postApiAlphaPostRemoveResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostRemoveUrl(),
+  return customFetch<postApiAlphaPostRemoveResponse>(getPostApiAlphaPostRemoveUrl(),
   {      
     ...options,
     method: 'POST',
@@ -929,13 +840,7 @@ export const postApiAlphaPostRemove = async (removePostRequest: RemovePostReques
     body: JSON.stringify(
       removePostRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostRemoveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostRemoveResponse
-}
+);}
 
 
 /**
@@ -975,7 +880,7 @@ export const getPostApiAlphaPostMarkAsReadUrl = () => {
 
 export const postApiAlphaPostMarkAsRead = async (markPostAsReadRequest: MarkPostAsReadRequest, options?: RequestInit): Promise<postApiAlphaPostMarkAsReadResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostMarkAsReadUrl(),
+  return customFetch<postApiAlphaPostMarkAsReadResponse>(getPostApiAlphaPostMarkAsReadUrl(),
   {      
     ...options,
     method: 'POST',
@@ -983,13 +888,7 @@ export const postApiAlphaPostMarkAsRead = async (markPostAsReadRequest: MarkPost
     body: JSON.stringify(
       markPostAsReadRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostMarkAsReadResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostMarkAsReadResponse
-}
+);}
 
 
 /**
@@ -1036,20 +935,14 @@ export const getGetApiAlphaPostLikeListUrl = (params: GetApiAlphaPostLikeListPar
 
 export const getApiAlphaPostLikeList = async (params: GetApiAlphaPostLikeListParams, options?: RequestInit): Promise<getApiAlphaPostLikeListResponse> => {
   
-  const res = await fetch(getGetApiAlphaPostLikeListUrl(params),
+  return customFetch<getApiAlphaPostLikeListResponse>(getGetApiAlphaPostLikeListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaPostLikeListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaPostLikeListResponse
-}
+);}
 
 
 /**
@@ -1089,7 +982,7 @@ export const getPostApiAlphaPostAssignFlairUrl = () => {
 
 export const postApiAlphaPostAssignFlair = async (postSetFlairRequest: PostSetFlairRequest, options?: RequestInit): Promise<postApiAlphaPostAssignFlairResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostAssignFlairUrl(),
+  return customFetch<postApiAlphaPostAssignFlairResponse>(getPostApiAlphaPostAssignFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1097,13 +990,7 @@ export const postApiAlphaPostAssignFlair = async (postSetFlairRequest: PostSetFl
     body: JSON.stringify(
       postSetFlairRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostAssignFlairResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostAssignFlairResponse
-}
+);}
 
 
 /**
@@ -1143,7 +1030,7 @@ export const getPostApiAlphaPostPollVoteUrl = () => {
 
 export const postApiAlphaPostPollVote = async (pollVoteRequest: PollVoteRequest, options?: RequestInit): Promise<postApiAlphaPostPollVoteResponse> => {
   
-  const res = await fetch(getPostApiAlphaPostPollVoteUrl(),
+  return customFetch<postApiAlphaPostPollVoteResponse>(getPostApiAlphaPostPollVoteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1151,12 +1038,6 @@ export const postApiAlphaPostPollVote = async (pollVoteRequest: PollVoteRequest,
     body: JSON.stringify(
       pollVoteRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaPostPollVoteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaPostPollVoteResponse
-}
+);}
 
 

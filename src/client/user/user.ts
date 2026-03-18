@@ -43,6 +43,7 @@ import type {
   UserUnreadCountsResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Block or unblock a domain
@@ -81,7 +82,7 @@ export const getPostApiAlphaDomainBlockUrl = () => {
 
 export const postApiAlphaDomainBlock = async (domainBlockRequest: DomainBlockRequest, options?: RequestInit): Promise<postApiAlphaDomainBlockResponse> => {
   
-  const res = await fetch(getPostApiAlphaDomainBlockUrl(),
+  return customFetch<postApiAlphaDomainBlockResponse>(getPostApiAlphaDomainBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -89,13 +90,7 @@ export const postApiAlphaDomainBlock = async (domainBlockRequest: DomainBlockReq
     body: JSON.stringify(
       domainBlockRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaDomainBlockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaDomainBlockResponse
-}
+);}
 
 
 /**
@@ -142,20 +137,14 @@ export const getGetApiAlphaUserUrl = (params?: GetApiAlphaUserParams,) => {
 
 export const getApiAlphaUser = async (params?: GetApiAlphaUserParams, options?: RequestInit): Promise<getApiAlphaUserResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserUrl(params),
+  return customFetch<getApiAlphaUserResponse>(getGetApiAlphaUserUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserResponse
-}
+);}
 
 
 /**
@@ -190,20 +179,14 @@ export const getGetApiAlphaUserMeUrl = () => {
 
 export const getApiAlphaUserMe = async ( options?: RequestInit): Promise<getApiAlphaUserMeResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserMeUrl(),
+  return customFetch<getApiAlphaUserMeResponse>(getGetApiAlphaUserMeUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserMeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserMeResponse
-}
+);}
 
 
 /**
@@ -248,7 +231,7 @@ export const getPostApiAlphaUserLoginUrl = () => {
 
 export const postApiAlphaUserLogin = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<postApiAlphaUserLoginResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserLoginUrl(),
+  return customFetch<postApiAlphaUserLoginResponse>(getPostApiAlphaUserLoginUrl(),
   {      
     ...options,
     method: 'POST',
@@ -256,13 +239,7 @@ export const postApiAlphaUserLogin = async (userLoginRequest: UserLoginRequest, 
     body: JSON.stringify(
       userLoginRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserLoginResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserLoginResponse
-}
+);}
 
 
 /**
@@ -297,20 +274,14 @@ export const getGetApiAlphaUserUnreadCountUrl = () => {
 
 export const getApiAlphaUserUnreadCount = async ( options?: RequestInit): Promise<getApiAlphaUserUnreadCountResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserUnreadCountUrl(),
+  return customFetch<getApiAlphaUserUnreadCountResponse>(getGetApiAlphaUserUnreadCountUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserUnreadCountResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserUnreadCountResponse
-}
+);}
 
 
 /**
@@ -357,20 +328,14 @@ export const getGetApiAlphaUserRepliesUrl = (params?: GetApiAlphaUserRepliesPara
 
 export const getApiAlphaUserReplies = async (params?: GetApiAlphaUserRepliesParams, options?: RequestInit): Promise<getApiAlphaUserRepliesResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserRepliesUrl(params),
+  return customFetch<getApiAlphaUserRepliesResponse>(getGetApiAlphaUserRepliesUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserRepliesResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserRepliesResponse
-}
+);}
 
 
 /**
@@ -417,20 +382,14 @@ export const getGetApiAlphaUserMentionsUrl = (params?: GetApiAlphaUserMentionsPa
 
 export const getApiAlphaUserMentions = async (params?: GetApiAlphaUserMentionsParams, options?: RequestInit): Promise<getApiAlphaUserMentionsResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserMentionsUrl(params),
+  return customFetch<getApiAlphaUserMentionsResponse>(getGetApiAlphaUserMentionsUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserMentionsResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserMentionsResponse
-}
+);}
 
 
 /**
@@ -477,20 +436,14 @@ export const getGetApiAlphaUserMediaUrl = (params?: GetApiAlphaUserMediaParams,)
 
 export const getApiAlphaUserMedia = async (params?: GetApiAlphaUserMediaParams, options?: RequestInit): Promise<getApiAlphaUserMediaResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserMediaUrl(params),
+  return customFetch<getApiAlphaUserMediaResponse>(getGetApiAlphaUserMediaUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserMediaResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserMediaResponse
-}
+);}
 
 
 /**
@@ -530,7 +483,7 @@ export const getPostApiAlphaUserBlockUrl = () => {
 
 export const postApiAlphaUserBlock = async (userBlockRequest: UserBlockRequest, options?: RequestInit): Promise<postApiAlphaUserBlockResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserBlockUrl(),
+  return customFetch<postApiAlphaUserBlockResponse>(getPostApiAlphaUserBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -538,13 +491,7 @@ export const postApiAlphaUserBlock = async (userBlockRequest: UserBlockRequest, 
     body: JSON.stringify(
       userBlockRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserBlockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserBlockResponse
-}
+);}
 
 
 /**
@@ -579,20 +526,14 @@ export const getPostApiAlphaUserMarkAllAsReadUrl = () => {
 
 export const postApiAlphaUserMarkAllAsRead = async ( options?: RequestInit): Promise<postApiAlphaUserMarkAllAsReadResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserMarkAllAsReadUrl(),
+  return customFetch<postApiAlphaUserMarkAllAsReadResponse>(getPostApiAlphaUserMarkAllAsReadUrl(),
   {      
     ...options,
     method: 'POST'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserMarkAllAsReadResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserMarkAllAsReadResponse
-}
+);}
 
 
 /**
@@ -632,7 +573,7 @@ export const getPutApiAlphaUserSubscribeUrl = () => {
 
 export const putApiAlphaUserSubscribe = async (userSubscribeRequest: UserSubscribeRequest, options?: RequestInit): Promise<putApiAlphaUserSubscribeResponse> => {
   
-  const res = await fetch(getPutApiAlphaUserSubscribeUrl(),
+  return customFetch<putApiAlphaUserSubscribeResponse>(getPutApiAlphaUserSubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -640,13 +581,7 @@ export const putApiAlphaUserSubscribe = async (userSubscribeRequest: UserSubscri
     body: JSON.stringify(
       userSubscribeRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaUserSubscribeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaUserSubscribeResponse
-}
+);}
 
 
 /**
@@ -686,7 +621,7 @@ export const getPutApiAlphaUserSaveUserSettingsUrl = () => {
 
 export const putApiAlphaUserSaveUserSettings = async (userSaveSettingsRequest: UserSaveSettingsRequest, options?: RequestInit): Promise<putApiAlphaUserSaveUserSettingsResponse> => {
   
-  const res = await fetch(getPutApiAlphaUserSaveUserSettingsUrl(),
+  return customFetch<putApiAlphaUserSaveUserSettingsResponse>(getPutApiAlphaUserSaveUserSettingsUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -694,13 +629,7 @@ export const putApiAlphaUserSaveUserSettings = async (userSaveSettingsRequest: U
     body: JSON.stringify(
       userSaveSettingsRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaUserSaveUserSettingsResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaUserSaveUserSettingsResponse
-}
+);}
 
 
 /**
@@ -747,20 +676,14 @@ export const getGetApiAlphaUserNotificationsUrl = (params: GetApiAlphaUserNotifi
 
 export const getApiAlphaUserNotifications = async (params: GetApiAlphaUserNotificationsParams, options?: RequestInit): Promise<getApiAlphaUserNotificationsResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserNotificationsUrl(params),
+  return customFetch<getApiAlphaUserNotificationsResponse>(getGetApiAlphaUserNotificationsUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserNotificationsResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserNotificationsResponse
-}
+);}
 
 
 /**
@@ -800,7 +723,7 @@ export const getPutApiAlphaUserNotificationStateUrl = () => {
 
 export const putApiAlphaUserNotificationState = async (userNotificationStateRequest: UserNotificationStateRequest, options?: RequestInit): Promise<putApiAlphaUserNotificationStateResponse> => {
   
-  const res = await fetch(getPutApiAlphaUserNotificationStateUrl(),
+  return customFetch<putApiAlphaUserNotificationStateResponse>(getPutApiAlphaUserNotificationStateUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -808,13 +731,7 @@ export const putApiAlphaUserNotificationState = async (userNotificationStateRequ
     body: JSON.stringify(
       userNotificationStateRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaUserNotificationStateResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaUserNotificationStateResponse
-}
+);}
 
 
 /**
@@ -849,20 +766,14 @@ export const getGetApiAlphaUserNotificationsCountUrl = () => {
 
 export const getApiAlphaUserNotificationsCount = async ( options?: RequestInit): Promise<getApiAlphaUserNotificationsCountResponse> => {
   
-  const res = await fetch(getGetApiAlphaUserNotificationsCountUrl(),
+  return customFetch<getApiAlphaUserNotificationsCountResponse>(getGetApiAlphaUserNotificationsCountUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaUserNotificationsCountResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaUserNotificationsCountResponse
-}
+);}
 
 
 /**
@@ -897,20 +808,14 @@ export const getPutApiAlphaUserMarkAllNotificationsReadUrl = () => {
 
 export const putApiAlphaUserMarkAllNotificationsRead = async ( options?: RequestInit): Promise<putApiAlphaUserMarkAllNotificationsReadResponse> => {
   
-  const res = await fetch(getPutApiAlphaUserMarkAllNotificationsReadUrl(),
+  return customFetch<putApiAlphaUserMarkAllNotificationsReadResponse>(getPutApiAlphaUserMarkAllNotificationsReadUrl(),
   {      
     ...options,
     method: 'PUT'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaUserMarkAllNotificationsReadResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaUserMarkAllNotificationsReadResponse
-}
+);}
 
 
 /**
@@ -950,7 +855,7 @@ export const getPostApiAlphaUserVerifyCredentialsUrl = () => {
 
 export const postApiAlphaUserVerifyCredentials = async (userLoginRequest: UserLoginRequest, options?: RequestInit): Promise<postApiAlphaUserVerifyCredentialsResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserVerifyCredentialsUrl(),
+  return customFetch<postApiAlphaUserVerifyCredentialsResponse>(getPostApiAlphaUserVerifyCredentialsUrl(),
   {      
     ...options,
     method: 'POST',
@@ -958,13 +863,7 @@ export const postApiAlphaUserVerifyCredentials = async (userLoginRequest: UserLo
     body: JSON.stringify(
       userLoginRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserVerifyCredentialsResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserVerifyCredentialsResponse
-}
+);}
 
 
 /**
@@ -1004,7 +903,7 @@ export const getPostApiAlphaUserSetFlairUrl = () => {
 
 export const postApiAlphaUserSetFlair = async (userSetFlairRequest: UserSetFlairRequest, options?: RequestInit): Promise<postApiAlphaUserSetFlairResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserSetFlairUrl(),
+  return customFetch<postApiAlphaUserSetFlairResponse>(getPostApiAlphaUserSetFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1012,13 +911,7 @@ export const postApiAlphaUserSetFlair = async (userSetFlairRequest: UserSetFlair
     body: JSON.stringify(
       userSetFlairRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserSetFlairResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserSetFlairResponse
-}
+);}
 
 
 /**
@@ -1058,7 +951,7 @@ export const getPostApiAlphaUserNoteUrl = () => {
 
 export const postApiAlphaUserNote = async (userSetNoteRequest: UserSetNoteRequest, options?: RequestInit): Promise<postApiAlphaUserNoteResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserNoteUrl(),
+  return customFetch<postApiAlphaUserNoteResponse>(getPostApiAlphaUserNoteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1066,13 +959,7 @@ export const postApiAlphaUserNote = async (userSetNoteRequest: UserSetNoteReques
     body: JSON.stringify(
       userSetNoteRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserNoteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserNoteResponse
-}
+);}
 
 
 /**
@@ -1112,7 +999,7 @@ export const getPostApiAlphaUserBanUrl = () => {
 
 export const postApiAlphaUserBan = async (userBanRequest: UserBanRequest, options?: RequestInit): Promise<postApiAlphaUserBanResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserBanUrl(),
+  return customFetch<postApiAlphaUserBanResponse>(getPostApiAlphaUserBanUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1120,13 +1007,7 @@ export const postApiAlphaUserBan = async (userBanRequest: UserBanRequest, option
     body: JSON.stringify(
       userBanRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserBanResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserBanResponse
-}
+);}
 
 
 /**
@@ -1166,7 +1047,7 @@ export const getPostApiAlphaUserUnbanUrl = () => {
 
 export const postApiAlphaUserUnban = async (userUnbanRequest: UserUnbanRequest, options?: RequestInit): Promise<postApiAlphaUserUnbanResponse> => {
   
-  const res = await fetch(getPostApiAlphaUserUnbanUrl(),
+  return customFetch<postApiAlphaUserUnbanResponse>(getPostApiAlphaUserUnbanUrl(),
   {      
     ...options,
     method: 'POST',
@@ -1174,12 +1055,6 @@ export const postApiAlphaUserUnban = async (userUnbanRequest: UserUnbanRequest, 
     body: JSON.stringify(
       userUnbanRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUserUnbanResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUserUnbanResponse
-}
+);}
 
 

@@ -37,6 +37,7 @@ import type {
   UserMeResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Get / fetch a community.
@@ -82,20 +83,14 @@ export const getGetApiAlphaCommunityUrl = (params?: GetApiAlphaCommunityParams,)
 
 export const getApiAlphaCommunity = async (params?: GetApiAlphaCommunityParams, options?: RequestInit): Promise<getApiAlphaCommunityResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommunityUrl(params),
+  return customFetch<getApiAlphaCommunityResponse>(getGetApiAlphaCommunityUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommunityResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommunityResponse
-}
+);}
 
 
 /**
@@ -140,7 +135,7 @@ export const getPostApiAlphaCommunityUrl = () => {
 
 export const postApiAlphaCommunity = async (createCommunityRequest: CreateCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityUrl(),
+  return customFetch<postApiAlphaCommunityResponse>(getPostApiAlphaCommunityUrl(),
   {      
     ...options,
     method: 'POST',
@@ -148,13 +143,7 @@ export const postApiAlphaCommunity = async (createCommunityRequest: CreateCommun
     body: JSON.stringify(
       createCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityResponse
-}
+);}
 
 
 /**
@@ -194,7 +183,7 @@ export const getPutApiAlphaCommunityUrl = () => {
 
 export const putApiAlphaCommunity = async (editCommunityRequest: EditCommunityRequest, options?: RequestInit): Promise<putApiAlphaCommunityResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommunityUrl(),
+  return customFetch<putApiAlphaCommunityResponse>(getPutApiAlphaCommunityUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -202,13 +191,7 @@ export const putApiAlphaCommunity = async (editCommunityRequest: EditCommunityRe
     body: JSON.stringify(
       editCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommunityResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommunityResponse
-}
+);}
 
 
 /**
@@ -255,20 +238,14 @@ export const getGetApiAlphaCommunityListUrl = (params?: GetApiAlphaCommunityList
 
 export const getApiAlphaCommunityList = async (params?: GetApiAlphaCommunityListParams, options?: RequestInit): Promise<getApiAlphaCommunityListResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommunityListUrl(params),
+  return customFetch<getApiAlphaCommunityListResponse>(getGetApiAlphaCommunityListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommunityListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommunityListResponse
-}
+);}
 
 
 /**
@@ -308,7 +285,7 @@ export const getPostApiAlphaCommunityFollowUrl = () => {
 
 export const postApiAlphaCommunityFollow = async (followCommunityRequest: FollowCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityFollowResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityFollowUrl(),
+  return customFetch<postApiAlphaCommunityFollowResponse>(getPostApiAlphaCommunityFollowUrl(),
   {      
     ...options,
     method: 'POST',
@@ -316,13 +293,7 @@ export const postApiAlphaCommunityFollow = async (followCommunityRequest: Follow
     body: JSON.stringify(
       followCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityFollowResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityFollowResponse
-}
+);}
 
 
 /**
@@ -357,20 +328,14 @@ export const getPostApiAlphaCommunityLeaveAllUrl = () => {
 
 export const postApiAlphaCommunityLeaveAll = async ( options?: RequestInit): Promise<postApiAlphaCommunityLeaveAllResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityLeaveAllUrl(),
+  return customFetch<postApiAlphaCommunityLeaveAllResponse>(getPostApiAlphaCommunityLeaveAllUrl(),
   {      
     ...options,
     method: 'POST'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityLeaveAllResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityLeaveAllResponse
-}
+);}
 
 
 /**
@@ -410,7 +375,7 @@ export const getPostApiAlphaCommunityBlockUrl = () => {
 
 export const postApiAlphaCommunityBlock = async (blockCommunityRequest: BlockCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityBlockResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityBlockUrl(),
+  return customFetch<postApiAlphaCommunityBlockResponse>(getPostApiAlphaCommunityBlockUrl(),
   {      
     ...options,
     method: 'POST',
@@ -418,13 +383,7 @@ export const postApiAlphaCommunityBlock = async (blockCommunityRequest: BlockCom
     body: JSON.stringify(
       blockCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityBlockResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityBlockResponse
-}
+);}
 
 
 /**
@@ -464,7 +423,7 @@ export const getPutApiAlphaCommunitySubscribeUrl = () => {
 
 export const putApiAlphaCommunitySubscribe = async (subscribeCommunityRequest: SubscribeCommunityRequest, options?: RequestInit): Promise<putApiAlphaCommunitySubscribeResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommunitySubscribeUrl(),
+  return customFetch<putApiAlphaCommunitySubscribeResponse>(getPutApiAlphaCommunitySubscribeUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -472,13 +431,7 @@ export const putApiAlphaCommunitySubscribe = async (subscribeCommunityRequest: S
     body: JSON.stringify(
       subscribeCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommunitySubscribeResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommunitySubscribeResponse
-}
+);}
 
 
 /**
@@ -518,7 +471,7 @@ export const getPostApiAlphaCommunityDeleteUrl = () => {
 
 export const postApiAlphaCommunityDelete = async (deleteCommunityRequest: DeleteCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityDeleteUrl(),
+  return customFetch<postApiAlphaCommunityDeleteResponse>(getPostApiAlphaCommunityDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -526,13 +479,7 @@ export const postApiAlphaCommunityDelete = async (deleteCommunityRequest: Delete
     body: JSON.stringify(
       deleteCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityDeleteResponse
-}
+);}
 
 
 /**
@@ -572,7 +519,7 @@ export const getPostApiAlphaCommunityModUrl = () => {
 
 export const postApiAlphaCommunityMod = async (modCommunityRequest: ModCommunityRequest, options?: RequestInit): Promise<postApiAlphaCommunityModResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityModUrl(),
+  return customFetch<postApiAlphaCommunityModResponse>(getPostApiAlphaCommunityModUrl(),
   {      
     ...options,
     method: 'POST',
@@ -580,13 +527,7 @@ export const postApiAlphaCommunityMod = async (modCommunityRequest: ModCommunity
     body: JSON.stringify(
       modCommunityRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityModResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityModResponse
-}
+);}
 
 
 /**
@@ -633,20 +574,14 @@ export const getGetApiAlphaCommunityModerateBansUrl = (params: GetApiAlphaCommun
 
 export const getApiAlphaCommunityModerateBans = async (params: GetApiAlphaCommunityModerateBansParams, options?: RequestInit): Promise<getApiAlphaCommunityModerateBansResponse> => {
   
-  const res = await fetch(getGetApiAlphaCommunityModerateBansUrl(params),
+  return customFetch<getApiAlphaCommunityModerateBansResponse>(getGetApiAlphaCommunityModerateBansUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaCommunityModerateBansResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaCommunityModerateBansResponse
-}
+);}
 
 
 /**
@@ -686,7 +621,7 @@ export const getPutApiAlphaCommunityModerateUnbanUrl = () => {
 
 export const putApiAlphaCommunityModerateUnban = async (communityModerationUnbanRequest: CommunityModerationUnbanRequest, options?: RequestInit): Promise<putApiAlphaCommunityModerateUnbanResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommunityModerateUnbanUrl(),
+  return customFetch<putApiAlphaCommunityModerateUnbanResponse>(getPutApiAlphaCommunityModerateUnbanUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -694,13 +629,7 @@ export const putApiAlphaCommunityModerateUnban = async (communityModerationUnban
     body: JSON.stringify(
       communityModerationUnbanRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommunityModerateUnbanResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommunityModerateUnbanResponse
-}
+);}
 
 
 /**
@@ -740,7 +669,7 @@ export const getPostApiAlphaCommunityModerateBanUrl = () => {
 
 export const postApiAlphaCommunityModerateBan = async (communityModerationBanRequest: CommunityModerationBanRequest, options?: RequestInit): Promise<postApiAlphaCommunityModerateBanResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityModerateBanUrl(),
+  return customFetch<postApiAlphaCommunityModerateBanResponse>(getPostApiAlphaCommunityModerateBanUrl(),
   {      
     ...options,
     method: 'POST',
@@ -748,13 +677,7 @@ export const postApiAlphaCommunityModerateBan = async (communityModerationBanReq
     body: JSON.stringify(
       communityModerationBanRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityModerateBanResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityModerateBanResponse
-}
+);}
 
 
 /**
@@ -794,7 +717,7 @@ export const getPostApiAlphaCommunityModeratePostNsfwUrl = () => {
 
 export const postApiAlphaCommunityModeratePostNsfw = async (communityModerationNsfwRequest: CommunityModerationNsfwRequest, options?: RequestInit): Promise<postApiAlphaCommunityModeratePostNsfwResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityModeratePostNsfwUrl(),
+  return customFetch<postApiAlphaCommunityModeratePostNsfwResponse>(getPostApiAlphaCommunityModeratePostNsfwUrl(),
   {      
     ...options,
     method: 'POST',
@@ -802,13 +725,7 @@ export const postApiAlphaCommunityModeratePostNsfw = async (communityModerationN
     body: JSON.stringify(
       communityModerationNsfwRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityModeratePostNsfwResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityModeratePostNsfwResponse
-}
+);}
 
 
 /**
@@ -848,7 +765,7 @@ export const getPostApiAlphaCommunityFlairUrl = () => {
 
 export const postApiAlphaCommunityFlair = async (communityFlairCreateRequest: CommunityFlairCreateRequest, options?: RequestInit): Promise<postApiAlphaCommunityFlairResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityFlairUrl(),
+  return customFetch<postApiAlphaCommunityFlairResponse>(getPostApiAlphaCommunityFlairUrl(),
   {      
     ...options,
     method: 'POST',
@@ -856,13 +773,7 @@ export const postApiAlphaCommunityFlair = async (communityFlairCreateRequest: Co
     body: JSON.stringify(
       communityFlairCreateRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityFlairResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityFlairResponse
-}
+);}
 
 
 /**
@@ -902,7 +813,7 @@ export const getPutApiAlphaCommunityFlairUrl = () => {
 
 export const putApiAlphaCommunityFlair = async (communityFlairEditRequest: CommunityFlairEditRequest, options?: RequestInit): Promise<putApiAlphaCommunityFlairResponse> => {
   
-  const res = await fetch(getPutApiAlphaCommunityFlairUrl(),
+  return customFetch<putApiAlphaCommunityFlairResponse>(getPutApiAlphaCommunityFlairUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -910,13 +821,7 @@ export const putApiAlphaCommunityFlair = async (communityFlairEditRequest: Commu
     body: JSON.stringify(
       communityFlairEditRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaCommunityFlairResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaCommunityFlairResponse
-}
+);}
 
 
 /**
@@ -956,7 +861,7 @@ export const getPostApiAlphaCommunityFlairDeleteUrl = () => {
 
 export const postApiAlphaCommunityFlairDelete = async (communityFlairDeleteRequest: CommunityFlairDeleteRequest, options?: RequestInit): Promise<postApiAlphaCommunityFlairDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaCommunityFlairDeleteUrl(),
+  return customFetch<postApiAlphaCommunityFlairDeleteResponse>(getPostApiAlphaCommunityFlairDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -964,12 +869,6 @@ export const postApiAlphaCommunityFlairDelete = async (communityFlairDeleteReque
     body: JSON.stringify(
       communityFlairDeleteRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaCommunityFlairDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaCommunityFlairDeleteResponse
-}
+);}
 
 

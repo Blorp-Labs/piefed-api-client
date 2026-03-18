@@ -11,6 +11,12 @@ export default defineConfig({
       client: 'fetch',
       mode: 'tags-split',
       clean: true,
+      override: {
+        mutator: {
+          path: './src/mutator/custom-fetch.ts',
+          name: 'customFetch',
+        },
+      },
     },
   },
   piefedZod: {

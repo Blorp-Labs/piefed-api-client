@@ -11,6 +11,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Get list of topics
@@ -56,19 +57,13 @@ export const getGetApiAlphaTopicListUrl = (params?: GetApiAlphaTopicListParams,)
 
 export const getApiAlphaTopicList = async (params?: GetApiAlphaTopicListParams, options?: RequestInit): Promise<getApiAlphaTopicListResponse> => {
   
-  const res = await fetch(getGetApiAlphaTopicListUrl(params),
+  return customFetch<getApiAlphaTopicListResponse>(getGetApiAlphaTopicListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaTopicListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaTopicListResponse
-}
+);}
 
 

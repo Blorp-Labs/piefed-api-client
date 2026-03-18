@@ -18,6 +18,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Search PieFed.
@@ -63,20 +64,14 @@ export const getGetApiAlphaSearchUrl = (params: GetApiAlphaSearchParams,) => {
 
 export const getApiAlphaSearch = async (params: GetApiAlphaSearchParams, options?: RequestInit): Promise<getApiAlphaSearchResponse> => {
   
-  const res = await fetch(getGetApiAlphaSearchUrl(params),
+  return customFetch<getApiAlphaSearchResponse>(getGetApiAlphaSearchUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSearchResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSearchResponse
-}
+);}
 
 
 /**
@@ -123,20 +118,14 @@ export const getGetApiAlphaResolveObjectUrl = (params: GetApiAlphaResolveObjectP
 
 export const getApiAlphaResolveObject = async (params: GetApiAlphaResolveObjectParams, options?: RequestInit): Promise<getApiAlphaResolveObjectResponse> => {
   
-  const res = await fetch(getGetApiAlphaResolveObjectUrl(params),
+  return customFetch<getApiAlphaResolveObjectResponse>(getGetApiAlphaResolveObjectUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaResolveObjectResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaResolveObjectResponse
-}
+);}
 
 
 /**
@@ -171,20 +160,14 @@ export const getGetApiAlphaFederatedInstancesUrl = () => {
 
 export const getApiAlphaFederatedInstances = async ( options?: RequestInit): Promise<getApiAlphaFederatedInstancesResponse> => {
   
-  const res = await fetch(getGetApiAlphaFederatedInstancesUrl(),
+  return customFetch<getApiAlphaFederatedInstancesResponse>(getGetApiAlphaFederatedInstancesUrl(),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaFederatedInstancesResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaFederatedInstancesResponse
-}
+);}
 
 
 /**
@@ -231,20 +214,14 @@ export const getGetApiAlphaSuggestCompletionUrl = (params?: GetApiAlphaSuggestCo
 
 export const getApiAlphaSuggestCompletion = async (params?: GetApiAlphaSuggestCompletionParams, options?: RequestInit): Promise<getApiAlphaSuggestCompletionResponse> => {
   
-  const res = await fetch(getGetApiAlphaSuggestCompletionUrl(params),
+  return customFetch<getApiAlphaSuggestCompletionResponse>(getGetApiAlphaSuggestCompletionUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaSuggestCompletionResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaSuggestCompletionResponse
-}
+);}
 
 
 /**
@@ -296,19 +273,13 @@ export const getGetApiAlphaModlogUrl = (params?: GetApiAlphaModlogParams,) => {
 
 export const getApiAlphaModlog = async (params?: GetApiAlphaModlogParams, options?: RequestInit): Promise<getApiAlphaModlogResponse> => {
   
-  const res = await fetch(getGetApiAlphaModlogUrl(params),
+  return customFetch<getApiAlphaModlogResponse>(getGetApiAlphaModlogUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaModlogResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaModlogResponse
-}
+);}
 
 

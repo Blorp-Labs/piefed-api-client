@@ -13,6 +13,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Upload a general image.
@@ -58,7 +59,7 @@ export const postApiAlphaUploadImage = async (imageUploadRequest: ImageUploadReq
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  const res = await fetch(getPostApiAlphaUploadImageUrl(),
+  return customFetch<postApiAlphaUploadImageResponse>(getPostApiAlphaUploadImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -66,13 +67,7 @@ formData.append(`file`, imageUploadRequest.file)
     body: 
       formData,
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUploadImageResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUploadImageResponse
-}
+);}
 
 
 /**
@@ -119,7 +114,7 @@ export const postApiAlphaUploadCommunityImage = async (imageUploadRequest: Image
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  const res = await fetch(getPostApiAlphaUploadCommunityImageUrl(),
+  return customFetch<postApiAlphaUploadCommunityImageResponse>(getPostApiAlphaUploadCommunityImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -127,13 +122,7 @@ formData.append(`file`, imageUploadRequest.file)
     body: 
       formData,
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUploadCommunityImageResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUploadCommunityImageResponse
-}
+);}
 
 
 /**
@@ -180,7 +169,7 @@ export const postApiAlphaUploadUserImage = async (imageUploadRequest: ImageUploa
     const formData = new FormData();
 formData.append(`file`, imageUploadRequest.file)
 
-  const res = await fetch(getPostApiAlphaUploadUserImageUrl(),
+  return customFetch<postApiAlphaUploadUserImageResponse>(getPostApiAlphaUploadUserImageUrl(),
   {      
     ...options,
     method: 'POST'
@@ -188,13 +177,7 @@ formData.append(`file`, imageUploadRequest.file)
     body: 
       formData,
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaUploadUserImageResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaUploadUserImageResponse
-}
+);}
 
 
 /**
@@ -239,7 +222,7 @@ export const getPostApiAlphaImageDeleteUrl = () => {
 
 export const postApiAlphaImageDelete = async (imageDeleteRequest: ImageDeleteRequest, options?: RequestInit): Promise<postApiAlphaImageDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaImageDeleteUrl(),
+  return customFetch<postApiAlphaImageDeleteResponse>(getPostApiAlphaImageDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -247,12 +230,6 @@ export const postApiAlphaImageDelete = async (imageDeleteRequest: ImageDeleteReq
     body: JSON.stringify(
       imageDeleteRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaImageDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaImageDeleteResponse
-}
+);}
 
 

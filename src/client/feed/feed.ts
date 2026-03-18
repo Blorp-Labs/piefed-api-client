@@ -17,6 +17,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Get a feed
@@ -62,20 +63,14 @@ export const getGetApiAlphaFeedUrl = (params?: GetApiAlphaFeedParams,) => {
 
 export const getApiAlphaFeed = async (params?: GetApiAlphaFeedParams, options?: RequestInit): Promise<getApiAlphaFeedResponse> => {
   
-  const res = await fetch(getGetApiAlphaFeedUrl(params),
+  return customFetch<getApiAlphaFeedResponse>(getGetApiAlphaFeedUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaFeedResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaFeedResponse
-}
+);}
 
 
 /**
@@ -120,7 +115,7 @@ export const getPostApiAlphaFeedUrl = () => {
 
 export const postApiAlphaFeed = async (createFeedRequest: CreateFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedResponse> => {
   
-  const res = await fetch(getPostApiAlphaFeedUrl(),
+  return customFetch<postApiAlphaFeedResponse>(getPostApiAlphaFeedUrl(),
   {      
     ...options,
     method: 'POST',
@@ -128,13 +123,7 @@ export const postApiAlphaFeed = async (createFeedRequest: CreateFeedRequest, opt
     body: JSON.stringify(
       createFeedRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaFeedResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaFeedResponse
-}
+);}
 
 
 /**
@@ -174,7 +163,7 @@ export const getPutApiAlphaFeedUrl = () => {
 
 export const putApiAlphaFeed = async (editFeedRequest: EditFeedRequest, options?: RequestInit): Promise<putApiAlphaFeedResponse> => {
   
-  const res = await fetch(getPutApiAlphaFeedUrl(),
+  return customFetch<putApiAlphaFeedResponse>(getPutApiAlphaFeedUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -182,13 +171,7 @@ export const putApiAlphaFeed = async (editFeedRequest: EditFeedRequest, options?
     body: JSON.stringify(
       editFeedRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaFeedResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaFeedResponse
-}
+);}
 
 
 /**
@@ -235,20 +218,14 @@ export const getGetApiAlphaFeedListUrl = (params?: GetApiAlphaFeedListParams,) =
 
 export const getApiAlphaFeedList = async (params?: GetApiAlphaFeedListParams, options?: RequestInit): Promise<getApiAlphaFeedListResponse> => {
   
-  const res = await fetch(getGetApiAlphaFeedListUrl(params),
+  return customFetch<getApiAlphaFeedListResponse>(getGetApiAlphaFeedListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaFeedListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaFeedListResponse
-}
+);}
 
 
 /**
@@ -288,7 +265,7 @@ export const getPostApiAlphaFeedFollowUrl = () => {
 
 export const postApiAlphaFeedFollow = async (followFeedRequest: FollowFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedFollowResponse> => {
   
-  const res = await fetch(getPostApiAlphaFeedFollowUrl(),
+  return customFetch<postApiAlphaFeedFollowResponse>(getPostApiAlphaFeedFollowUrl(),
   {      
     ...options,
     method: 'POST',
@@ -296,13 +273,7 @@ export const postApiAlphaFeedFollow = async (followFeedRequest: FollowFeedReques
     body: JSON.stringify(
       followFeedRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaFeedFollowResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaFeedFollowResponse
-}
+);}
 
 
 /**
@@ -342,7 +313,7 @@ export const getPostApiAlphaFeedDeleteUrl = () => {
 
 export const postApiAlphaFeedDelete = async (deleteFeedRequest: DeleteFeedRequest, options?: RequestInit): Promise<postApiAlphaFeedDeleteResponse> => {
   
-  const res = await fetch(getPostApiAlphaFeedDeleteUrl(),
+  return customFetch<postApiAlphaFeedDeleteResponse>(getPostApiAlphaFeedDeleteUrl(),
   {      
     ...options,
     method: 'POST',
@@ -350,12 +321,6 @@ export const postApiAlphaFeedDelete = async (deleteFeedRequest: DeleteFeedReques
     body: JSON.stringify(
       deleteFeedRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: postApiAlphaFeedDeleteResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as postApiAlphaFeedDeleteResponse
-}
+);}
 
 

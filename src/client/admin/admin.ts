@@ -12,6 +12,7 @@ import type {
   UnprocessableEntityResponse
 } from '../../schemas';
 
+import { customFetch } from '../../mutator/custom-fetch';
 
 /**
  * @summary Get the list of applications ready for admin review
@@ -57,20 +58,14 @@ export const getGetApiAlphaAdminRegistrationApplicationListUrl = (params?: GetAp
 
 export const getApiAlphaAdminRegistrationApplicationList = async (params?: GetApiAlphaAdminRegistrationApplicationListParams, options?: RequestInit): Promise<getApiAlphaAdminRegistrationApplicationListResponse> => {
   
-  const res = await fetch(getGetApiAlphaAdminRegistrationApplicationListUrl(params),
+  return customFetch<getApiAlphaAdminRegistrationApplicationListResponse>(getGetApiAlphaAdminRegistrationApplicationListUrl(params),
   {      
     ...options,
     method: 'GET'
     
     
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: getApiAlphaAdminRegistrationApplicationListResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as getApiAlphaAdminRegistrationApplicationListResponse
-}
+);}
 
 
 /**
@@ -110,7 +105,7 @@ export const getPutApiAlphaAdminRegistrationApplicationApproveUrl = () => {
 
 export const putApiAlphaAdminRegistrationApplicationApprove = async (registrationApproveRequest: RegistrationApproveRequest, options?: RequestInit): Promise<putApiAlphaAdminRegistrationApplicationApproveResponse> => {
   
-  const res = await fetch(getPutApiAlphaAdminRegistrationApplicationApproveUrl(),
+  return customFetch<putApiAlphaAdminRegistrationApplicationApproveResponse>(getPutApiAlphaAdminRegistrationApplicationApproveUrl(),
   {      
     ...options,
     method: 'PUT',
@@ -118,12 +113,6 @@ export const putApiAlphaAdminRegistrationApplicationApprove = async (registratio
     body: JSON.stringify(
       registrationApproveRequest,)
   }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
-  const data: putApiAlphaAdminRegistrationApplicationApproveResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as putApiAlphaAdminRegistrationApplicationApproveResponse
-}
+);}
 
 
