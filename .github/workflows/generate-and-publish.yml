@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: write
+      id-token: write   # required for npm trusted publishing (OIDC)
 
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
           scope: '@blorp-labs'
           cache: 'pnpm'
 
@@ -42,6 +42,19 @@ jobs:
         id: diff
         run: |
           git diff --quiet src || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Check if current version is already published
+        id: published
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          PACKAGE=$(node -p "require('./package.json').name")
+          STATUS=$(npm view "${PACKAGE}@${VERSION}" version \
+            --registry https://registry.npmjs.org 2>/dev/null || true)
+          if [ -z "$STATUS" ]; then
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Bump patch version
         if: steps.diff.outputs.changed == 'true'
@@ -60,11 +73,9 @@ jobs:
           git push origin main --follow-tags
 
       - name: Build
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true' || steps.published.outputs.exists == 'false'
         run: pnpm build
 
-      - name: Publish to GitHub Packages
-        if: steps.diff.outputs.changed == 'true'
-        run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to npm
+        if: steps.diff.outputs.changed == 'true' || steps.published.outputs.exists == 'false'
+        run: pnpm publish --no-git-checks --provenance
