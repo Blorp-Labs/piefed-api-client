@@ -2,7 +2,6 @@
   "name": "@blorp-labs/piefed-api-client",
   "version": "0.1.0",
   "description": "Typed TypeScript client for the PieFed API, generated from the OpenAPI spec",
-  "type": "module",
   "packageManager": "pnpm@10.6.5",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
