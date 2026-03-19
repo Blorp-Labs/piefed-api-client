@@ -26,9 +26,11 @@ const allFns = {
 
 // Only the async API functions (not URL helpers or type exports)
 type AsyncFn = (...args: any[]) => Promise<any>;
-type ApiFunctions = {
-  [K in keyof typeof allFns as (typeof allFns)[K] extends AsyncFn ? K : never]: (typeof allFns)[K];
-};
+type AllModules =
+  typeof admin & typeof comment & typeof community & typeof feed & typeof misc &
+  typeof post & typeof privateMessage & typeof site & typeof topic & typeof upload & typeof user;
+type AsyncKeys = { [K in keyof AllModules]: AllModules[K] extends AsyncFn ? K : never }[keyof AllModules];
+type ApiFunctions = Pick<AllModules, AsyncKeys>;
 
 interface CreateClientOptions extends Omit<RequestInit, 'body' | 'method'> {
   /** Default headers merged into every request (e.g. Authorization). */
