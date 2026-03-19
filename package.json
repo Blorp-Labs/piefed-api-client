@@ -22,14 +22,16 @@
   "scripts": {
     "generate": "orval --config orval.config.ts",
     "build": "tsc",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest run"
   },
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "orval": "^7.3.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^2.0.0"
   },
   "repository": {
     "type": "git",
