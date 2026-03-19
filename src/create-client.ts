@@ -30,7 +30,7 @@ type ApiFunctions = {
   [K in keyof typeof allFns as (typeof allFns)[K] extends AsyncFn ? K : never]: (typeof allFns)[K];
 };
 
-interface CreateClientOptions {
+interface CreateClientOptions extends Omit<RequestInit, 'body' | 'method'> {
   /** Default headers merged into every request (e.g. Authorization). */
   headers?: Record<string, string>;
 }
@@ -58,28 +58,26 @@ export function createClient(baseUrl: string, options: CreateClientOptions = {})
     if (typeof fn !== 'function') continue;
 
     boundFns[key] = (...args: unknown[]) => {
-      // options is always the last argument; inject baseUrl and default headers into it
+      // options is always the last argument; inject baseUrl and defaults into it
       const last = args[args.length - 1];
-      const extra: RequestInit & { baseUrl: string } = {
-        baseUrl,
-        ...(options.headers ? { headers: options.headers } : {}),
-      };
+      const { headers: defaultHeaders, ...defaultInit } = options;
+      const extra: RequestInit & { baseUrl: string } = { ...defaultInit, baseUrl };
       if (last !== null && typeof last === 'object' && !Array.isArray(last)) {
         const lastObj = last as RequestInit & { baseUrl?: string };
         args[args.length - 1] = {
           ...extra,
           ...lastObj,
           // per-call headers win, but default headers fill in any gaps
-          headers: { ...options.headers, ...(lastObj.headers as Record<string, string> | undefined) },
+          headers: { ...defaultHeaders, ...(lastObj.headers as Record<string, string> | undefined) },
         };
       } else if (last === undefined || args.length === 0) {
         if (args.length > 0) {
-          args[args.length - 1] = extra;
+          args[args.length - 1] = { ...extra, headers: defaultHeaders };
         } else {
-          args.push(extra);
+          args.push({ ...extra, headers: defaultHeaders });
         }
       } else {
-        args.push(extra);
+        args.push({ ...extra, headers: defaultHeaders });
       }
       return (fn as AsyncFn)(...args);
     };
