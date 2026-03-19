@@ -10,18 +10,70 @@ Includes:
 ## Installation
 
 ```sh
-# .npmrc — point @blorp-labs scope to GitHub Packages
-echo "@blorp-labs:registry=https://npm.pkg.github.com" >> .npmrc
-
 pnpm add @blorp-labs/piefed-api-client
 ```
 
 ## Usage
 
-```ts
-import { getCommunity, GetCommunityParams } from '@blorp-labs/piefed-api-client';
+### Basic
 
-const community = await getCommunity({ id: 123 });
+```ts
+import { createClient } from '@blorp-labs/piefed-api-client';
+
+const client = createClient('https://piefed.social');
+const site = await client.getApiAlphaSite();
+```
+
+### With authentication
+
+```ts
+const client = createClient('https://piefed.social', {
+  headers: { Authorization: 'Bearer <token>' },
+});
+```
+
+### With default fetch options
+
+Any [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit) option (except `body` and `method`) can be set as a default:
+
+```ts
+const client = createClient('https://piefed.social', {
+  cache: 'no-store',
+  headers: { Authorization: 'Bearer <token>' },
+});
+```
+
+Per-call options override the defaults; headers are merged.
+
+### Multiple instances
+
+```ts
+const a = createClient('https://instance-a.com');
+const b = createClient('https://instance-b.com');
+```
+
+### Error handling
+
+Errors throw an `ApiError` with `.status` and `.data`:
+
+```ts
+import { createClient, ApiError } from '@blorp-labs/piefed-api-client';
+
+try {
+  const site = await client.getApiAlphaSite();
+} catch (e) {
+  if (e instanceof ApiError) {
+    console.error(e.status, e.data);
+  }
+}
+```
+
+### Zod schemas
+
+Zod schemas are exported from the `/zod` subpath:
+
+```ts
+import { getApiAlphaSiteQueryParams } from '@blorp-labs/piefed-api-client/zod';
 ```
 
 ## Development
@@ -37,8 +89,7 @@ pnpm build      # compile TypeScript → dist/
 
 ## Automation
 
-A GitHub Actions workflow runs daily and on `workflow_dispatch`. If the OpenAPI spec has changed, it:
-1. Regenerates `src/`
-2. Bumps the patch version
-3. Commits & tags the change
-4. Publishes to GitHub Packages
+A GitHub Actions workflow triggers on every push to `main`. It:
+1. Regenerates `src/` from the live OpenAPI spec
+2. Sets the version to `0.0.0-{commit-sha}`
+3. Builds and publishes to npm
