@@ -7,12 +7,6 @@ declare global {
   }
 }
 
-let _defaultBaseUrl = 'https://piefed.social';
-
-export function configure(options: { baseUrl: string }) {
-  _defaultBaseUrl = options.baseUrl.replace(/\/$/, '');
-}
-
 export class ApiError extends Error {
   constructor(
     public readonly status: number,
@@ -27,7 +21,8 @@ export const customFetch = async <T>(
   url: string,
   options?: RequestInit,
 ): Promise<T> => {
-  const { baseUrl = _defaultBaseUrl, ...fetchOptions } = options ?? {};
+  const { baseUrl, ...fetchOptions } = options ?? {};
+  if (!baseUrl) throw new Error('baseUrl is required — use createClient() to make requests');
   const base = baseUrl.replace(/\/$/, '');
 
   const res = await fetch(`${base}${url}`, fetchOptions);

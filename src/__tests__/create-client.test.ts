@@ -218,6 +218,31 @@ describe('ApiError', () => {
 });
 
 // ---------------------------------------------------------------------------
+// AbortController
+// ---------------------------------------------------------------------------
+
+describe('AbortController', () => {
+  it('forwards signal to fetch', async () => {
+    const controller = new AbortController();
+    const client = createClient(BASE_URL);
+    await client.getApiAlphaSite({ signal: controller.signal });
+    expect(lastOptions().signal).toBe(controller.signal);
+  });
+
+  it('propagates abort error when signal is already aborted', async () => {
+    const controller = new AbortController();
+    controller.abort();
+    fetchSpy.mockImplementation((_url: string, opts: RequestInit) => {
+      if (opts.signal?.aborted) return Promise.reject(new DOMException('Aborted', 'AbortError'));
+      return Promise.resolve(makeResponse({ ok: true }));
+    });
+    const client = createClient(BASE_URL);
+    const err = await client.getApiAlphaSite({ signal: controller.signal }).catch((e) => e);
+    expect(err.name).toBe('AbortError');
+  });
+});
+
+// ---------------------------------------------------------------------------
 // baseUrl
 // ---------------------------------------------------------------------------
 
