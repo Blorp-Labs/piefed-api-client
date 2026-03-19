@@ -57,28 +57,26 @@ export function createClient(baseUrl: string, options: CreateClientOptions = {})
   for (const [key, fn] of Object.entries(allFns)) {
     if (typeof fn !== 'function') continue;
 
+    // fn.length is the total param count; options is always the last param
+    const optionsIndex = (fn as AsyncFn).length - 1;
+
     boundFns[key] = (...args: unknown[]) => {
-      // options is always the last argument; inject baseUrl and defaults into it
-      const last = args[args.length - 1];
+      // Pad args so options index is always reachable
+      while (args.length <= optionsIndex) args.push(undefined);
+
       const { headers: defaultHeaders, ...defaultInit } = options;
       const extra: RequestInit & { baseUrl: string } = { ...defaultInit, baseUrl };
-      if (last !== null && typeof last === 'object' && !Array.isArray(last)) {
-        const lastObj = last as RequestInit & { baseUrl?: string };
-        args[args.length - 1] = {
-          ...extra,
-          ...lastObj,
-          // per-call headers win, but default headers fill in any gaps
-          headers: { ...defaultHeaders, ...(lastObj.headers as Record<string, string> | undefined) },
-        };
-      } else if (last === undefined || args.length === 0) {
-        if (args.length > 0) {
-          args[args.length - 1] = { ...extra, headers: defaultHeaders };
-        } else {
-          args.push({ ...extra, headers: defaultHeaders });
-        }
-      } else {
-        args.push({ ...extra, headers: defaultHeaders });
-      }
+      const existing = args[optionsIndex] as (RequestInit & { baseUrl?: string }) | undefined;
+
+      args[optionsIndex] = {
+        ...extra,
+        ...existing,
+        headers: {
+          ...defaultHeaders,
+          ...(existing?.headers as Record<string, string> | undefined),
+        },
+      };
+
       return (fn as AsyncFn)(...args);
     };
   }
