@@ -240,6 +240,32 @@ describe('ApiError', () => {
 });
 
 // ---------------------------------------------------------------------------
+// No-body responses (204 / 205 / 304)
+// ---------------------------------------------------------------------------
+
+describe('no-body responses', () => {
+  // customFetch returns {} for no-body statuses regardless of the expected return type.
+  // This is a known type hole: TypeScript promises GetSiteResponse but {} is returned at runtime.
+  // Endpoints that legitimately return 204 (some POSTs/DELETEs) are fine; for GET endpoints
+  // this would indicate a server bug that currently passes through silently.
+  it.each([204, 205])('status %i resolves to empty object', async (status) => {
+    fetchSpy.mockImplementation(() => Promise.resolve(new Response(null, { status })));
+    const client = createClient(BASE_URL);
+    const result = await client.getApiAlphaSite();
+    expect(result).toEqual({});
+  });
+
+  it('status 304 throws ApiError with empty data (not a body-read error)', async () => {
+    fetchSpy.mockImplementation(() => Promise.resolve(new Response(null, { status: 304 })));
+    const client = createClient(BASE_URL);
+    const err = await client.getApiAlphaSite().catch((e) => e);
+    expect(err).toBeInstanceOf(ApiError);
+    expect(err.status).toBe(304);
+    expect(err.data).toEqual({});
+  });
+});
+
+// ---------------------------------------------------------------------------
 // AbortController
 // ---------------------------------------------------------------------------
 
