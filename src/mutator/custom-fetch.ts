@@ -17,6 +17,10 @@ export class ApiError extends Error {
   }
 }
 
+function tryParseJson(text: string): unknown {
+  try { return JSON.parse(text); } catch { return text; }
+}
+
 export const customFetch = async <T>(
   url: string,
   options?: RequestInit,
@@ -27,7 +31,7 @@ export const customFetch = async <T>(
 
   const res = await fetch(`${base}${url}`, fetchOptions);
   const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  const data = body ? JSON.parse(body) : {};
+  const data = body ? tryParseJson(body) : {};
 
   if (!res.ok) {
     throw new ApiError(res.status, data);

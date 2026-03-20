@@ -215,6 +215,28 @@ describe('ApiError', () => {
     expect(err).toBeInstanceOf(ApiError);
     expect(err.status).toBe(500);
   });
+
+  it('throws ApiError (not SyntaxError) when response body is non-JSON', async () => {
+    fetchSpy.mockImplementation(() =>
+      Promise.resolve(new Response('<html>Gateway Timeout</html>', { status: 504 })),
+    );
+    const client = createClient(BASE_URL);
+
+    const err = await client.getApiAlphaSite().catch((e) => e);
+    expect(err).toBeInstanceOf(ApiError);
+    expect(err.status).toBe(504);
+    expect(err.data).toBe('<html>Gateway Timeout</html>');
+  });
+
+  it('returns parsed JSON on success', async () => {
+    fetchSpy.mockImplementation(() =>
+      Promise.resolve(new Response('not json', { status: 200 })),
+    );
+    const client = createClient(BASE_URL);
+
+    const result = await client.getApiAlphaSite();
+    expect(result).toBe('not json');
+  });
 });
 
 // ---------------------------------------------------------------------------
