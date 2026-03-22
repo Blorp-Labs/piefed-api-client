@@ -5,6 +5,6 @@
 import type { Error } from './error';
 
 /**
- * Unprocessable Entity
+ * Unprocessable Content
  */
-export type UnprocessableEntityResponse = Error;
+export type UnprocessableContentResponse = Error;

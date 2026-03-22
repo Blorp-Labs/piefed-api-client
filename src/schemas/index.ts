@@ -374,7 +374,7 @@ export * from './successResponse';
 export * from './topicListResponse';
 export * from './topicView';
 export * from './topicViewParentTopicId';
-export * from './unprocessableEntityResponse';
+export * from './unprocessableContentResponse';
 export * from './userBanRequest';
 export * from './userBanRequestBanIpAddress';
 export * from './userBanRequestPurgeContent';
