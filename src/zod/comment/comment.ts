@@ -8,12 +8,13 @@ import * as zod from 'zod';
 /**
  * @summary List comments, with various filters.
  */
-export const getApiAlphaCommentListQueryLimitDefault = 10;export const getApiAlphaCommentListQueryPageDefault = 1;export const getApiAlphaCommentListQuerySortDefault = "New";
+export const getApiAlphaCommentListQueryLimitDefault = 10;export const getApiAlphaCommentListQueryPageDefault = 1;export const getApiAlphaCommentListQuerySortDefault = "New";export const getApiAlphaCommentListQueryTypeDefault = "All";
 
 export const getApiAlphaCommentListQueryParams = zod.object({
   "limit": zod.number().default(getApiAlphaCommentListQueryLimitDefault),
   "page": zod.number().default(getApiAlphaCommentListQueryPageDefault),
   "sort": zod.enum(['Hot', 'Top', 'TopAll', 'New', 'Old', 'Controversial']).default(getApiAlphaCommentListQuerySortDefault),
+  "type_": zod.enum(['All', 'Local', 'Subscribed', 'Popular', 'Moderating', 'ModeratorView']).default(getApiAlphaCommentListQueryTypeDefault),
   "liked_only": zod.boolean().optional(),
   "saved_only": zod.boolean().optional(),
   "person_id": zod.number().optional(),
