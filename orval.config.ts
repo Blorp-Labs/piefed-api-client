@@ -1,9 +1,11 @@
 import { defineConfig } from 'orval';
 
+const instance = "https://piefed.social"
+
 export default defineConfig({
   piefedClient: {
     input: {
-      target: 'https://piefed.social/api/alpha/swagger.json',
+      target: `${instance}/api/alpha/swagger.json`,
     },
     output: {
       target: './src/client',
@@ -24,7 +26,7 @@ export default defineConfig({
   },
   piefedZod: {
     input: {
-      target: 'https://piefed.social/api/alpha/swagger.json',
+      target: `${instance}/api/alpha/swagger.json`,
     },
     output: {
       target: './src/zod',
