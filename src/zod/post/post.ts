@@ -8,7 +8,7 @@ import * as zod from 'zod';
 /**
  * @summary List posts.
  */
-export const getApiAlphaPostListQuerySortDefault = "Hot";export const getApiAlphaPostListQueryTypeDefault = "All";export const getApiAlphaPostListQuerySavedOnlyDefault = false;export const getApiAlphaPostListQueryLimitDefault = 50;export const getApiAlphaPostListQueryPageDefault = 1;export const getApiAlphaPostListQueryLikedOnlyDefault = false;export const getApiAlphaPostListQueryIgnoreStickyDefault = false;
+export const getApiAlphaPostListQuerySortDefault = "Hot";export const getApiAlphaPostListQueryTypeDefault = "All";export const getApiAlphaPostListQuerySavedOnlyDefault = false;export const getApiAlphaPostListQueryNsfwDefault = "Include";export const getApiAlphaPostListQueryLimitDefault = 50;export const getApiAlphaPostListQueryPageDefault = 1;export const getApiAlphaPostListQueryLikedOnlyDefault = false;export const getApiAlphaPostListQueryIgnoreStickyDefault = false;
 
 export const getApiAlphaPostListQueryParams = zod.object({
   "q": zod.string().optional(),
@@ -17,6 +17,7 @@ export const getApiAlphaPostListQueryParams = zod.object({
   "community_name": zod.string().optional(),
   "community_id": zod.number().optional(),
   "saved_only": zod.boolean().optional(),
+  "nsfw": zod.enum(['Exclude', 'Only', 'Include']).default(getApiAlphaPostListQueryNsfwDefault),
   "person_id": zod.number().optional(),
   "limit": zod.number().default(getApiAlphaPostListQueryLimitDefault),
   "page": zod.number().default(getApiAlphaPostListQueryPageDefault),
@@ -192,7 +193,7 @@ export const getApiAlphaPostListResponse = zod.object({
 /**
  * @summary List posts. For testing only, do not use.
  */
-export const getApiAlphaPostList2QuerySortDefault = "Hot";export const getApiAlphaPostList2QueryTypeDefault = "All";export const getApiAlphaPostList2QuerySavedOnlyDefault = false;export const getApiAlphaPostList2QueryLimitDefault = 50;export const getApiAlphaPostList2QueryPageDefault = "";export const getApiAlphaPostList2QueryLikedOnlyDefault = false;export const getApiAlphaPostList2QueryIgnoreStickyDefault = false;
+export const getApiAlphaPostList2QuerySortDefault = "Hot";export const getApiAlphaPostList2QueryTypeDefault = "All";export const getApiAlphaPostList2QuerySavedOnlyDefault = false;export const getApiAlphaPostList2QueryNsfwDefault = "Include";export const getApiAlphaPostList2QueryLimitDefault = 50;export const getApiAlphaPostList2QueryPageDefault = "";export const getApiAlphaPostList2QueryLikedOnlyDefault = false;export const getApiAlphaPostList2QueryIgnoreStickyDefault = false;
 
 export const getApiAlphaPostList2QueryParams = zod.object({
   "q": zod.string().optional(),
@@ -201,6 +202,7 @@ export const getApiAlphaPostList2QueryParams = zod.object({
   "community_name": zod.string().optional(),
   "community_id": zod.number().optional(),
   "saved_only": zod.boolean().optional(),
+  "nsfw": zod.enum(['Exclude', 'Only', 'Include']).default(getApiAlphaPostList2QueryNsfwDefault),
   "person_id": zod.number().optional(),
   "limit": zod.number().default(getApiAlphaPostList2QueryLimitDefault),
   "page": zod.string().optional(),
