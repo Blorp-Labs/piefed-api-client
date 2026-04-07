@@ -116,6 +116,7 @@ export * from './getApiAlphaAdminRegistrationApplicationListSort';
 export * from './getApiAlphaCommentLikeListParams';
 export * from './getApiAlphaCommentListParams';
 export * from './getApiAlphaCommentListSort';
+export * from './getApiAlphaCommentListType';
 export * from './getApiAlphaCommentParams';
 export * from './getApiAlphaCommunityListParams';
 export * from './getApiAlphaCommunityListSort';

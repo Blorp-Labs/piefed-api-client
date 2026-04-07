@@ -139,7 +139,7 @@ export const getApiAlphaPostListResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -323,7 +323,7 @@ export const getApiAlphaPostList2Response = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -503,7 +503,7 @@ export const getApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -751,7 +751,7 @@ export const getApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -818,7 +818,7 @@ export const postApiAlphaPostBody = zod.object({
   "language_id": zod.number().optional(),
   "event": zod.union([zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -971,7 +971,7 @@ export const postApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1219,7 +1219,7 @@ export const postApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1285,7 +1285,7 @@ export const putApiAlphaPostBody = zod.object({
   "language_id": zod.number().optional(),
   "event": zod.union([zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1440,7 +1440,7 @@ export const putApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1688,7 +1688,7 @@ export const putApiAlphaPostResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1884,7 +1884,7 @@ export const getApiAlphaPostRepliesResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2071,7 +2071,7 @@ export const postApiAlphaPostLikeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2319,7 +2319,7 @@ export const postApiAlphaPostLikeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2499,7 +2499,7 @@ export const putApiAlphaPostSaveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2747,7 +2747,7 @@ export const putApiAlphaPostSaveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2927,7 +2927,7 @@ export const putApiAlphaPostSubscribeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -3175,7 +3175,7 @@ export const putApiAlphaPostSubscribeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -3355,7 +3355,7 @@ export const postApiAlphaPostDeleteResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -3603,7 +3603,7 @@ export const postApiAlphaPostDeleteResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -3730,7 +3730,7 @@ export const postApiAlphaPostReportResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -3978,7 +3978,7 @@ export const postApiAlphaPostLockResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -4226,7 +4226,7 @@ export const postApiAlphaPostLockResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -4406,7 +4406,7 @@ export const postApiAlphaPostHideResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -4654,7 +4654,7 @@ export const postApiAlphaPostHideResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -4837,7 +4837,7 @@ export const postApiAlphaPostFeatureResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -5085,7 +5085,7 @@ export const postApiAlphaPostFeatureResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -5266,7 +5266,7 @@ export const postApiAlphaPostRemoveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -5514,7 +5514,7 @@ export const postApiAlphaPostRemoveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -5745,7 +5745,7 @@ export const postApiAlphaPostAssignFlairResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -5914,7 +5914,7 @@ export const postApiAlphaPostPollVoteResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),

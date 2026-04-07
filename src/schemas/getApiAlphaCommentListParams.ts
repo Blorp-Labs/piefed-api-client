@@ -3,11 +3,13 @@
  * Do not edit manually.
  */
 import type { GetApiAlphaCommentListSort } from './getApiAlphaCommentListSort';
+import type { GetApiAlphaCommentListType } from './getApiAlphaCommentListType';
 
 export type GetApiAlphaCommentListParams = {
 limit?: number;
 page?: number;
 sort?: GetApiAlphaCommentListSort;
+type_?: GetApiAlphaCommentListType;
 liked_only?: boolean;
 saved_only?: boolean;
 person_id?: number;

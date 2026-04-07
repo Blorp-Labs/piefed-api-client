@@ -194,7 +194,7 @@ export const getApiAlphaSearchResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -399,7 +399,7 @@ export const getApiAlphaSearchResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -587,7 +587,7 @@ export const getApiAlphaResolveObjectResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -725,7 +725,7 @@ export const getApiAlphaResolveObjectResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1132,7 +1132,7 @@ export const getApiAlphaModlogResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1258,7 +1258,7 @@ export const getApiAlphaModlogResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1385,7 +1385,7 @@ export const getApiAlphaModlogResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1558,7 +1558,7 @@ export const getApiAlphaModlogResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2207,7 +2207,7 @@ export const getApiAlphaModlogResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),

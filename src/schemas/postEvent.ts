@@ -9,7 +9,7 @@ import type { PostEventLocation } from './postEventLocation';
 
 export interface PostEvent {
   start: string;
-  end?: string;
+  end: string;
   timezone?: string;
   max_attendees?: number;
   participant_count?: number;

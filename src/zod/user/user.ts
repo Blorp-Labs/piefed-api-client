@@ -182,7 +182,7 @@ export const getApiAlphaUserResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -400,7 +400,7 @@ export const getApiAlphaUserResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -970,7 +970,7 @@ export const getApiAlphaUserRepliesResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1186,7 +1186,7 @@ export const getApiAlphaUserMentionsResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1462,7 +1462,7 @@ export const postApiAlphaUserMarkAllAsReadResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2139,7 +2139,7 @@ export const getApiAlphaUserNotificationsResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2301,7 +2301,7 @@ export const getApiAlphaUserNotificationsResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2559,7 +2559,7 @@ export const putApiAlphaUserNotificationStateResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2721,7 +2721,7 @@ export const putApiAlphaUserNotificationStateResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),

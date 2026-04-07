@@ -8,12 +8,13 @@ import * as zod from 'zod';
 /**
  * @summary List comments, with various filters.
  */
-export const getApiAlphaCommentListQueryLimitDefault = 10;export const getApiAlphaCommentListQueryPageDefault = 1;export const getApiAlphaCommentListQuerySortDefault = "New";
+export const getApiAlphaCommentListQueryLimitDefault = 10;export const getApiAlphaCommentListQueryPageDefault = 1;export const getApiAlphaCommentListQuerySortDefault = "New";export const getApiAlphaCommentListQueryTypeDefault = "All";
 
 export const getApiAlphaCommentListQueryParams = zod.object({
   "limit": zod.number().default(getApiAlphaCommentListQueryLimitDefault),
   "page": zod.number().default(getApiAlphaCommentListQueryPageDefault),
   "sort": zod.enum(['Hot', 'Top', 'TopAll', 'New', 'Old', 'Controversial']).default(getApiAlphaCommentListQuerySortDefault),
+  "type_": zod.enum(['All', 'Local', 'Subscribed', 'Popular', 'Moderating', 'ModeratorView']).default(getApiAlphaCommentListQueryTypeDefault),
   "liked_only": zod.boolean().optional(),
   "saved_only": zod.boolean().optional(),
   "person_id": zod.number().optional(),
@@ -159,7 +160,7 @@ export const getApiAlphaCommentListResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -343,7 +344,7 @@ export const postApiAlphaCommentLikeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -522,7 +523,7 @@ export const putApiAlphaCommentSaveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -701,7 +702,7 @@ export const putApiAlphaCommentSubscribeResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -882,7 +883,7 @@ export const postApiAlphaCommentResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1065,7 +1066,7 @@ export const putApiAlphaCommentResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1243,7 +1244,7 @@ export const getApiAlphaCommentResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1422,7 +1423,7 @@ export const postApiAlphaCommentDeleteResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1609,7 +1610,7 @@ export const postApiAlphaCommentReportResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -1822,7 +1823,7 @@ export const postApiAlphaCommentRemoveResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2012,7 +2013,7 @@ export const postApiAlphaCommentMarkAsReadResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2223,7 +2224,7 @@ export const postApiAlphaCommentMarkAsAnswerResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
@@ -2423,7 +2424,7 @@ export const postApiAlphaCommentLockResponse = zod.object({
 })).nullish(),
   "event": zod.object({
   "start": zod.string(),
-  "end": zod.string().optional(),
+  "end": zod.string(),
   "timezone": zod.string().optional(),
   "max_attendees": zod.number().optional(),
   "participant_count": zod.number().optional(),
