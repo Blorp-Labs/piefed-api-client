@@ -1,6 +1,6 @@
 import { defineConfig } from 'orval';
 
-const instance = "https://piefed.social"
+const instance = "https://crust.piefed.social"
 
 export default defineConfig({
   piefedClient: {

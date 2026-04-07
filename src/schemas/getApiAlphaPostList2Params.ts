@@ -4,6 +4,7 @@
  */
 import type { GetApiAlphaPostList2Sort } from './getApiAlphaPostList2Sort';
 import type { GetApiAlphaPostList2Type } from './getApiAlphaPostList2Type';
+import type { GetApiAlphaPostList2Nsfw } from './getApiAlphaPostList2Nsfw';
 
 export type GetApiAlphaPostList2Params = {
 q?: string;
@@ -12,6 +13,7 @@ type_?: GetApiAlphaPostList2Type;
 community_name?: string;
 community_id?: number;
 saved_only?: boolean;
+nsfw?: GetApiAlphaPostList2Nsfw;
 person_id?: number;
 limit?: number;
 page?: string;
