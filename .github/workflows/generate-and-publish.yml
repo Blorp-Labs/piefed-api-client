@@ -2,7 +2,7 @@ name: Generate and Publish
 
 on:
   push:
-    branches: [main]
+    branches: [main, crust-piefed-social]
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Update npm to latest (required for OIDC trusted publishing)
-        run: npm install -g npm@latest
+        run: npm install -g npm@11.11.1
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
